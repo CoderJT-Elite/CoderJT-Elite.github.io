@@ -1,0 +1,20 @@
+# Site settings
+# Replace 'minima' with the theme you want to use
+remote_theme: minima
+
+# Site title and description
+title: John Tewolde's Website
+description: A personal website showcasing my work and interests.
+
+# Base URL (if hosting in a subdirectory, update this)
+baseurl: ""
+
+# URL of the site
+url: "https://CoderJT-Elite.github.io"
+
+# Exclude files or directories from processing
+exclude:
+  - README.md
+
+# Markdown settings
+markdown: kramdown
