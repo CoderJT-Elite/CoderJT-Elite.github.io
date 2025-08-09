@@ -1,7 +1,6 @@
 # Site settings
 # Replace 'minima' with the theme you want to use
-remote_theme: minima
-
+theme: jekyll-theme-minimal
 # Site title and description
 title: John Tewolde's Website
 description: A personal website showcasing my work and interests.
