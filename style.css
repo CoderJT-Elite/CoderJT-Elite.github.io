@@ -79,51 +79,137 @@ footer {
     border-top: 1px solid #eaeaea;
 }
 
+/* Consistent background and text colors */
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: #222;
+}
+
+/* Ensure header and footer styles are consistent */
+header, footer {
+    background-color: #2d7ff9;
+    color: white;
+}
+
+/* General container styling */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero section */
+.hero {
+    background: url('soccer-ball.png') no-repeat center center/cover;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.hero-content {
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+    color: #FFD700; /* Gold color */
+}
+
+/* Section styling */
+section {
+    padding: 60px 0;
+    border-bottom: 1px solid #eaeaea;
+}
+
+section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    color: #333;
+}
+
+/* Project grid */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.project-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 24px rgba(44, 62, 80, 0.08);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 30px rgba(44, 62, 80, 0.15);
+}
+
 /* Form styles */
 form {
-    max-width: 500px;
-    margin: 32px auto;
-    background-color: #f5f7fa;
-    padding: 24px;
-    border-radius: 10px;
-    box-shadow: 0 2px 12px rgba(44, 62, 80, 0.08);
+    max-width: 600px;
+    margin: 0 auto;
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 24px rgba(44, 62, 80, 0.08);
 }
 
 form label {
     display: block;
     margin-bottom: 8px;
+    font-weight: bold;
 }
 
 form input, form textarea {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     margin-bottom: 20px;
-    border: 1px solid #bfc9d2;
-    border-radius: 6px;
-    font-size: 16px;
-    background: #fff;
-    transition: border 0.2s;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
+
 form input:focus, form textarea:focus {
     border: 1.5px solid #2d7ff9;
     outline: none;
 }
 
 form input[type="submit"] {
-    background-color: #2d7ff9;
-    color: #fff;
+    background: #2d7ff9;
+    color: white;
     border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 17px;
-    border-radius: 6px;
-    padding: 12px 24px;
-    transition: background 0.2s;
+    transition: background 0.3s;
 }
 
-form input[type="submit"]:hover, form input[type="submit"]:focus {
-    background-color: #1a5fd9;
-    outline: 2px solid #2d7ff9;
+form input[type="submit"]:hover {
+    background: #1a5fd9;
 }
+
+/* Footer */
+footer {
+    background: #2d7ff9;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer .social-icons img {
+    width: 24px;
+    margin: 0 10px;
+    transition: transform 0.3s;
+}
+
+footer .social-icons img:hover {
+    transform: scale(1.2);
+}
+
 /* Responsive Design */
 @media (max-width: 700px) {
     main {
