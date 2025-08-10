@@ -3,6 +3,8 @@ layout: page
 title: Contact
 ---
 
+[Home](index.md) | [About Me](about.md) | [Contact](contact.md)
+
 ## Contact Us
 
 We'd love to hear from you! Fill out the form below and we'll get back to you soon.

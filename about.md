@@ -3,6 +3,8 @@ layout: page
 title: About Me
 ---
 
+[Home](index.md) | [About Me](about.md) | [Contact](contact.md)
+
 ## A Little Bit About Me
 
 I'm John, a passionate web developer. I specialize in creating websites using modern technologies like HTML, CSS, and JavaScript.
