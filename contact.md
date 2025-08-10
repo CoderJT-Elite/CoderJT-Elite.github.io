@@ -1,9 +1,7 @@
 ---
-layout: default
+layout: page
 title: Contact
 ---
-
-[Home](index.md) | [About Me](about.md) | [Contact](contact.md)
 
 ## Contact Us
 
