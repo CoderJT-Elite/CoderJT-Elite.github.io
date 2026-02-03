@@ -3,10 +3,37 @@ layout: default
 title: Home
 ---
 
-[Home](index.md) | [About Me](about.md) | [Contact](contact.md)
+<nav>
+  <a href="index.md">🏠 Home</a>
+  <a href="about.md">👤 About Me</a>
+  <a href="contact.md">📧 Contact</a>
+</nav>
 
-# Welcome!
+# Welcome to My Digital Space! 🚀
 
-This is the home page. Explore the site to learn more!
+<div class="content-card">
 
-![Soccer ball](soccer-ball.png)
+I'm passionate about creating amazing web experiences and building innovative solutions. This is where I share my journey, projects, and connect with fellow developers and enthusiasts.
+
+Whether you're here to learn more about my work, explore my projects, or get in touch, you're in the right place!
+
+</div>
+
+## What You'll Find Here
+
+<div class="content-card">
+
+**💻 Projects & Portfolio**  
+Discover my latest work and contributions to the open-source community.
+
+**📚 About Me**  
+Learn about my background, skills, and what drives my passion for technology.
+
+**🤝 Let's Connect**  
+Ready to collaborate or just want to say hello? I'd love to hear from you!
+
+</div>
+
+<div style="text-align: center; margin: 2rem 0;">
+  <img src="soccer-ball.png" alt="Soccer ball" style="max-width: 200px; display: inline-block;">
+</div>
