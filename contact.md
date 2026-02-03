@@ -4,9 +4,9 @@ title: Contact
 ---
 
 <nav>
-  <a href="index.md">🏠 Home</a>
-  <a href="about.md">👤 About Me</a>
-  <a href="contact.md">📧 Contact</a>
+  <a href="/">🏠 Home</a>
+  <a href="/about">👤 About Me</a>
+  <a href="/contact">📧 Contact</a>
 </nav>
 
 ## Get In Touch 📬
