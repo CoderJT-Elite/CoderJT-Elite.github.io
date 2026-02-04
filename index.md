@@ -82,7 +82,7 @@ title: Home
 
 ## What You'll Find Here
 
-<div class="content-card" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);">
+<div class="content-card content-card-gradient">
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
 

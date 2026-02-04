@@ -136,12 +136,12 @@ With over 5 years of experience, I've worked on diverse projects ranging from sm
 
 ## Let's Work Together 🌟
 
-<div class="content-card" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%); text-align: center;">
+<div class="content-card content-card-gradient" style="text-align: center;">
 
 I'm always eager to take on new challenges and collaborate on exciting projects. Whether you have a project in mind or just want to chat about technology, feel free to reach out!
 
 <div style="margin-top: 2rem;">
-  <a href="/contact" style="display: inline-block; padding: 1rem 2.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 25px; font-weight: 600; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); transition: all 0.3s ease;">
+  <a href="/contact" class="btn-primary">
     Get In Touch 📧
   </a>
 </div>

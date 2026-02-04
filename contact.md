@@ -76,7 +76,7 @@ I'd love to hear from you! Whether you have a question, a project idea, or just 
   </div>
 </div>
 
-<div class="content-card" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%); text-align: center;">
+<div class="content-card content-card-gradient" style="text-align: center;">
 
 ### 🚀 Ready to Start Your Project?
 
