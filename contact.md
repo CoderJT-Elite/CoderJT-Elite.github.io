@@ -3,10 +3,10 @@ layout: default
 title: Contact
 ---
 
-<nav>
-  <a href="/">🏠 Home</a>
-  <a href="/about">👤 About Me</a>
-  <a href="/contact">📧 Contact</a>
+<nav aria-label="Main navigation">
+  <a href="/" aria-label="Home">🏠 Home</a>
+  <a href="/about" aria-label="About Me">👤 About Me</a>
+  <a href="/contact" aria-label="Contact" aria-current="page">📧 Contact</a>
 </nav>
 
 <div class="hero-section">
@@ -42,13 +42,13 @@ I'd love to hear from you! Whether you have a question, a project idea, or just 
 
 <form aria-label="Contact Form" action="https://formspree.io/f/mqalwpwn" method="POST">
     <label for="name">Your Name *</label>
-    <input type="text" id="name" name="name" required autocomplete="name" placeholder="John Doe">
+    <input type="text" id="name" name="name" required autocomplete="name" placeholder="John Doe" aria-required="true">
     
     <label for="email">Your Email *</label>
-    <input type="email" id="email" name="email" required autocomplete="email" placeholder="john@example.com">
+    <input type="email" id="email" name="email" required autocomplete="email" placeholder="john@example.com" aria-required="true">
     
     <label for="message">Your Message *</label>
-    <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project or question..."></textarea>
+    <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project or question..." aria-required="true"></textarea>
     
     <input type="submit" value="Send Message ✉️">
 </form>
