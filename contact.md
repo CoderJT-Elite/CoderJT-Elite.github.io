@@ -50,7 +50,7 @@ I'd love to hear from you! Whether you have a question, a project idea, or just 
     <label for="message">Your Message *</label>
     <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project or question..." aria-required="true"></textarea>
     
-    <input type="submit" value="Send Message ✉️" aria-label="Send message">
+    <input type="submit" value="Send Message ✉️">
 </form>
 
 ## Other Ways to Connect 🌐
