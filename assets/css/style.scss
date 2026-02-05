@@ -19,8 +19,8 @@
   --shadow-strong: 0 10px 30px rgba(0, 0, 0, 0.2);
   --border-radius: 12px;
   --border-radius-sm: 8px;
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-fast: all 0.2s ease;
+  --transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: transform 0.2s ease, opacity 0.2s ease;
   --grid-pattern: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
 }
 
@@ -119,6 +119,11 @@ nav a:hover {
   transform: translateY(-2px);
 }
 
+nav a:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
 nav a:hover::after {
   width: 80%;
 }
@@ -164,7 +169,7 @@ nav a:hover::after {
 .main-content img {
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
-  transition: var(--transition);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   max-width: 100%;
   height: auto;
   display: block;
@@ -221,8 +226,8 @@ form input[type="email"]:focus,
 form textarea:focus {
   outline: none;
   background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(102, 126, 234, 0.6);
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border: 2px solid rgba(102, 126, 234, 0.8);
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
 }
 
 form textarea {
@@ -259,12 +264,18 @@ form input[type="submit"]:active {
   color: var(--primary-color);
   text-decoration: none;
   font-weight: 600;
-  transition: var(--transition);
+  transition: color 0.3s ease, transform 0.2s ease;
   position: relative;
 }
 
 .main-content a:hover {
   color: var(--secondary-color);
+}
+
+.main-content a:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 /* Internal link arrow indicator */
@@ -348,7 +359,12 @@ form input[type="submit"]:active {
   }
 }
 
-.main-content > * {
+/* Apply fade-in only to major sections, not all children */
+.hero-section,
+.content-card,
+.stats-container,
+.skills-grid,
+.features-grid {
   animation: fadeIn 0.6s ease-out;
 }
 
@@ -947,15 +963,21 @@ html {
   color: white;
 }
 
-/* Floating Decorative Elements */
+.btn-primary:focus {
+  outline: 3px solid rgba(102, 126, 234, 0.5);
+  outline-offset: 3px;
+}
+
+/* Floating Decorative Elements - Optimized */
 body::before,
 body::after {
   content: '';
   position: fixed;
   border-radius: 50%;
-  opacity: 0.1;
+  opacity: 0.08;
   z-index: 0;
   pointer-events: none;
+  will-change: transform;
 }
 
 body::before {
@@ -964,7 +986,7 @@ body::before {
   background: linear-gradient(135deg, #667eea, #764ba2);
   top: -200px;
   right: -200px;
-  animation: float 15s ease-in-out infinite;
+  animation: float 20s ease-in-out infinite;
 }
 
 body::after {
@@ -973,7 +995,7 @@ body::after {
   background: linear-gradient(135deg, #f093fb, #f5576c);
   bottom: -150px;
   left: -150px;
-  animation: float 20s ease-in-out infinite reverse;
+  animation: float 25s ease-in-out infinite reverse;
 }
 
 /* Improved scrollbar for webkit browsers */
@@ -999,6 +1021,17 @@ body::after {
 /* Additional modern touches */
 * {
   box-sizing: border-box;
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Prevent text selection on decorative elements */

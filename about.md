@@ -3,10 +3,10 @@ layout: default
 title: About Me
 ---
 
-<nav>
-  <a href="/">🏠 Home</a>
-  <a href="/about">👤 About Me</a>
-  <a href="/contact">📧 Contact</a>
+<nav aria-label="Main navigation">
+  <a href="/" aria-label="Home">🏠 Home</a>
+  <a href="/about" aria-label="About Me" aria-current="page">👤 About Me</a>
+  <a href="/contact" aria-label="Contact">📧 Contact</a>
 </nav>
 
 <div class="hero-section">
@@ -15,7 +15,7 @@ title: About Me
 </div>
 
 <div class="profile-section">
-  <div style="width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);">
+  <div style="width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);" role="img" aria-label="Developer avatar">
     👨‍💻
   </div>
   <div class="profile-info">
@@ -141,7 +141,7 @@ With over 5 years of experience, I've worked on diverse projects ranging from sm
 I'm always eager to take on new challenges and collaborate on exciting projects. Whether you have a project in mind or just want to chat about technology, feel free to reach out!
 
 <div style="margin-top: 2rem;">
-  <a href="/contact" class="btn-primary">
+  <a href="/contact" class="btn-primary" role="button" aria-label="Contact me">
     Get In Touch 📧
   </a>
 </div>

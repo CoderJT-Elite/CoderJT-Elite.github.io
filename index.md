@@ -3,10 +3,10 @@ layout: default
 title: Home
 ---
 
-<nav>
-  <a href="/">🏠 Home</a>
-  <a href="/about">👤 About Me</a>
-  <a href="/contact">📧 Contact</a>
+<nav aria-label="Main navigation">
+  <a href="/" aria-label="Home" aria-current="page">🏠 Home</a>
+  <a href="/about" aria-label="About Me">👤 About Me</a>
+  <a href="/contact" aria-label="Contact">📧 Contact</a>
 </nav>
 
 <div class="hero-section">
@@ -106,12 +106,12 @@ title: Home
 </div>
 
 <div style="text-align: center; margin: 3rem 0;">
-  <img src="soccer-ball.png" alt="Soccer ball" class="animate-float" style="max-width: 150px; display: inline-block;">
+  <img src="/soccer-ball.png" alt="Soccer ball" class="animate-float" style="max-width: 150px; display: inline-block;" loading="lazy">
   <p style="color: #667eea; font-weight: 600; margin-top: 1rem;">⚽ Soccer Enthusiast & Tech Lover</p>
 </div>
 
 <div class="social-links">
-  <a href="https://github.com/CoderJT-Elite" class="social-link github" title="GitHub">
-    <span style="font-size: 1.5rem;">🐙</span>
+  <a href="https://github.com/CoderJT-Elite" class="social-link github" title="GitHub" aria-label="Visit my GitHub profile">
+    <span style="font-size: 1.5rem;" aria-hidden="true">🐙</span>
   </a>
 </div>
