@@ -3,20 +3,26 @@ layout: default
 title: Home
 ---
 
-<nav aria-label="Main navigation">
+<nav aria-label="Main navigation" class="main-nav">
   <a href="/" aria-label="Home" aria-current="page">🏠 Home</a>
   <a href="/about" aria-label="About Me">👤 About Me</a>
   <a href="/contact" aria-label="Contact">📧 Contact</a>
 </nav>
 
-<div class="hero-section">
-  <h1 class="hero-title">Welcome to My Digital Space! 🚀</h1>
-  <p class="hero-subtitle">Crafting beautiful web experiences, one line of code at a time</p>
-</div>
+<section class="hero-section hero-panel">
+  <p class="eyebrow">Available for freelance & collaboration</p>
+  <h1 class="hero-title">Designing polished, high-performance web experiences.</h1>
+  <p class="hero-subtitle">I build accessible interfaces, fast frontends, and digital products people enjoy using.</p>
+  <div class="hero-actions">
+    <a href="/contact" class="btn-primary" role="button">Start a Project</a>
+    <a href="/about" class="btn-secondary" role="button">See My Process</a>
+  </div>
+</section>
 
-<div class="content-card">
-  <p style="text-align: center; font-size: 1.1rem; line-height: 1.8;">
-    I'm passionate about creating amazing web experiences and building innovative solutions. This is where I share my journey, projects, and connect with fellow developers and enthusiasts.
+<div class="content-card intro-card">
+  <p>
+    I’m passionate about turning ideas into practical, beautiful products. On this site you’ll find my technical strengths,
+    project highlights, and the easiest way to reach me.
   </p>
 </div>
 
@@ -31,7 +37,7 @@ title: Home
   </div>
   <div class="stat-box">
     <span class="stat-number">100%</span>
-    <span class="stat-label">Client Satisfaction</span>
+    <span class="stat-label">Client Focus</span>
   </div>
 </div>
 
@@ -41,17 +47,17 @@ title: Home
   <div class="feature-box">
     <span class="feature-icon">💻</span>
     <h3 class="feature-title">Web Development</h3>
-    <p class="feature-text">Building responsive, modern websites with clean code and best practices</p>
+    <p class="feature-text">Responsive, maintainable websites and web apps built with modern best practices.</p>
   </div>
   <div class="feature-box">
     <span class="feature-icon">🎨</span>
     <h3 class="feature-title">UI/UX Design</h3>
-    <p class="feature-text">Creating intuitive and beautiful user interfaces that delight users</p>
+    <p class="feature-text">Clear user flows and interfaces that balance brand style with usability.</p>
   </div>
   <div class="feature-box">
     <span class="feature-icon">⚡</span>
-    <h3 class="feature-title">Performance</h3>
-    <p class="feature-text">Optimizing for speed and efficiency to deliver lightning-fast experiences</p>
+    <h3 class="feature-title">Performance Optimization</h3>
+    <p class="feature-text">Faster load times, smoother interactions, and better technical quality.</p>
   </div>
 </div>
 
@@ -73,45 +79,30 @@ title: Home
     <h3 class="skill-name">Tools</h3>
     <p class="skill-description">Git, VS Code, Figma, Docker</p>
   </div>
-  <div class="skill-card">
-    <span class="skill-icon">📱</span>
-    <h3 class="skill-name">Responsive</h3>
-    <p class="skill-description">Mobile-first design, Cross-browser compatibility</p>
+</div>
+
+<div class="content-card content-card-gradient split-grid">
+  <div>
+    <h3>💻 Projects & Portfolio</h3>
+    <p>Selected work with focus on quality, scalability, and user outcomes.</p>
+  </div>
+  <div>
+    <h3>📚 About Me</h3>
+    <p>My background, technical perspective, and approach to building products.</p>
+  </div>
+  <div>
+    <h3>🤝 Let’s Connect</h3>
+    <p>Have an idea or role in mind? I’d love to hear what you’re building.</p>
   </div>
 </div>
 
-## What You'll Find Here
-
-<div class="content-card content-card-gradient">
-
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-
-<div>
-<h3 style="color: #667eea; margin-bottom: 0.5rem;">💻 Projects & Portfolio</h3>
-<p>Discover my latest work and contributions to the open-source community.</p>
-</div>
-
-<div>
-<h3 style="color: #667eea; margin-bottom: 0.5rem;">📚 About Me</h3>
-<p>Learn about my background, skills, and what drives my passion for technology.</p>
-</div>
-
-<div>
-<h3 style="color: #667eea; margin-bottom: 0.5rem;">🤝 Let's Connect</h3>
-<p>Ready to collaborate or just want to say hello? I'd love to hear from you!</p>
-</div>
-
-</div>
-
-</div>
-
-<div style="text-align: center; margin: 3rem 0;">
-  <img src="/soccer-ball.png" alt="Soccer ball" class="animate-float" style="max-width: 150px; display: inline-block;" loading="lazy">
-  <p style="color: #667eea; font-weight: 600; margin-top: 1rem;">⚽ Soccer Enthusiast & Tech Lover</p>
+<div class="personal-note">
+  <img src="/soccer-ball.png" alt="Soccer ball" class="animate-float" loading="lazy">
+  <p>⚽ Soccer Enthusiast & Tech Lover</p>
 </div>
 
 <div class="social-links">
   <a href="https://github.com/CoderJT-Elite" class="social-link github" title="GitHub" aria-label="Visit my GitHub profile">
-    <span style="font-size: 1.5rem;" aria-hidden="true">🐙</span>
+    <span aria-hidden="true">🐙</span>
   </a>
 </div>
