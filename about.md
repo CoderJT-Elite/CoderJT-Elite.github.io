@@ -1,8 +1,9 @@
 ---
-layout: default
+layout: page
 title: About Me
 ---
 
+<<<<<<< Updated upstream
 <nav aria-label="Main navigation" class="main-nav">
   <a href="/" aria-label="Home">🏠 Home</a>
   <a href="/about" aria-label="About Me" aria-current="page">👤 About Me</a>
@@ -13,6 +14,9 @@ title: About Me
   <h1 class="hero-title">About Me 👨‍💻</h1>
   <p class="hero-subtitle">Developer • Designer • Problem Solver</p>
 </div>
+=======
+## A Little Bit About Me
+>>>>>>> Stashed changes
 
 <div class="profile-section">
   <div class="profile-emoji" role="img" aria-label="Developer avatar">👨‍💻</div>
@@ -27,6 +31,7 @@ title: About Me
 
 ## My Journey 🚀
 
+<<<<<<< Updated upstream
 <div class="content-card">
 Hi! I'm **John**, a developer who enjoys crafting modern digital experiences with clean implementation and thoughtful design.
 
@@ -89,3 +94,6 @@ For 5+ years, I’ve worked across websites and web applications—from startup 
     <a href="https://github.com/CoderJT-Elite" class="btn-secondary" role="button">GitHub Profile</a>
   </div>
 </div>
+=======
+Feel free to visit my GitHub Page to see my projects and contributions: [https://github.com/CoderJT-Elite](https://github.com/CoderJT-Elite).
+>>>>>>> Stashed changes
