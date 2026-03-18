@@ -26,26 +26,11 @@ title: Home
   </p>
 </div>
 
-<div class="stats-container">
-  <div class="stat-box">
-    <span class="stat-number">50+</span>
-    <span class="stat-label">Projects Completed</span>
-  </div>
-  <div class="stat-box">
-    <span class="stat-number">5+</span>
-    <span class="stat-label">Years Experience</span>
-  </div>
-  <div class="stat-box">
-    <span class="stat-number">100%</span>
-    <span class="stat-label">Client Focus</span>
-  </div>
-</div>
-
 ## Featured Projects
 
 <div class="project-grid">
   <div class="project-card">
-    <img src="{{ '/assets/img/project-social.png' | relative_url }}" alt="Form Analyzer" class="project-image">
+    <div class="project-icon">🏃</div>
     <div class="project-content">
       <h3 class="project-title">Form Analyzer</h3>
       <p class="project-description">Democratizing sports science with 3D vector-based biomechanics analysis for under-resourced communities.</p>
@@ -57,7 +42,7 @@ title: Home
     </div>
   </div>
   <div class="project-card">
-    <img src="{{ '/assets/img/project-ecommerce.png' | relative_url }}" alt="Neon Racer" class="project-image">
+    <div class="project-icon">🏎️</div>
     <div class="project-content">
       <h3 class="project-title">Neon Racer</h3>
       <p class="project-description">A high-speed 3D racing game featuring vibrant neon aesthetics, physics-based vehicle mechanics, and dynamic cameras.</p>
@@ -69,7 +54,7 @@ title: Home
     </div>
   </div>
   <div class="project-card">
-    <img src="{{ '/assets/img/project-finance.png' | relative_url }}" alt="Squatalyzer AI" class="project-image">
+    <div class="project-icon">🤖</div>
     <div class="project-content">
       <h3 class="project-title">Squatalyzer AI</h3>
       <p class="project-description">AI-powered fitness assessment platform built with Google AI Studio and Gemini for real-time exercise feedback.</p>
@@ -108,17 +93,17 @@ title: Home
   <div class="skill-card">
     <span class="skill-icon">🌐</span>
     <h3 class="skill-name">Frontend</h3>
-    <p class="skill-description">HTML5, CSS3, JavaScript, React, Vue.js</p>
+    <p class="skill-description">HTML5, CSS3, JavaScript, Next.js, Three.js</p>
   </div>
   <div class="skill-card">
     <span class="skill-icon">⚙️</span>
     <h3 class="skill-name">Backend</h3>
-    <p class="skill-description">Node.js, Python, REST APIs</p>
+    <p class="skill-description">Firebase, REST APIs</p>
   </div>
   <div class="skill-card">
     <span class="skill-icon">🛠️</span>
-    <h3 class="skill-name">Tools</h3>
-    <p class="skill-description">Git, VS Code, Figma, Docker</p>
+    <h3 class="skill-name">Tools & Mobile</h3>
+    <p class="skill-description">Flutter, Git, VS Code</p>
   </div>
 </div>
 
