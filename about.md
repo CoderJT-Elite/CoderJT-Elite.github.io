@@ -1,91 +1,156 @@
 ---
 layout: default
-title: About Me
+title: About
+description: About John Tewolde — developer, builder, soccer enthusiast.
 ---
 
-<nav aria-label="Main navigation" class="main-nav">
-  <a href="/" aria-label="Home">🏠 Home</a>
-  <a href="/about" aria-label="About Me" aria-current="page">👤 About Me</a>
-  <a href="/contact" aria-label="Contact">📧 Contact</a>
-</nav>
+<!-- ════════════════  ABOUT HERO  ════════════════ -->
+<section class="section">
+  <div class="container">
 
-<div class="hero-section hero-panel">
-  <h1 class="hero-title">About Me 👨‍💻</h1>
-  <p class="hero-subtitle">Developer • Designer • Problem Solver</p>
-</div>
+    <p class="label reveal">👤 About Me</p>
 
-<div class="profile-section">
-  <div class="profile-emoji" role="img" aria-label="Developer avatar">👨‍💻</div>
-  <div class="profile-info">
-    <h2 class="profile-name">John</h2>
-    <p class="profile-title">Full-Stack Web Developer</p>
-    <p class="profile-bio">
-      I build beautiful, practical web products with a strong focus on usability and performance.
-    </p>
+    <div class="profile-hero reveal">
+      <div class="profile-avatar">👨‍💻</div>
+      <div>
+        <h1 class="profile-name">John Tewolde</h1>
+        <p class="profile-role">Full‑Stack Developer · Mobile · AI</p>
+        <p class="profile-bio">
+          I build digital products that are fast, accessible, and genuinely enjoyable to use. My work spans SaaS platforms, browser‑based 3D experiences, and mobile apps powered by machine learning — with a focus on shipping things that actually matter.
+        </p>
+      </div>
+    </div>
+
   </div>
-</div>
+</section>
 
-## My Journey 🚀
+<div class="divider"></div>
 
-<div class="content-card">
-Hi! I'm **John**, a developer who enjoys crafting modern digital experiences with clean implementation and thoughtful design.
+<!-- ════════════════  MY STORY  ════════════════ -->
+<section class="section">
+  <div class="container">
 
-I've worked across websites, web applications, and mobile apps—from simple landing pages to complex, full-stack 3D and machine learning interfaces. I care about making products that are fast, accessible, and enjoyable to use.
-</div>
+    <p class="label reveal">🚀 My Journey</p>
+    <h2 class="reveal" style="margin-bottom:1.5rem">How I got here</h2>
 
-## Core Competencies 💡
+    <div class="info-card reveal">
+      <p>Hi! I'm <strong>John</strong> — a developer who fell in love with building things on the web. I started out curious about how websites worked, taught myself to code, and never looked back.</p>
+      <br>
+      <p>I've worked across a wide range of projects — from helping <strong>construction subcontractors</strong> get paid faster with ChaseUp, to building a full <strong>3D racing game</strong> that runs in your browser, to creating an <strong>AI-powered biomechanics analyzer</strong> for athletes using Flutter and ML Kit.</p>
+      <br>
+      <p>I thrive at the intersection of design and engineering — writing clean code while keeping the end user's experience front and center. ⚽ Off-screen you'll find me on a soccer field, thinking creatively through movement and teamwork.</p>
+    </div>
 
-<div class="skills-grid">
-  <div class="skill-card">
-    <span class="skill-icon">⚛️</span>
-    <h3 class="skill-name">Frontend Engineering</h3>
-    <p class="skill-description">Interactive interfaces with HTML, CSS, JavaScript, Next.js, and Three.js.</p>
   </div>
-  <div class="skill-card">
-    <span class="skill-icon">📱</span>
-    <h3 class="skill-name">Cross-Platform Dev</h3>
-    <p class="skill-description">Building powerful cross-platform apps using Flutter and Dart.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════  SKILLS  ════════════════ -->
+<section class="section">
+  <div class="container">
+
+    <p class="label reveal">🛠 Core Skills</p>
+    <h2 class="reveal" style="margin-bottom:1.5rem">What I work with</h2>
+
+    <div class="grid-3" style="margin-bottom:2rem">
+      <div class="feature-card reveal">
+        <span class="feature-icon">⚛️</span>
+        <h3 class="feature-title">Frontend</h3>
+        <p class="feature-text">HTML, CSS, JavaScript, Next.js, Three.js — shipping polished UIs at any scale.</p>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon">📱</span>
+        <h3 class="feature-title">Mobile</h3>
+        <p class="feature-text">Flutter &amp; Dart for cross-platform apps that feel truly native.</p>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon">🧠</span>
+        <h3 class="feature-title">AI &amp; ML</h3>
+        <p class="feature-text">Gemini API, Google ML Kit, BlazePose — adding real intelligence to apps.</p>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon">🔥</span>
+        <h3 class="feature-title">Backend &amp; DB</h3>
+        <p class="feature-text">Firebase (Auth, Firestore, Storage), REST APIs, serverless functions.</p>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon">🎮</span>
+        <h3 class="feature-title">3D &amp; Graphics</h3>
+        <p class="feature-text">Three.js for immersive 3D experiences, Cannon‑es for physics simulation.</p>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon">🐙</span>
+        <h3 class="feature-title">Dev Tools</h3>
+        <p class="feature-text">Git, GitHub Actions, VS Code, Vercel, GitHub Pages.</p>
+      </div>
+    </div>
+
+    <div class="tech-cloud reveal">
+      <span class="tech-badge">⚡ JavaScript</span>
+      <span class="tech-badge">🌐 HTML5</span>
+      <span class="tech-badge">🎨 CSS3</span>
+      <span class="tech-badge">▲ Next.js</span>
+      <span class="tech-badge">🎮 Three.js</span>
+      <span class="tech-badge">📱 Flutter</span>
+      <span class="tech-badge">🔥 Firebase</span>
+      <span class="tech-badge">🧠 Gemini API</span>
+      <span class="tech-badge">👁 ML Kit</span>
+      <span class="tech-badge">🐙 Git</span>
+      <span class="tech-badge">▲ Vercel</span>
+      <span class="tech-badge">📄 Jekyll</span>
+    </div>
+
   </div>
-  <div class="skill-card">
-    <span class="skill-icon">🧠</span>
-    <h3 class="skill-name">AI & Machine Learning</h3>
-    <p class="skill-description">Integrating APIs like Gemini and ML Kit for intelligent user experiences.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════  BEYOND CODING  ════════════════ -->
+<section class="section">
+  <div class="container">
+
+    <p class="label reveal">⚽ Beyond Code</p>
+    <h2 class="reveal" style="margin-bottom:1.5rem">What keeps me sharp</h2>
+
+    <div class="grid-4">
+      <div class="feature-card reveal">
+        <span class="feature-icon">⚽</span>
+        <h3 class="feature-title">Soccer</h3>
+        <p class="feature-text">Teamwork, pattern recognition, and split-second decisions — all translate to great software.</p>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon">🏔️</span>
+        <h3 class="feature-title">Hiking</h3>
+        <p class="feature-text">Getting offline resets my thinking and fuels fresh ideas.</p>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon">📚</span>
+        <h3 class="feature-title">Learning</h3>
+        <p class="feature-text">Always exploring new tools, patterns, and rabbit holes in tech.</p>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon">✈️</span>
+        <h3 class="feature-title">Travel</h3>
+        <p class="feature-text">New places bring new perspectives — and better product instincts.</p>
+      </div>
+    </div>
+
   </div>
-  <div class="skill-card">
-    <span class="skill-icon">🚀</span>
-    <h3 class="skill-name">Optimization</h3>
-    <p class="skill-description">Performance, SEO, and quality improvements that scale.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════  CTA  ════════════════ -->
+<section class="section-sm">
+  <div class="container">
+    <div class="cta-band reveal">
+      <h2>Let's build something great.</h2>
+      <p>Open to freelance, contracts, and senior roles. Drop me a message!</p>
+      <div class="btn-row">
+        <a href="/contact" class="btn btn-primary">Get in Touch →</a>
+        <a href="https://github.com/CoderJT-Elite" target="_blank" rel="noopener" class="btn btn-ghost">GitHub ↗</a>
+      </div>
+    </div>
   </div>
-</div>
-
-## Technical Skills 🛠️
-
-<div class="content-card skills-center">
-  <div class="icon-badge"><span class="icon-badge-icon">🌐</span><span>HTML5</span></div>
-  <div class="icon-badge"><span class="icon-badge-icon">🎨</span><span>CSS3</span></div>
-  <div class="icon-badge"><span class="icon-badge-icon">⚡</span><span>JavaScript</span></div>
-  <div class="icon-badge"><span class="icon-badge-icon">⚛️</span><span>Next.js</span></div>
-  <div class="icon-badge"><span class="icon-badge-icon">🎮</span><span>Three.js</span></div>
-  <div class="icon-badge"><span class="icon-badge-icon">📱</span><span>Flutter</span></div>
-  <div class="icon-badge"><span class="icon-badge-icon">🔥</span><span>Firebase</span></div>
-  <div class="icon-badge"><span class="icon-badge-icon">🐙</span><span>Git</span></div>
-  <div class="icon-badge"><span class="icon-badge-icon">🧠</span><span>Gemini API</span></div>
-  <div class="icon-badge"><span class="icon-badge-icon">📐</span><span>Responsive Design</span></div>
-</div>
-
-## Beyond Coding ⚽
-
-<div class="features-grid">
-  <div class="feature-box"><span class="feature-icon">⚽</span><h3 class="feature-title">Soccer</h3><p class="feature-text">Teamwork and focus from the field to software projects.</p></div>
-  <div class="feature-box"><span class="feature-icon">🏔️</span><h3 class="feature-title">Hiking</h3><p class="feature-text">Exploring nature to reset and think creatively.</p></div>
-  <div class="feature-box"><span class="feature-icon">✈️</span><h3 class="feature-title">Traveling</h3><p class="feature-text">Learning from new places and perspectives.</p></div>
-  <div class="feature-box"><span class="feature-icon">📚</span><h3 class="feature-title">Learning</h3><p class="feature-text">Staying current with modern tools, patterns, and practices.</p></div>
-</div>
-
-<div class="content-card content-card-gradient cta-card">
-  <p>I’m always open to new challenges and meaningful collaborations.</p>
-  <div class="hero-actions">
-    <a href="/contact" class="btn-primary" role="button" aria-label="Contact me">Get In Touch 📧</a>
-    <a href="https://github.com/CoderJT-Elite" class="btn-secondary" role="button">GitHub Profile</a>
-  </div>
-</div>
+</section>
