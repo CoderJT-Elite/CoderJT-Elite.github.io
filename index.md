@@ -45,38 +45,38 @@ title: Home
 
 <div class="project-grid">
   <div class="project-card">
-    <img src="{{ '/assets/img/project-ecommerce.png' | relative_url }}" alt="E-commerce Dashboard" class="project-image">
+    <img src="{{ '/assets/img/project-social.png' | relative_url }}" alt="Form Analyzer" class="project-image">
     <div class="project-content">
-      <h3 class="project-title">EliteShop Dashboard</h3>
-      <p class="project-description">A high-performance e-commerce management system with real-time analytics and inventory tracking.</p>
+      <h3 class="project-title">Form Analyzer</h3>
+      <p class="project-description">Democratizing sports science with 3D vector-based biomechanics analysis for under-resourced communities.</p>
       <div class="project-tags">
-        <span class="tag">React</span>
-        <span class="tag">Node.js</span>
-        <span class="tag">D3.js</span>
+        <span class="tag">Flutter</span>
+        <span class="tag">ML Kit</span>
+        <span class="tag">BlazePose</span>
       </div>
     </div>
   </div>
   <div class="project-card">
-    <img src="{{ '/assets/img/project-finance.png' | relative_url }}" alt="Finance App" class="project-image">
+    <img src="{{ '/assets/img/project-ecommerce.png' | relative_url }}" alt="Neon Racer" class="project-image">
     <div class="project-content">
-      <h3 class="project-title">Zenith Finance</h3>
-      <p class="project-description">A sleek mobile-first financial platform focusing on investment tracking and crypto portfolio management.</p>
+      <h3 class="project-title">Neon Racer</h3>
+      <p class="project-description">A high-speed 3D racing game featuring vibrant neon aesthetics, physics-based vehicle mechanics, and dynamic cameras.</p>
       <div class="project-tags">
-        <span class="tag">Vue.js</span>
-        <span class="tag">Firebase</span>
-        <span class="tag">Tailwind</span>
+        <span class="tag">Three.js</span>
+        <span class="tag">Cannon-es</span>
+        <span class="tag">JavaScript</span>
       </div>
     </div>
   </div>
   <div class="project-card">
-    <img src="{{ '/assets/img/project-social.png' | relative_url }}" alt="Social Community" class="project-image">
+    <img src="{{ '/assets/img/project-finance.png' | relative_url }}" alt="Squatalyzer AI" class="project-image">
     <div class="project-content">
-      <h3 class="project-title">Artisan Hub</h3>
-      <p class="project-description">A vibrant networking platform for digital artists to showcase work and find collaborations.</p>
+      <h3 class="project-title">Squatalyzer AI</h3>
+      <p class="project-description">AI-powered fitness assessment platform built with Google AI Studio and Gemini for real-time exercise feedback.</p>
       <div class="project-tags">
         <span class="tag">Next.js</span>
-        <span class="tag">GraphQL</span>
-        <span class="tag">Stripe</span>
+        <span class="tag">Gemini API</span>
+        <span class="tag">Firebase</span>
       </div>
     </div>
   </div>
