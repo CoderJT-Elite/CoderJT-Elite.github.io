@@ -30,39 +30,42 @@ title: Home
 
 <div class="project-grid">
   <div class="project-card">
-    <div class="project-icon">🏃</div>
+    <div class="project-icon">🏗️</div>
     <div class="project-content">
-      <h3 class="project-title">Form Analyzer</h3>
-      <p class="project-description">Democratizing sports science with 3D vector-based biomechanics analysis for under-resourced communities.</p>
+      <h3 class="project-title">ChaseUp</h3>
+      <p class="project-description">A payment tracking platform built exclusively for construction subcontractors. Track change orders, retainage, and lien deadlines — get paid 3× faster.</p>
       <div class="project-tags">
-        <span class="tag">Flutter</span>
-        <span class="tag">ML Kit</span>
-        <span class="tag">BlazePose</span>
+        <span class="tag">SaaS</span>
+        <span class="tag">Payments</span>
+        <span class="tag">Web App</span>
       </div>
+      <a href="https://chaseupapp.tech" target="_blank" rel="noopener" class="project-link">🔗 Visit Site</a>
     </div>
   </div>
   <div class="project-card">
     <div class="project-icon">🏎️</div>
     <div class="project-content">
       <h3 class="project-title">Neon Racer</h3>
-      <p class="project-description">A high-speed 3D racing game featuring vibrant neon aesthetics, physics-based vehicle mechanics, and dynamic cameras.</p>
+      <p class="project-description">A high-speed 3D browser racing game with neon aesthetics, real physics simulation, and dynamic camera systems — built entirely in the browser.</p>
       <div class="project-tags">
         <span class="tag">Three.js</span>
         <span class="tag">Cannon-es</span>
         <span class="tag">JavaScript</span>
       </div>
+      <a href="https://neon-racer-3d.vercel.app/" target="_blank" rel="noopener" class="project-link">🔗 Play Game</a>
     </div>
   </div>
   <div class="project-card">
-    <div class="project-icon">🤖</div>
+    <div class="project-icon">🏃</div>
     <div class="project-content">
-      <h3 class="project-title">Squatalyzer AI</h3>
-      <p class="project-description">AI-powered fitness assessment platform built with Google AI Studio and Gemini for real-time exercise feedback.</p>
+      <h3 class="project-title">Form Analyzer</h3>
+      <p class="project-description">Democratizing sports science — 3D vector-based biomechanics analysis powered by Flutter and ML Kit to help athletes improve their movement form.</p>
       <div class="project-tags">
-        <span class="tag">Next.js</span>
-        <span class="tag">Gemini API</span>
-        <span class="tag">Firebase</span>
+        <span class="tag">Flutter</span>
+        <span class="tag">ML Kit</span>
+        <span class="tag">BlazePose</span>
       </div>
+      <a href="https://jt-website.me/form_analyzer/" target="_blank" rel="noopener" class="project-link">🔗 Learn More</a>
     </div>
   </div>
 </div>
