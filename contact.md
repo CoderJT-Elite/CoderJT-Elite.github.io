@@ -52,13 +52,13 @@ title: Contact
     <span class="feature-icon">💼</span>
     <h3 class="feature-title">Portfolio</h3>
     <p class="feature-text">Review my work and project outcomes.</p>
-    <a href="/" class="badge">View Projects</a>
+    <a href="{{ '/' | relative_url }}" class="badge">View Projects</a>
   </div>
   <div class="feature-box">
     <span class="feature-icon">📝</span>
     <h3 class="feature-title">About</h3>
     <p class="feature-text">See my background and approach.</p>
-    <a href="/about" class="badge">Read More</a>
+    <a href="{{ '/about' | relative_url }}" class="badge">Read More</a>
   </div>
 </div>
 

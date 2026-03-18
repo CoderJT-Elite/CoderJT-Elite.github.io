@@ -41,6 +41,47 @@ title: Home
   </div>
 </div>
 
+## Featured Projects
+
+<div class="project-grid">
+  <div class="project-card">
+    <img src="{{ '/assets/img/project-ecommerce.png' | relative_url }}" alt="E-commerce Dashboard" class="project-image">
+    <div class="project-content">
+      <h3 class="project-title">EliteShop Dashboard</h3>
+      <p class="project-description">A high-performance e-commerce management system with real-time analytics and inventory tracking.</p>
+      <div class="project-tags">
+        <span class="tag">React</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">D3.js</span>
+      </div>
+    </div>
+  </div>
+  <div class="project-card">
+    <img src="{{ '/assets/img/project-finance.png' | relative_url }}" alt="Finance App" class="project-image">
+    <div class="project-content">
+      <h3 class="project-title">Zenith Finance</h3>
+      <p class="project-description">A sleek mobile-first financial platform focusing on investment tracking and crypto portfolio management.</p>
+      <div class="project-tags">
+        <span class="tag">Vue.js</span>
+        <span class="tag">Firebase</span>
+        <span class="tag">Tailwind</span>
+      </div>
+    </div>
+  </div>
+  <div class="project-card">
+    <img src="{{ '/assets/img/project-social.png' | relative_url }}" alt="Social Community" class="project-image">
+    <div class="project-content">
+      <h3 class="project-title">Artisan Hub</h3>
+      <p class="project-description">A vibrant networking platform for digital artists to showcase work and find collaborations.</p>
+      <div class="project-tags">
+        <span class="tag">Next.js</span>
+        <span class="tag">GraphQL</span>
+        <span class="tag">Stripe</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 ## What I Offer
 
 <div class="features-grid">
@@ -97,7 +138,7 @@ title: Home
 </div>
 
 <div class="personal-note">
-  <img src="/soccer-ball.png" alt="Soccer ball" class="animate-float" loading="lazy">
+  <img src="{{ '/soccer-ball.png' | relative_url }}" alt="Soccer ball" class="animate-float" loading="lazy">
   <p>⚽ Soccer Enthusiast & Tech Lover</p>
 </div>
 
