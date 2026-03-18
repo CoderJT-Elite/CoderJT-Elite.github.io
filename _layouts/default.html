@@ -5,31 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% if page.title == "Home" %}{{ site.title }}{% else %}{{ page.title }} — {{ site.title }}{% endif %}</title>
   <meta name="description" content="{{ page.description | default: site.description }}">
-  <meta property="og:title" content="{{ page.title }} | {{ site.title }}">
-  <meta property="og:description" content="{{ page.description | default: site.description }}">
-  <meta property="og:type" content="website">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
-<body>
+<body class="loading">
+  <!-- Custom Cursor -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
+
+  <!-- Animated Background -->
+  <div class="ambient-background">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
 
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
-      <a href="{{ '/' | relative_url }}" class="nav-logo">JT<span class="logo-dot">.</span></a>
+      <a href="{{ '/' | relative_url }}" class="nav-logo">
+        <span class="logo-text">Coder</span><span class="logo-accent">JT</span>
+      </a>
       <div class="nav-links">
         <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' or page.url == '/index.html' %}active{% endif %}">Work</a>
         <a href="{{ '/about' | relative_url }}" class="nav-link {% if page.url contains 'about' %}active{% endif %}">About</a>
         <a href="{{ '/contact' | relative_url }}" class="nav-link {% if page.url contains 'contact' %}active{% endif %}">Contact</a>
       </div>
       <div class="nav-actions">
-        <button class="theme-btn" id="theme-btn" aria-label="Toggle theme" title="Toggle theme">
-          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        </button>
-        <a href="{{ '/contact' | relative_url }}" class="nav-cta">Hire Me</a>
+        <!-- Always dark mode for maximum premium aesthetic -->
+        <a href="{{ '/contact' | relative_url }}" class="nav-cta magnetic-btn">Start a Project</a>
       </div>
     </div>
   </nav>
@@ -41,36 +49,75 @@
 
   <!-- FOOTER -->
   <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-left">
-        <span class="footer-logo">JT<span class="logo-dot">.</span></span>
-        <p>Building things that matter.</p>
+    <div class="footer-inner glass-panel">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="footer-logo">Coder<span class="logo-accent">JT</span></span>
+          <p class="footer-tagline">Building the next generation of digital experiences.</p>
+        </div>
+        <div class="footer-links">
+          <div class="link-group">
+            <span class="group-title">Navigation</span>
+            <a href="{{ '/' | relative_url }}" class="magnetic-btn">Work</a>
+            <a href="{{ '/about' | relative_url }}" class="magnetic-btn">About</a>
+            <a href="{{ '/contact' | relative_url }}" class="magnetic-btn">Contact</a>
+          </div>
+          <div class="link-group">
+            <span class="group-title">Socials</span>
+            <a href="https://github.com/CoderJT-Elite" target="_blank" rel="noopener" class="magnetic-btn">GitHub</a>
+            <a href="#" class="magnetic-btn">LinkedIn</a>
+          </div>
+        </div>
       </div>
-      <div class="footer-links">
-        <a href="{{ '/' | relative_url }}">Work</a>
-        <a href="{{ '/about' | relative_url }}">About</a>
-        <a href="{{ '/contact' | relative_url }}">Contact</a>
-        <a href="https://github.com/CoderJT-Elite" target="_blank" rel="noopener">GitHub</a>
+      <div class="footer-bottom">
+        <p>&copy; 2026 John Tewolde. All rights reserved.</p>
+        <p>Built with Jekyll.</p>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 John Tewolde. Built with Jekyll &amp; GitHub Pages.</span>
     </div>
   </footer>
 
   <script>
-    // ── Theme Toggle ──────────────────────────────────────────────────────
-    const html   = document.documentElement;
-    const btn    = document.getElementById('theme-btn');
-    const stored = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initial = stored || (prefersDark ? 'dark' : 'light');
-    html.setAttribute('data-theme', initial);
+    // ── Remove loading class for fade in ──────────────────────────────────
+    window.addEventListener('load', () => {
+      document.body.classList.remove('loading');
+    });
 
-    btn.addEventListener('click', () => {
-      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
+    // ── Custom Cursor ─────────────────────────────────────────────────────
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorOutline = document.querySelector('.cursor-outline');
+    let mouseX = 0, mouseY = 0;
+    let outlineX = 0, outlineY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+    });
+
+    function animateCursor() {
+      // Smooth follow for outline
+      let distX = mouseX - outlineX;
+      let distY = mouseY - outlineY;
+      outlineX += distX * 0.15;
+      outlineY += distY * 0.15;
+      cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px)`;
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    // Hover state for cursor
+    const interactables = document.querySelectorAll('a, button, .project-card, .feature-card, .tech-badge');
+    interactables.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px) scale(1.5)`;
+        cursorOutline.style.borderWidth = '1px';
+        cursorDot.style.opacity = '0';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px) scale(1)`;
+        cursorOutline.style.borderWidth = '2px';
+        cursorDot.style.opacity = '1';
+      });
     });
 
     // ── Navbar scroll shrink ──────────────────────────────────────────────
@@ -82,11 +129,59 @@
     // ── Scroll-reveal ─────────────────────────────────────────────────────
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('in-view'); obs.unobserve(e.target); }
+        if (e.isIntersecting) { 
+          e.target.classList.add('in-view'); 
+          obs.unobserve(e.target); 
+        }
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // ── 3D Tilt Effect for Cards ──────────────────────────────────────────
+    const tiltElements = document.querySelectorAll('.tilt-card');
+    tiltElements.forEach(el => {
+      el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -8; // max degree
+        const rotateY = ((x - centerX) / centerX) * 8;
+        
+        el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        
+        // Dynamic glare
+        let glare = el.querySelector('.glare');
+        if(!glare) {
+          glare = document.createElement('div');
+          glare.classList.add('glare');
+          el.appendChild(glare);
+        }
+        glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.1) 0%, transparent 60%)`;
+      });
+      
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        const glare = el.querySelector('.glare');
+        if(glare) glare.style.background = 'none';
+      });
+    });
+
+    // ── Magnetic Buttons ──────────────────────────────────────────────────
+    const magneticBtns = document.querySelectorAll('.magnetic-btn');
+    magneticBtns.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0px, 0px)';
+      });
+    });
   </script>
 </body>
 </html>

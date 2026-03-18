@@ -1,87 +1,47 @@
 ---
 layout: default
 title: Contact
-description: Get in touch with John Tewolde to discuss a project, collaboration, or opportunity.
+description: Start a collaboration with John Tewolde.
 ---
 
-<!-- ════════════════  CONTACT HERO  ════════════════ -->
 <section class="section">
   <div class="container">
-
-    <p class="label reveal">📬 Contact</p>
-    <h1 class="reveal" style="margin-bottom:.75rem;font-family:'Syne',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-1.5px;color:var(--text-1)">Let's talk.</h1>
-    <p class="reveal" style="font-size:1.1rem;color:var(--text-2);max-width:46ch;margin-bottom:3rem">Have a project, role, or idea you want to explore? Send me a message below and I'll get back to you within 24–48 hours.</p>
-
     <div class="contact-grid">
+      
+      <div class="reveal">
+        <h1 class="hero-title" style="font-size: clamp(3rem, 6vw, 5rem); margin-bottom: 1.5rem;">
+          <span class="gradient-text">Connect</span><br>with me
+        </h1>
+        <p class="hero-desc" style="margin-bottom: 3rem; max-width: 400px;">
+          Whether it's a freelance inquiry, a full-time role, or just a cool idea to bounce around — drop a line. 
+        </p>
 
-      <!-- ── Form ─────────────────────────────────────── -->
-      <div class="contact-form reveal">
+        <div class="glass-panel" style="padding: 2rem; border-radius: var(--r-md); margin-bottom: 2rem;">
+          <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-pure)">Response Time</h3>
+          <p style="color: var(--text-mutated)">Usually within 24-48 business hours.</p>
+        </div>
+      </div>
+
+      <div class="glass-panel reveal" style="padding: 3rem; border-radius: var(--r-md); transition-delay: 150ms;">
         <form action="https://formspree.io/f/mqalwpwn" method="POST">
-          <div class="form-row">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" required autocomplete="name" placeholder="Jane Smith">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" class="form-control" required placeholder="Jane Smith" autocomplete="name">
           </div>
-          <div class="form-row">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" required autocomplete="email" placeholder="jane@example.com">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" class="form-control" required placeholder="jane@example.com" autocomplete="email">
           </div>
-          <div class="form-row">
+          <div class="form-group">
             <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project or what you're looking for…"></textarea>
+            <textarea id="message" name="message" class="form-control" required placeholder="Tell me about your project..."></textarea>
           </div>
-          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:.5rem">Send Message →</button>
+          <button type="submit" class="btn btn-primary magnetic-btn" style="width: 100%; margin-top: 1rem;">
+            Send Electronically →
+          </button>
         </form>
       </div>
 
-      <!-- ── Aside ────────────────────────────────────── -->
-      <div class="contact-aside reveal">
-
-        <div class="aside-card">
-          <span class="aside-icon">⚡</span>
-          <div>
-            <p class="aside-title">Fast Response</p>
-            <p class="aside-text">Usually within 24–48 hours on business days.</p>
-          </div>
-        </div>
-
-        <div class="aside-card">
-          <span class="aside-icon">🐙</span>
-          <div>
-            <p class="aside-title">GitHub</p>
-            <p class="aside-text">See my open‑source work and contributions.</p>
-            <a href="https://github.com/CoderJT-Elite" target="_blank" rel="noopener" class="aside-link">@CoderJT-Elite ↗</a>
-          </div>
-        </div>
-
-        <div class="aside-card">
-          <span class="aside-icon">🏗️</span>
-          <div>
-            <p class="aside-title">ChaseUp</p>
-            <p class="aside-text">My flagship SaaS product for subcontractors.</p>
-            <a href="https://chaseupapp.tech" target="_blank" rel="noopener" class="aside-link">chaseupapp.tech ↗</a>
-          </div>
-        </div>
-
-        <div class="aside-card">
-          <span class="aside-icon">🎮</span>
-          <div>
-            <p class="aside-title">Neon Racer</p>
-            <p class="aside-text">My 3D browser racing game.</p>
-            <a href="https://neon-racer-3d.vercel.app/" target="_blank" rel="noopener" class="aside-link">Play now ↗</a>
-          </div>
-        </div>
-
-        <div class="aside-card">
-          <span class="aside-icon">🏃</span>
-          <div>
-            <p class="aside-title">Form Analyzer</p>
-            <p class="aside-text">AI biomechanics analysis for athletes.</p>
-            <a href="https://jt-website.me/form_analyzer/" target="_blank" rel="noopener" class="aside-link">Learn more ↗</a>
-          </div>
-        </div>
-
-      </div>
     </div>
-
   </div>
 </section>
