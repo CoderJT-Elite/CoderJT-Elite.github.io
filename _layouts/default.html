@@ -5,39 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% if page.title == "Home" %}{{ site.title }}{% else %}{{ page.title }} — {{ site.title }}{% endif %}</title>
   <meta name="description" content="{{ page.description | default: site.description }}">
-  
+  <meta property="og:title" content="{{ page.title }} — {{ site.title }}">
+  <meta property="og:description" content="{{ page.description | default: site.description }}">
+  <meta name="theme-color" content="#050505">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
-<body class="loading">
+<body>
   <!-- Custom Cursor -->
-  <div class="cursor-dot"></div>
-  <div class="cursor-outline"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-outline" id="cursorOutline"></div>
 
   <!-- Animated Background -->
-  <div class="ambient-background">
+  <div class="ambient-background" aria-hidden="true">
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
   </div>
 
   <!-- NAVBAR -->
-  <nav class="navbar" id="navbar">
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
-      <a href="{{ '/' | relative_url }}" class="nav-logo">
+      <a href="{{ '/' | relative_url }}" class="nav-logo" aria-label="CoderJT home">
         <span class="logo-text">Coder</span><span class="logo-accent">JT</span>
       </a>
-      <div class="nav-links">
-        <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' or page.url == '/index.html' %}active{% endif %}">Work</a>
-        <a href="{{ '/about' | relative_url }}" class="nav-link {% if page.url contains 'about' %}active{% endif %}">About</a>
-        <a href="{{ '/contact' | relative_url }}" class="nav-link {% if page.url contains 'contact' %}active{% endif %}">Contact</a>
+      <div class="nav-links" id="navLinks" role="menubar">
+        <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' or page.url == '/index.html' %}active{% endif %}" role="menuitem">Work</a>
+        <a href="{{ '/about' | relative_url }}" class="nav-link {% if page.url contains 'about' %}active{% endif %}" role="menuitem">About</a>
+        <a href="{{ '/contact' | relative_url }}" class="nav-link {% if page.url contains 'contact' %}active{% endif %}" role="menuitem">Contact</a>
       </div>
       <div class="nav-actions">
-        <!-- Always dark mode for maximum premium aesthetic -->
-        <a href="{{ '/contact' | relative_url }}" class="nav-cta magnetic-btn">Start a Project</a>
+        <a href="{{ '/contact' | relative_url }}" class="nav-cta">Hire Me</a>
+        <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </nav>
@@ -52,72 +57,82 @@
     <div class="footer-inner glass-panel">
       <div class="footer-content">
         <div class="footer-brand">
-          <span class="footer-logo">Coder<span class="logo-accent">JT</span></span>
-          <p class="footer-tagline">Building the next generation of digital experiences.</p>
+          <a href="{{ '/' | relative_url }}" class="footer-logo-link">
+            <span class="footer-logo-text">Coder</span><span class="logo-accent">JT</span>
+          </a>
+          <p class="footer-tagline">Engineering the next layer of the web — one pixel, one physics collision, one model at a time.</p>
         </div>
         <div class="footer-links">
           <div class="link-group">
-            <span class="group-title">Navigation</span>
-            <a href="{{ '/' | relative_url }}" class="magnetic-btn">Work</a>
-            <a href="{{ '/about' | relative_url }}" class="magnetic-btn">About</a>
-            <a href="{{ '/contact' | relative_url }}" class="magnetic-btn">Contact</a>
+            <span class="group-title">Pages</span>
+            <a href="{{ '/' | relative_url }}">Work</a>
+            <a href="{{ '/about' | relative_url }}">About</a>
+            <a href="{{ '/contact' | relative_url }}">Contact</a>
           </div>
           <div class="link-group">
-            <span class="group-title">Socials</span>
-            <a href="https://github.com/CoderJT-Elite" target="_blank" rel="noopener" class="magnetic-btn">GitHub</a>
-            <a href="#" class="magnetic-btn">LinkedIn</a>
+            <span class="group-title">Connect</span>
+            <a href="https://github.com/CoderJT-Elite" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a href="mailto:hello@jt-website.me">Email ↗</a>
+          </div>
+          <div class="link-group">
+            <span class="group-title">Projects</span>
+            <a href="https://chaseupapp.tech" target="_blank" rel="noopener noreferrer">ChaseUp ↗</a>
+            <a href="https://neon-racer-3d.vercel.app/" target="_blank" rel="noopener noreferrer">Neon Racer ↗</a>
+            <a href="https://jt-website.me/form_analyzer/" target="_blank" rel="noopener noreferrer">Form Analyzer ↗</a>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
         <p>&copy; 2026 John Tewolde. All rights reserved.</p>
-        <p>Built with Jekyll.</p>
+        <p class="footer-built">Built with Jekyll &amp; passion.</p>
       </div>
     </div>
   </footer>
 
   <script>
-    // ── Remove loading class for fade in ──────────────────────────────────
-    window.addEventListener('load', () => {
-      document.body.classList.remove('loading');
-    });
-
     // ── Custom Cursor ─────────────────────────────────────────────────────
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorOutline = document.querySelector('.cursor-outline');
+    const cursorDot = document.getElementById('cursorDot');
+    const cursorOutline = document.getElementById('cursorOutline');
     let mouseX = 0, mouseY = 0;
     let outlineX = 0, outlineY = 0;
+    let rafId;
 
     window.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-      cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-    });
+      cursorDot.style.left = mouseX + 'px';
+      cursorDot.style.top  = mouseY + 'px';
+    }, { passive: true });
 
     function animateCursor() {
-      // Smooth follow for outline
-      let distX = mouseX - outlineX;
-      let distY = mouseY - outlineY;
-      outlineX += distX * 0.15;
-      outlineY += distY * 0.15;
-      cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px)`;
-      requestAnimationFrame(animateCursor);
+      outlineX += (mouseX - outlineX) * 0.15;
+      outlineY += (mouseY - outlineY) * 0.15;
+      cursorOutline.style.left = outlineX + 'px';
+      cursorOutline.style.top  = outlineY + 'px';
+      rafId = requestAnimationFrame(animateCursor);
     }
     animateCursor();
 
-    // Hover state for cursor
-    const interactables = document.querySelectorAll('a, button, .project-card, .feature-card, .tech-badge');
-    interactables.forEach(el => {
+    // Interactive cursor states
+    document.querySelectorAll('a, button, .tilt-card, .tech-pill').forEach(el => {
       el.addEventListener('mouseenter', () => {
-        cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px) scale(1.5)`;
-        cursorOutline.style.borderWidth = '1px';
-        cursorDot.style.opacity = '0';
+        cursorOutline.classList.add('cursor--hovering');
+        cursorDot.classList.add('cursor-dot--hovering');
       });
       el.addEventListener('mouseleave', () => {
-        cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px) scale(1)`;
-        cursorOutline.style.borderWidth = '2px';
-        cursorDot.style.opacity = '1';
+        cursorOutline.classList.remove('cursor--hovering');
+        cursorDot.classList.remove('cursor-dot--hovering');
       });
+    });
+
+    // Hide cursor when leaving page
+    document.addEventListener('mouseleave', () => {
+      cursorDot.style.opacity = '0';
+      cursorOutline.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', () => {
+      cursorDot.style.opacity = '1';
+      cursorOutline.style.opacity = '1';
     });
 
     // ── Navbar scroll shrink ──────────────────────────────────────────────
@@ -126,60 +141,84 @@
       navbar.classList.toggle('scrolled', window.scrollY > 40);
     }, { passive: true });
 
+    // ── Mobile hamburger ──────────────────────────────────────────────────
+    const hamburger = document.getElementById('navHamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close mobile nav on link click
+    navLinks.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', false);
+      });
+    });
+
     // ── Scroll-reveal ─────────────────────────────────────────────────────
-    const obs = new IntersectionObserver((entries) => {
+    const revealObs = new IntersectionObserver((entries) => {
       entries.forEach(e => {
-        if (e.isIntersecting) { 
-          e.target.classList.add('in-view'); 
-          obs.unobserve(e.target); 
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          revealObs.unobserve(e.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-    // ── 3D Tilt Effect for Cards ──────────────────────────────────────────
-    const tiltElements = document.querySelectorAll('.tilt-card');
-    tiltElements.forEach(el => {
+    // ── 3D Tilt effect ────────────────────────────────────────────────────
+    const tiltEls = document.querySelectorAll('.tilt-card');
+    tiltEls.forEach(el => {
       el.addEventListener('mousemove', (e) => {
         const rect = el.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -8; // max degree
-        const rotateY = ((x - centerX) / centerX) * 8;
-        
-        el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-        
-        // Dynamic glare
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
+        const rX = ((y - cy) / cy) * -7;
+        const rY = ((x - cx) / cx) *  7;
+        el.style.transform = `perspective(1000px) rotateX(${rX}deg) rotateY(${rY}deg) scale3d(1.02,1.02,1.02)`;
         let glare = el.querySelector('.glare');
-        if(!glare) {
+        if (!glare) {
           glare = document.createElement('div');
-          glare.classList.add('glare');
+          glare.className = 'glare';
           el.appendChild(glare);
         }
-        glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.1) 0%, transparent 60%)`;
+        glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.08) 0%, transparent 65%)`;
       });
-      
       el.addEventListener('mouseleave', () => {
-        el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-        const glare = el.querySelector('.glare');
-        if(glare) glare.style.background = 'none';
+        el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
+        const g = el.querySelector('.glare');
+        if (g) g.style.background = 'none';
       });
     });
 
-    // ── Magnetic Buttons ──────────────────────────────────────────────────
-    const magneticBtns = document.querySelectorAll('.magnetic-btn');
-    magneticBtns.forEach(btn => {
+    // ── Magnetic buttons ──────────────────────────────────────────────────
+    document.querySelectorAll('.magnetic-btn').forEach(btn => {
       btn.addEventListener('mousemove', (e) => {
         const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        const x = (e.clientX - rect.left - rect.width  / 2) * 0.25;
+        const y = (e.clientY - rect.top  - rect.height / 2) * 0.25;
+        btn.style.transform = `translate(${x}px, ${y}px)`;
       });
       btn.addEventListener('mouseleave', () => {
-        btn.style.transform = 'translate(0px, 0px)';
+        btn.style.transform = 'translate(0,0)';
+      });
+    });
+
+    // ── Smooth page scroll for hash links ─────────────────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       });
     });
   </script>
