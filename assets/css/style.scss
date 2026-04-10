@@ -8,8 +8,6 @@
    Dark-mode exclusive. Ultra-premium glassmorphism aesthetic.
    ================================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
-
 /* ── Design Tokens ────────────────────────────────────────────── */
 :root {
   --accent:        #00e5b0;
@@ -56,7 +54,11 @@
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0; padding: 0;
-  cursor: none;
+}
+
+@media (pointer: fine) {
+  *, *::before, *::after { cursor: none; }
+  .nav-hamburger { cursor: none; }
 }
 
 html { scroll-behavior: smooth; }
@@ -88,40 +90,62 @@ h1, h2, h3, h4 {
   line-height: 1.05;
 }
 
-/* ── Custom Cursor ───────────────────────────────────────────── */
-.cursor-dot {
-  width: 6px; height: 6px;
+/* ── Skip Link (accessibility) ───────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
   background: var(--accent);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 10001;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.3s, transform var(--fast);
-  will-change: left, top;
+  color: var(--bg);
+  padding: 0.5rem 1rem;
+  border-radius: var(--r-sm);
+  font-weight: 700;
+  font-size: 0.9rem;
+  z-index: 99999;
+  transition: top 0.2s;
+  text-decoration: none;
 }
-.cursor-dot--hovering {
-  opacity: 0;
-}
+.skip-link:focus { top: 1rem; }
 
-.cursor-outline {
-  width: 38px; height: 38px;
-  border: 1.5px solid rgba(0, 229, 176, 0.5);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 10000;
-  transform: translate(-50%, -50%);
-  transition: transform var(--fast) var(--ease-out),
-              border-color 0.3s,
-              width var(--fast), height var(--fast),
-              opacity 0.3s;
-  will-change: left, top;
-}
-.cursor--hovering {
-  width: 52px; height: 52px;
-  border-color: var(--accent);
-  border-width: 1px;
+/* ── Custom Cursor ───────────────────────────────────────────── */
+.cursor-dot,
+.cursor-outline { display: none; }
+
+@media (pointer: fine) {
+  .cursor-dot {
+    display: block;
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 10001;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s, transform var(--fast);
+    will-change: left, top;
+  }
+  .cursor-dot--hovering { opacity: 0; }
+
+  .cursor-outline {
+    display: block;
+    width: 38px; height: 38px;
+    border: 1.5px solid rgba(0, 229, 176, 0.5);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: transform var(--fast) var(--ease-out),
+                border-color 0.3s,
+                width var(--fast), height var(--fast),
+                opacity 0.3s;
+    will-change: left, top;
+  }
+  .cursor--hovering {
+    width: 52px; height: 52px;
+    border-color: var(--accent);
+    border-width: 1px;
+  }
 }
 
 /* ── Ambient Background ──────────────────────────────────────── */
@@ -1082,4 +1106,64 @@ textarea.form-control {
   .footer-links { grid-template-columns: 1fr; }
   .hero-actions { flex-direction: column; align-items: flex-start; }
   .btn { width: 100%; justify-content: center; }
+}
+
+/* ── Form Validation ─────────────────────────────────────────── */
+.form-error {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--tertiary);
+  margin-top: 0.35rem;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity var(--fast), transform var(--fast);
+  pointer-events: none;
+}
+.form-error.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.form-control.invalid {
+  border-color: var(--tertiary);
+  box-shadow: 0 0 0 3px rgba(232, 25, 122, 0.12);
+}
+
+.form-success {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.75rem;
+  padding: 3rem 2rem;
+  color: var(--text-1);
+}
+.form-success.visible { display: flex; }
+.form-success-icon {
+  width: 56px; height: 56px;
+  background: rgba(0, 229, 176, 0.1);
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+/* ── Prefers Reduced Motion ──────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal, .reveal-fast {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .blob { animation: none; }
+  .gradient-text { animation: none; }
+  .cta-band-wrap { animation: none; }
+  html { scroll-behavior: auto; }
 }
