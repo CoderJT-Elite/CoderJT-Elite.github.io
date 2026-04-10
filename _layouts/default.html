@@ -5,9 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% if page.title == "Home" %}{{ site.title }}{% else %}{{ page.title }} — {{ site.title }}{% endif %}</title>
   <meta name="description" content="{{ page.description | default: site.description }}">
-  <meta property="og:title" content="{{ page.title }} — {{ site.title }}">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jt-website.me{{ page.url }}">
+  <meta property="og:title" content="{% if page.title == "Home" %}{{ site.title }}{% else %}{{ page.title }} — {{ site.title }}{% endif %}">
   <meta property="og:description" content="{{ page.description | default: site.description }}">
-  <meta name="theme-color" content="#050505">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{% if page.title == "Home" %}{{ site.title }}{% else %}{{ page.title }} — {{ site.title }}{% endif %}">
+  <meta name="twitter:description" content="{{ page.description | default: site.description }}">
+
+  <meta name="theme-color" content="#06060a">
+  <meta name="color-scheme" content="dark">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,9 +25,12 @@
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
-  <!-- Custom Cursor -->
-  <div class="cursor-dot" id="cursorDot"></div>
-  <div class="cursor-outline" id="cursorOutline"></div>
+  <!-- Skip to main content (accessibility) -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Custom Cursor (pointer devices only — hidden via CSS on touch) -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-outline" id="cursorOutline" aria-hidden="true"></div>
 
   <!-- Animated Background -->
   <div class="ambient-background" aria-hidden="true">
@@ -34,13 +46,13 @@
         <span class="logo-text">Coder</span><span class="logo-accent">JT</span>
       </a>
       <div class="nav-links" id="navLinks" role="menubar">
-        <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' or page.url == '/index.html' %}active{% endif %}" role="menuitem">Work</a>
-        <a href="{{ '/about' | relative_url }}" class="nav-link {% if page.url contains 'about' %}active{% endif %}" role="menuitem">About</a>
-        <a href="{{ '/contact' | relative_url }}" class="nav-link {% if page.url contains 'contact' %}active{% endif %}" role="menuitem">Contact</a>
+        <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' or page.url == '/index.html' %}active{% endif %}" role="menuitem" {% if page.url == '/' or page.url == '/index.html' %}aria-current="page"{% endif %}>Work</a>
+        <a href="{{ '/about' | relative_url }}" class="nav-link {% if page.url contains 'about' %}active{% endif %}" role="menuitem" {% if page.url contains 'about' %}aria-current="page"{% endif %}>About</a>
+        <a href="{{ '/contact' | relative_url }}" class="nav-link {% if page.url contains 'contact' %}active{% endif %}" role="menuitem" {% if page.url contains 'contact' %}aria-current="page"{% endif %}>Contact</a>
       </div>
       <div class="nav-actions">
         <a href="{{ '/contact' | relative_url }}" class="nav-cta">Hire Me</a>
-        <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
+        <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -48,7 +60,7 @@
   </nav>
 
   <!-- PAGE CONTENT -->
-  <main id="main-content">
+  <main id="main-content" tabindex="-1">
     {{ content }}
   </main>
 
@@ -57,7 +69,7 @@
     <div class="footer-inner glass-panel">
       <div class="footer-content">
         <div class="footer-brand">
-          <a href="{{ '/' | relative_url }}" class="footer-logo-link">
+          <a href="{{ '/' | relative_url }}" class="footer-logo-link" aria-label="CoderJT home">
             <span class="footer-logo-text">Coder</span><span class="logo-accent">JT</span>
           </a>
           <p class="footer-tagline">Engineering the next layer of the web — one pixel, one physics collision, one model at a time.</p>
@@ -90,50 +102,48 @@
   </footer>
 
   <script>
-    // ── Custom Cursor ─────────────────────────────────────────────────────
-    const cursorDot = document.getElementById('cursorDot');
-    const cursorOutline = document.getElementById('cursorOutline');
-    let mouseX = 0, mouseY = 0;
-    let outlineX = 0, outlineY = 0;
-    let rafId;
+    // ── Custom Cursor (fine-pointer devices only) ─────────────────────────
+    if (window.matchMedia('(pointer: fine)').matches) {
+      const cursorDot     = document.getElementById('cursorDot');
+      const cursorOutline = document.getElementById('cursorOutline');
+      let mouseX = 0, mouseY = 0;
+      let outlineX = 0, outlineY = 0;
 
-    window.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      cursorDot.style.left = mouseX + 'px';
-      cursorDot.style.top  = mouseY + 'px';
-    }, { passive: true });
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursorDot.style.left = mouseX + 'px';
+        cursorDot.style.top  = mouseY + 'px';
+      }, { passive: true });
 
-    function animateCursor() {
-      outlineX += (mouseX - outlineX) * 0.15;
-      outlineY += (mouseY - outlineY) * 0.15;
-      cursorOutline.style.left = outlineX + 'px';
-      cursorOutline.style.top  = outlineY + 'px';
-      rafId = requestAnimationFrame(animateCursor);
+      (function animateCursor() {
+        outlineX += (mouseX - outlineX) * 0.15;
+        outlineY += (mouseY - outlineY) * 0.15;
+        cursorOutline.style.left = outlineX + 'px';
+        cursorOutline.style.top  = outlineY + 'px';
+        requestAnimationFrame(animateCursor);
+      })();
+
+      document.querySelectorAll('a, button, .tilt-card, .tech-pill').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursorOutline.classList.add('cursor--hovering');
+          cursorDot.classList.add('cursor-dot--hovering');
+        });
+        el.addEventListener('mouseleave', () => {
+          cursorOutline.classList.remove('cursor--hovering');
+          cursorDot.classList.remove('cursor-dot--hovering');
+        });
+      });
+
+      document.addEventListener('mouseleave', () => {
+        cursorDot.style.opacity   = '0';
+        cursorOutline.style.opacity = '0';
+      });
+      document.addEventListener('mouseenter', () => {
+        cursorDot.style.opacity   = '1';
+        cursorOutline.style.opacity = '1';
+      });
     }
-    animateCursor();
-
-    // Interactive cursor states
-    document.querySelectorAll('a, button, .tilt-card, .tech-pill').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursorOutline.classList.add('cursor--hovering');
-        cursorDot.classList.add('cursor-dot--hovering');
-      });
-      el.addEventListener('mouseleave', () => {
-        cursorOutline.classList.remove('cursor--hovering');
-        cursorDot.classList.remove('cursor-dot--hovering');
-      });
-    });
-
-    // Hide cursor when leaving page
-    document.addEventListener('mouseleave', () => {
-      cursorDot.style.opacity = '0';
-      cursorOutline.style.opacity = '0';
-    });
-    document.addEventListener('mouseenter', () => {
-      cursorDot.style.opacity = '1';
-      cursorOutline.style.opacity = '1';
-    });
 
     // ── Navbar scroll shrink ──────────────────────────────────────────────
     const navbar = document.getElementById('navbar');
@@ -147,19 +157,26 @@
     hamburger.addEventListener('click', () => {
       const isOpen = navLinks.classList.toggle('open');
       hamburger.classList.toggle('open', isOpen);
-      hamburger.setAttribute('aria-expanded', isOpen);
+      hamburger.setAttribute('aria-expanded', String(isOpen));
     });
 
-    // Close mobile nav on link click
+    // Close mobile nav on link click or outside click
     navLinks.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('open');
         hamburger.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', false);
+        hamburger.setAttribute('aria-expanded', 'false');
       });
     });
+    document.addEventListener('click', (e) => {
+      if (!navbar.contains(e.target) && navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+    });
 
-    // ── Scroll-reveal ─────────────────────────────────────────────────────
+    // ── Scroll-reveal (handles both .reveal and .reveal-fast) ─────────────
     const revealObs = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -169,49 +186,52 @@
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+    document.querySelectorAll('.reveal, .reveal-fast').forEach(el => revealObs.observe(el));
 
-    // ── 3D Tilt effect ────────────────────────────────────────────────────
-    const tiltEls = document.querySelectorAll('.tilt-card');
-    tiltEls.forEach(el => {
-      el.addEventListener('mousemove', (e) => {
-        const rect = el.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const cx = rect.width / 2;
-        const cy = rect.height / 2;
-        const rX = ((y - cy) / cy) * -7;
-        const rY = ((x - cx) / cx) *  7;
-        el.style.transform = `perspective(1000px) rotateX(${rX}deg) rotateY(${rY}deg) scale3d(1.02,1.02,1.02)`;
-        let glare = el.querySelector('.glare');
-        if (!glare) {
-          glare = document.createElement('div');
-          glare.className = 'glare';
-          el.appendChild(glare);
-        }
-        glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.08) 0%, transparent 65%)`;
+    // ── 3D Tilt effect (pointer devices only) ────────────────────────────
+    if (window.matchMedia('(pointer: fine)').matches) {
+      document.querySelectorAll('.tilt-card').forEach(el => {
+        el.addEventListener('mousemove', (e) => {
+          const rect = el.getBoundingClientRect();
+          const x  = e.clientX - rect.left;
+          const y  = e.clientY - rect.top;
+          const cx = rect.width  / 2;
+          const cy = rect.height / 2;
+          const rX = ((y - cy) / cy) * -7;
+          const rY = ((x - cx) / cx) *  7;
+          el.style.transform = `perspective(1000px) rotateX(${rX}deg) rotateY(${rY}deg) scale3d(1.02,1.02,1.02)`;
+          let glare = el.querySelector('.glare');
+          if (!glare) {
+            glare = document.createElement('div');
+            glare.className = 'glare';
+            el.appendChild(glare);
+          }
+          glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.08) 0%, transparent 65%)`;
+        });
+        el.addEventListener('mouseleave', () => {
+          el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
+          const g = el.querySelector('.glare');
+          if (g) g.style.background = 'none';
+        });
       });
-      el.addEventListener('mouseleave', () => {
-        el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
-        const g = el.querySelector('.glare');
-        if (g) g.style.background = 'none';
-      });
-    });
+    }
 
-    // ── Magnetic buttons ──────────────────────────────────────────────────
-    document.querySelectorAll('.magnetic-btn').forEach(btn => {
-      btn.addEventListener('mousemove', (e) => {
-        const rect = btn.getBoundingClientRect();
-        const x = (e.clientX - rect.left - rect.width  / 2) * 0.25;
-        const y = (e.clientY - rect.top  - rect.height / 2) * 0.25;
-        btn.style.transform = `translate(${x}px, ${y}px)`;
+    // ── Magnetic buttons (pointer devices only) ───────────────────────────
+    if (window.matchMedia('(pointer: fine)').matches) {
+      document.querySelectorAll('.magnetic-btn').forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+          const rect = btn.getBoundingClientRect();
+          const x = (e.clientX - rect.left  - rect.width  / 2) * 0.25;
+          const y = (e.clientY - rect.top   - rect.height / 2) * 0.25;
+          btn.style.transform = `translate(${x}px, ${y}px)`;
+        });
+        btn.addEventListener('mouseleave', () => {
+          btn.style.transform = 'translate(0,0)';
+        });
       });
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transform = 'translate(0,0)';
-      });
-    });
+    }
 
-    // ── Smooth page scroll for hash links ─────────────────────────────────
+    // ── Smooth scroll for hash links ──────────────────────────────────────
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         const target = document.querySelector(a.getAttribute('href'));
