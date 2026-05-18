@@ -96,9 +96,6 @@
     const pointerEffectsMQ = window.matchMedia('(hover: hover) and (pointer: fine)');
     const prefersReducedMotion = reducedMotionMQ.matches;
     const canUsePointerEffects = pointerEffectsMQ.matches;
-    const onMotionPrefChange = () => window.location.reload();
-    if (reducedMotionMQ.addEventListener) reducedMotionMQ.addEventListener('change', onMotionPrefChange);
-    if (pointerEffectsMQ.addEventListener) pointerEffectsMQ.addEventListener('change', onMotionPrefChange);
 
     // ── Custom Cursor ─────────────────────────────────────────────────────
     const cursorDot = document.getElementById('cursorDot');

@@ -36,6 +36,7 @@
   --r-lg: 28px;
   --r-xl: 40px;
   --r-pill: 9999px;
+  --section-intrinsic-height: 920px;
 
   --ease-out:     cubic-bezier(0.22, 1, 0.36, 1);
   --ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -310,7 +311,7 @@ h1, h2, h3, h4 {
 /* defer offscreen section rendering for faster initial paint */
 .section {
   content-visibility: auto;
-  contain-intrinsic-size: 1px 920px;
+  contain-intrinsic-size: 1px var(--section-intrinsic-height);
 }
 
 /* ── Scroll Reveal ───────────────────────────────────────────── */
