@@ -92,8 +92,13 @@
   </footer>
 
   <script>
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const canUsePointerEffects = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const reducedMotionMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const pointerEffectsMQ = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const prefersReducedMotion = reducedMotionMQ.matches;
+    const canUsePointerEffects = pointerEffectsMQ.matches;
+    const onMotionPrefChange = () => window.location.reload();
+    if (reducedMotionMQ.addEventListener) reducedMotionMQ.addEventListener('change', onMotionPrefChange);
+    if (pointerEffectsMQ.addEventListener) pointerEffectsMQ.addEventListener('change', onMotionPrefChange);
 
     // ── Custom Cursor ─────────────────────────────────────────────────────
     const cursorDot = document.getElementById('cursorDot');
@@ -118,25 +123,15 @@
       }
       animateCursor();
 
-      document.addEventListener('mouseover', (e) => {
-        const targetInteractive = e.target.closest('a, button, .tilt-card, .tech-pill');
-        const fromInteractive = e.relatedTarget && e.relatedTarget.closest
-          ? e.relatedTarget.closest('a, button, .tilt-card, .tech-pill')
-          : null;
-        if (targetInteractive && targetInteractive !== fromInteractive) {
+      document.querySelectorAll('a, button, .tilt-card, .tech-pill').forEach(el => {
+        el.addEventListener('mouseenter', () => {
           cursorOutline.classList.add('cursor--hovering');
           cursorDot.classList.add('cursor-dot--hovering');
-        }
-      });
-      document.addEventListener('mouseout', (e) => {
-        const fromInteractive = e.target.closest('a, button, .tilt-card, .tech-pill');
-        const toInteractive = e.relatedTarget && e.relatedTarget.closest
-          ? e.relatedTarget.closest('a, button, .tilt-card, .tech-pill')
-          : null;
-        if (fromInteractive && fromInteractive !== toInteractive) {
+        });
+        el.addEventListener('mouseleave', () => {
           cursorOutline.classList.remove('cursor--hovering');
           cursorDot.classList.remove('cursor-dot--hovering');
-        }
+        });
       });
 
       document.addEventListener('mouseleave', () => {
