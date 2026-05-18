@@ -8,8 +8,6 @@
    Dark-mode exclusive. Ultra-premium glassmorphism aesthetic.
    ================================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
-
 /* ── Design Tokens ────────────────────────────────────────────── */
 :root {
   --accent:        #00e5b0;
@@ -38,6 +36,7 @@
   --r-lg: 28px;
   --r-xl: 40px;
   --r-pill: 9999px;
+  --section-intrinsic-height: 920px;
 
   --ease-out:     cubic-bezier(0.22, 1, 0.36, 1);
   --ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -56,10 +55,13 @@
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0; padding: 0;
-  cursor: none;
 }
 
 html { scroll-behavior: smooth; }
+
+@media (hover: hover) and (pointer: fine) {
+  *, *::before, *::after { cursor: none; }
+}
 
 body {
   font-family: 'Inter', sans-serif;
@@ -305,6 +307,12 @@ h1, h2, h3, h4 {
 
 .section    { padding: 7rem 0; }
 .section-sm { padding: 3.5rem 0; }
+
+/* defer offscreen section rendering for faster initial paint */
+.section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px var(--section-intrinsic-height);
+}
 
 /* ── Scroll Reveal ───────────────────────────────────────────── */
 .reveal {
@@ -1022,6 +1030,30 @@ textarea.form-control {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.25rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
+
+  .blob,
+  .gradient-text,
+  .cta-band-wrap,
+  .hero-eyebrow::before,
+  .card-banner-neon::after {
+    animation: none !important;
+  }
+
+  .cursor-dot,
+  .cursor-outline {
+    display: none !important;
+  }
 }
 
 /* ── Responsive ──────────────────────────────────────────────── */
