@@ -15,7 +15,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <link rel="preload" as="style" href="{{ '/assets/css/style.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
@@ -120,13 +119,21 @@
       animateCursor();
 
       document.addEventListener('mouseover', (e) => {
-        if (e.target.closest('a, button, .tilt-card, .tech-pill')) {
+        const targetInteractive = e.target.closest('a, button, .tilt-card, .tech-pill');
+        const fromInteractive = e.relatedTarget && e.relatedTarget.closest
+          ? e.relatedTarget.closest('a, button, .tilt-card, .tech-pill')
+          : null;
+        if (targetInteractive && targetInteractive !== fromInteractive) {
           cursorOutline.classList.add('cursor--hovering');
           cursorDot.classList.add('cursor-dot--hovering');
         }
       });
       document.addEventListener('mouseout', (e) => {
-        if (e.target.closest('a, button, .tilt-card, .tech-pill')) {
+        const fromInteractive = e.target.closest('a, button, .tilt-card, .tech-pill');
+        const toInteractive = e.relatedTarget && e.relatedTarget.closest
+          ? e.relatedTarget.closest('a, button, .tilt-card, .tech-pill')
+          : null;
+        if (fromInteractive && fromInteractive !== toInteractive) {
           cursorOutline.classList.remove('cursor--hovering');
           cursorDot.classList.remove('cursor-dot--hovering');
         }
