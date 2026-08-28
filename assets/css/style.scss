@@ -779,6 +779,80 @@ h1, h2, h3, h4, h5, h6 {
   gap: 0.4rem;
 }
 
+/* ── Publications & Scholarly Papers ────────────────────────── */
+.pub-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.pub-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  transition: border-color var(--transition);
+}
+
+.pub-card:hover {
+  border-color: var(--border-strong);
+}
+
+.pub-meta-line {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.pub-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background: var(--accent-tint);
+  border: 1px solid var(--accent-border);
+  color: var(--accent-rust);
+  font-weight: 500;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.pub-year {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.pub-title {
+  font-size: 1.18rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+
+.pub-authors {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.pub-venue {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+.pub-abstract {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.62;
+}
+
 /* ── Contact Page Layout ─────────────────────────────────────── */
 .contact-grid {
   display: grid;

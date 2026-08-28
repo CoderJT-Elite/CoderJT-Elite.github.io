@@ -24,8 +24,10 @@ description: Get in touch with John Tewolde — open to full-time engineering ro
 
         <div class="channel-table">
           <div class="channel-row">
-            <span class="channel-name">Location</span>
-            <span>Michigan, United States (EST)</span>
+            <span class="channel-name">Direct Email</span>
+            <a href="mailto:jg.tewolde@gmail.com" class="channel-link">
+              jg.tewolde@gmail.com ↗
+            </a>
           </div>
 
           <div class="channel-row">
@@ -36,13 +38,18 @@ description: Get in touch with John Tewolde — open to full-time engineering ro
           </div>
 
           <div class="channel-row">
+            <span class="channel-name">Location</span>
+            <span>Michigan, United States (EST)</span>
+          </div>
+
+          <div class="channel-row">
             <span class="channel-name">Response</span>
             <span>Typically within 24 hours</span>
           </div>
 
           <div class="channel-row">
             <span class="channel-name">Interests</span>
-            <span>Full-Stack, 3D WebGL, Edge ML</span>
+            <span>Full-Stack, Robotics Controls, Physics Sim, Edge ML</span>
           </div>
         </div>
       </div>
