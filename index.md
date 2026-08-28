@@ -18,7 +18,7 @@ description: John Tewolde — software engineer and robotics lead programmer bas
     </h1>
 
     <p class="hero-lead">
-      I'm John Tewolde. I architect full-stack web platforms, simulate rigid-body robot dynamics, deploy on-device computer vision pipelines, and build software systems with mathematical rigor and craftsmanship.
+      Software engineer and robotics lead programmer. Architecting full-stack platforms, rigid-body physics simulations, and privacy-first on-device vision pipelines with mathematical rigor.
     </p>
 
     <div class="hero-actions">
@@ -73,22 +73,22 @@ description: John Tewolde — software engineer and robotics lead programmer bas
     </div>
 
     <h2 class="section-headline">Interactive Kinematics &amp; Vector Mathematics</h2>
-    <p class="section-intro-text" style="margin-bottom: 1.5rem;">
-      Real-time mathematical visualizers demonstrating swerve drive kinematics vector resolution (FRC 1506) and 3D Vector Triad Dot Product angle computation (Form Analyzer, IEEE ISEC 2026).
+    <p class="section-intro-text" style="margin-bottom: 1.25rem;">
+      Real-time mathematical visualizers for swerve drive vector resolution and 3D Vector Triad angle computation.
     </p>
 
     <!-- Lab Plain-English Explainer Banners -->
     <div class="lab-explainer-banner" id="labExplainerSwerve">
-      <span class="explainer-tag">Production Context</span>
+      <span class="explainer-tag">Swerve Kinematics</span>
       <p class="explainer-text">
-        Translates robot joystick input $(V_x, V_y, \omega)$ into independent wheel steering angles and motor speeds in real time for omnidirectional mobility.
+        Translates chassis velocity vectors $(V_x, V_y, \omega)$ into independent wheel steering angles and motor speeds in real time.
       </p>
     </div>
 
     <div class="lab-explainer-banner" id="labExplainerTriad" style="display: none;">
-      <span class="explainer-tag">Production Context</span>
+      <span class="explainer-tag">Vector Triad</span>
       <p class="explainer-text">
-        Calculates true 3D joint angles using inner dot products $(\vec{u} \cdot \vec{v})$ without perspective distortion or cloud transmission latency.
+        Computes 3D joint angles using landmark dot products $(\vec{u} \cdot \vec{v})$ on-device with zero server latency.
       </p>
     </div>
 
@@ -121,12 +121,12 @@ description: John Tewolde — software engineer and robotics lead programmer bas
 
             <!-- Motion Presets -->
             <div class="preset-pill-group">
-              <span class="preset-label">Motion Presets:</span>
+              <span class="preset-label">Presets:</span>
               <button class="preset-btn active" data-swerve-preset="forward">Forward</button>
               <button class="preset-btn" data-swerve-preset="strafe">Strafe</button>
               <button class="preset-btn" data-swerve-preset="rotate">Spin</button>
               <button class="preset-btn" data-swerve-preset="orbit">Orbit</button>
-              <button class="preset-btn" data-swerve-preset="diagonal">Drift Mode</button>
+              <button class="preset-btn" data-swerve-preset="diagonal">Drift</button>
             </div>
 
             <div class="slider-group">
@@ -155,13 +155,13 @@ description: John Tewolde — software engineer and robotics lead programmer bas
           <!-- Triad Controls Subpanel -->
           <div id="triadControlsSection" style="display: none;">
             <div class="panel-section-title">Joint Vector Triad (Interactive Drag)</div>
-            <p style="font-size: 0.86rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
-              Click and drag joint nodes or select an athletic posture preset to evaluate real-time Law of Cosines calculations:
+            <p style="font-size: 0.84rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+              Drag joint nodes or select presets to evaluate real-time Law of Cosines calculations:
             </p>
 
             <!-- Triad Presets -->
             <div class="preset-pill-group" style="margin-bottom: 1.25rem;">
-              <span class="preset-label">Pose Presets:</span>
+              <span class="preset-label">Presets:</span>
               <button class="preset-btn" data-triad-preset="standing">Standing (180°)</button>
               <button class="preset-btn" data-triad-preset="optimal">Squat (90°) <span class="badge-sub">Optimal</span></button>
               <button class="preset-btn" data-triad-preset="deep">Deep Flexion (70°)</button>
@@ -192,7 +192,7 @@ description: John Tewolde — software engineer and robotics lead programmer bas
       <div>
         <h2 class="section-headline">Featured Engineering Work</h2>
         <p class="section-intro-text">
-          A selection of software platforms, robotics control systems, and simulations architected and shipped to production.
+          Production software platforms, robotics control systems, and physics simulations.
         </p>
       </div>
 
@@ -235,11 +235,11 @@ description: John Tewolde — software engineer and robotics lead programmer bas
           <div class="exec-breakdown">
             <div class="exec-row">
               <span class="exec-label exec-label-problem">Problem</span>
-              <p class="exec-text">Trade subcontractors regularly forfeit lien rights on overdue receivables due to missed state statutory notice deadlines and manual follow-up.</p>
+              <p class="exec-text">Subcontractors regularly forfeit lien rights on overdue receivables due to missed statutory deadlines.</p>
             </div>
             <div class="exec-row">
-              <span class="exec-label exec-label-arch">Architecture</span>
-              <p class="exec-text">Full-stack platform on Next.js App Router and Supabase, enforcing multi-tenant isolation at the database kernel via PostgreSQL Row Level Security (RLS) and an immutable statutory rules engine.</p>
+              <span class="exec-label exec-label-arch">Solution</span>
+              <p class="exec-text">Next.js App Router and Supabase platform with PostgreSQL Row Level Security and deterministic rules engine.</p>
             </div>
             <div class="exec-row">
               <span class="exec-label exec-label-impact">Key Metric</span>
@@ -270,22 +270,22 @@ description: John Tewolde — software engineer and robotics lead programmer bas
 
       <!-- Project 2: FRC 1506 Autonomous Robot & Simulation Architecture -->
       <article class="case-study exec-card" data-category="robotics">
-        <div class="case-media" style="padding: 2.5rem 2rem; background: #18181b; color: #f4f3ed; display: flex; flex-direction: column; justify-content: space-between; min-height: 280px;">
+        <div class="case-media" style="padding: 2rem 1.75rem; background: #18181b; color: #f4f3ed; display: flex; flex-direction: column; justify-content: space-between; min-height: 260px;">
           <div>
-            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #a1a1aa; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem;">
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: #a1a1aa; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;">
               FRC Team 1506 Metal Muscle · Robotics
             </div>
-            <h4 style="font-family: var(--font-serif); font-size: 1.5rem; color: #ffffff; font-weight: 500; line-height: 1.25; margin-bottom: 1rem;">
+            <h4 style="font-family: var(--font-serif); font-size: 1.4rem; color: #ffffff; font-weight: 500; line-height: 1.25; margin-bottom: 0.75rem;">
               Physics-Based Simulation &amp; Swerve Odometry
             </h4>
-            <p style="font-size: 0.88rem; color: #d4d4d8; line-height: 1.6;">
+            <p style="font-size: 0.85rem; color: #d4d4d8; line-height: 1.55;">
               Decoupling autonomous routine development from physical robot hardware via dyn4j rigid-body dynamics, CTRE Phoenix 6 swerve drive, and dual Limelight AprilTag vision fusion.
             </p>
           </div>
-          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.5rem;">
-            <span style="font-family: var(--font-mono); font-size: 0.7rem; background: rgba(255,255,255,0.1); color: #e4e4e7; padding: 0.2rem 0.5rem; border-radius: 3px;">MapleSim (dyn4j)</span>
-            <span style="font-family: var(--font-mono); font-size: 0.7rem; background: rgba(255,255,255,0.1); color: #e4e4e7; padding: 0.2rem 0.5rem; border-radius: 3px;">WPILib Java</span>
-            <span style="font-family: var(--font-mono); font-size: 0.7rem; background: rgba(255,255,255,0.1); color: #e4e4e7; padding: 0.2rem 0.5rem; border-radius: 3px;">Limelight Vision</span>
+          <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 1.25rem;">
+            <span style="font-family: var(--font-mono); font-size: 0.68rem; background: rgba(255,255,255,0.1); color: #e4e4e7; padding: 0.18rem 0.45rem; border-radius: 3px;">MapleSim (dyn4j)</span>
+            <span style="font-family: var(--font-mono); font-size: 0.68rem; background: rgba(255,255,255,0.1); color: #e4e4e7; padding: 0.18rem 0.45rem; border-radius: 3px;">WPILib Java</span>
+            <span style="font-family: var(--font-mono); font-size: 0.68rem; background: rgba(255,255,255,0.1); color: #e4e4e7; padding: 0.18rem 0.45rem; border-radius: 3px;">Limelight Vision</span>
           </div>
         </div>
         <div class="case-content">
@@ -304,11 +304,11 @@ description: John Tewolde — software engineer and robotics lead programmer bas
           <div class="exec-breakdown">
             <div class="exec-row">
               <span class="exec-label exec-label-problem">Problem</span>
-              <p class="exec-text">Hardware contention during build seasons severely limits physical track testing for high-speed swerve autonomous routines and targeting math.</p>
+              <p class="exec-text">Hardware contention during build seasons limits physical track testing for swerve autonomous routines.</p>
             </div>
             <div class="exec-row">
-              <span class="exec-label exec-label-arch">Architecture</span>
-              <p class="exec-text">MapleSim desktop rigid-body simulation (dyn4j engine), fusing CTRE Phoenix 6 swerve odometry with dual Limelight MegaTag2 AprilTag vision in an Extended Kalman Filter and shoot-on-the-move ballistic algorithms.</p>
+              <span class="exec-label exec-label-arch">Solution</span>
+              <p class="exec-text">MapleSim 250 Hz physics simulation (dyn4j) fusing CTRE swerve kinematics with dual Limelight vision in an EKF.</p>
             </div>
             <div class="exec-row">
               <span class="exec-label exec-label-impact">Key Metric</span>
@@ -359,11 +359,11 @@ description: John Tewolde — software engineer and robotics lead programmer bas
           <div class="exec-breakdown">
             <div class="exec-row">
               <span class="exec-label exec-label-problem">Problem</span>
-              <p class="exec-text">Mobile exercise coaching apps rely on cloud-hosted video processing, causing 200–800ms latency and exposing sensitive personal video streams.</p>
+              <p class="exec-text">Cloud-hosted coaching apps introduce 200–800ms latency and expose sensitive workout video streams.</p>
             </div>
             <div class="exec-row">
-              <span class="exec-label exec-label-arch">Architecture</span>
-              <p class="exec-text">On-device Flutter pipeline with Google ML Kit pose landmark detectors, rotation-invariant 3D Vector Triad Dot Product geometry, and asynchronous inference gating.</p>
+              <span class="exec-label exec-label-arch">Solution</span>
+              <p class="exec-text">On-device Flutter pipeline with Google ML Kit pose detection and 3D Vector Triad Dot Product geometry.</p>
             </div>
             <div class="exec-row">
               <span class="exec-label exec-label-impact">Key Metric</span>
@@ -413,11 +413,11 @@ description: John Tewolde — software engineer and robotics lead programmer bas
           <div class="exec-breakdown">
             <div class="exec-row">
               <span class="exec-label exec-label-problem">Problem</span>
-              <p class="exec-text">Web-based 3D games compiled from heavyweight engines impose 50MB–150MB downloads, sluggish startup times, and unstable frame pacing.</p>
+              <p class="exec-text">Heavyweight web 3D engines impose 50MB–150MB downloads, sluggish startup times, and GC frame drops.</p>
             </div>
             <div class="exec-row">
-              <span class="exec-label exec-label-arch">Architecture</span>
-              <p class="exec-text">Custom Three.js WebGL renderer paired with Cannon-es raycast vehicle dynamics, AWD torque distribution, tire slip friction models, and dual-spring chase camera math.</p>
+              <span class="exec-label exec-label-arch">Solution</span>
+              <p class="exec-text">Custom Three.js WebGL renderer paired with Cannon-es raycast vehicle dynamics and AWD torque distribution.</p>
             </div>
             <div class="exec-row">
               <span class="exec-label exec-label-impact">Key Metric</span>
@@ -448,22 +448,22 @@ description: John Tewolde — software engineer and robotics lead programmer bas
 
       <!-- Project 5: Water Wrapped -->
       <article class="case-study exec-card" data-category="web">
-        <div class="case-media" style="padding: 2.5rem 2rem; background: #0f172a; color: #f8fafc; display: flex; flex-direction: column; justify-content: space-between; min-height: 280px;">
+        <div class="case-media" style="padding: 2rem 1.75rem; background: #0f172a; color: #f8fafc; display: flex; flex-direction: column; justify-content: space-between; min-height: 260px;">
           <div>
-            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem;">
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;">
               Civic Tech &amp; Environmental Data
             </div>
-            <h4 style="font-family: var(--font-serif); font-size: 1.5rem; color: #ffffff; font-weight: 500; line-height: 1.25; margin-bottom: 1rem;">
+            <h4 style="font-family: var(--font-serif); font-size: 1.4rem; color: #ffffff; font-weight: 500; line-height: 1.25; margin-bottom: 0.75rem;">
               Water Wrapped: Interactive CCR Reports
             </h4>
-            <p style="font-size: 0.88rem; color: #cbd5e1; line-height: 1.6;">
+            <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.55;">
               Transforming complex municipal drinking water Consumer Confidence Reports into engaging, tap-through stories and validated searchable chemistry tables.
             </p>
           </div>
-          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.5rem;">
-            <span style="font-family: var(--font-mono); font-size: 0.7rem; background: rgba(56, 189, 248, 0.15); color: #7dd3fc; padding: 0.2rem 0.5rem; border-radius: 3px;">React + Vite</span>
-            <span style="font-family: var(--font-mono); font-size: 0.7rem; background: rgba(56, 189, 248, 0.15); color: #7dd3fc; padding: 0.2rem 0.5rem; border-radius: 3px;">Cloudflare Workers</span>
-            <span style="font-family: var(--font-mono); font-size: 0.7rem; background: rgba(56, 189, 248, 0.15); color: #7dd3fc; padding: 0.2rem 0.5rem; border-radius: 3px;">Supabase</span>
+          <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 1.25rem;">
+            <span style="font-family: var(--font-mono); font-size: 0.68rem; background: rgba(56, 189, 248, 0.15); color: #7dd3fc; padding: 0.18rem 0.45rem; border-radius: 3px;">React + Vite</span>
+            <span style="font-family: var(--font-mono); font-size: 0.68rem; background: rgba(56, 189, 248, 0.15); color: #7dd3fc; padding: 0.18rem 0.45rem; border-radius: 3px;">Cloudflare Workers</span>
+            <span style="font-family: var(--font-mono); font-size: 0.68rem; background: rgba(56, 189, 248, 0.15); color: #7dd3fc; padding: 0.18rem 0.45rem; border-radius: 3px;">Supabase</span>
           </div>
         </div>
         <div class="case-content">
@@ -482,16 +482,16 @@ description: John Tewolde — software engineer and robotics lead programmer bas
           <div class="exec-breakdown">
             <div class="exec-row">
               <span class="exec-label exec-label-problem">Problem</span>
-              <p class="exec-text">Municipal Consumer Confidence Reports are published as dense 20-page PDFs with cryptic chemical units, resulting in under 10% resident engagement.</p>
+              <p class="exec-text">Municipal Consumer Confidence Reports are dense 20-page PDFs with under 10% resident engagement.</p>
             </div>
             <div class="exec-row">
-              <span class="exec-label exec-label-arch">Architecture</span>
-              <p class="exec-text">Multi-utility edge routing on Cloudflare Workers, paired with a mobile tap-through story engine, dynamic HTML OpenGraph metadata injection, and EPA MCL chemistry validators.</p>
+              <span class="exec-label exec-label-arch">Solution</span>
+              <p class="exec-text">Multi-utility edge routing on Cloudflare Workers with tap-through stories and EPA MCL chemistry validators.</p>
             </div>
             <div class="exec-row">
               <span class="exec-label exec-label-impact">Key Metric</span>
               <div class="exec-metric-highlight">
-                <strong>Sub-45ms global edge TTFB</strong> across 300+ edge points with WCAG 2.1 AA accessible open data tables.
+                <strong>Sub-45ms global edge TTFB</strong> across 300+ edge points with WCAG 2.1 AA accessible open data.
               </div>
             </div>
           </div>
@@ -528,8 +528,8 @@ description: John Tewolde — software engineer and robotics lead programmer bas
     </div>
 
     <h2 class="section-headline">Selected Research &amp; Publications</h2>
-    <p class="section-intro-text" style="margin-bottom: 2.5rem;">
-      Peer-reviewed conference papers and technical research across computer vision, robotics, and applied systems.
+    <p class="section-intro-text" style="margin-bottom: 2rem;">
+      Peer-reviewed conference papers across computer vision, robotics, and applied systems.
     </p>
 
     <div class="pub-list">
@@ -540,13 +540,12 @@ description: John Tewolde — software engineer and robotics lead programmer bas
           <span class="pub-year">2026 · Princeton, NJ</span>
         </div>
         <h3 class="pub-title">A Machine Learning Approach to Exercise Form Analysis</h3>
-        <p class="pub-authors">Author: John Tewolde</p>
-        <p class="pub-venue">16th IEEE Integrated STEM Education Conference (ISEC 2026)</p>
+        <p class="pub-authors">Author: John Tewolde · 16th IEEE Integrated STEM Education Conference (ISEC 2026)</p>
         
         <div class="pub-contribution-box">
           <span class="pub-contrib-label">Key Contribution</span>
           <p class="pub-contrib-text">
-            Engineered a rotation-invariant 3D Vector Triad Dot Product engine and asynchronous <code>isBusy</code> inference gating for zero-server-latency mobile biomechanical coaching.
+            Engineered rotation-invariant 3D Vector Triad Dot Product engine and asynchronous inference gating for zero-latency mobile coaching.
           </p>
         </div>
 
@@ -565,13 +564,12 @@ description: John Tewolde — software engineer and robotics lead programmer bas
           <span class="pub-year">2024 · Princeton, NJ</span>
         </div>
         <h3 class="pub-title">Use of Computer Vision and AI Techniques for Enhancing Performance at FIRST Robotics Competitions</h3>
-        <p class="pub-authors">Co-Author: John Tewolde</p>
-        <p class="pub-venue">14th IEEE Integrated STEM Education Conference (ISEC 2024)</p>
+        <p class="pub-authors">Co-Author: John Tewolde · 14th IEEE Integrated STEM Education Conference (ISEC 2024)</p>
         
         <div class="pub-contribution-box">
           <span class="pub-contrib-label">Key Contribution</span>
           <p class="pub-contrib-text">
-            Evaluated real-time machine learning object detection and AprilTag coordinate localization on high-speed embedded coprocessors to optimize autonomous field-relative targeting.
+            Evaluated embedded machine learning object detection and AprilTag localization on coprocessors for autonomous field-relative targeting.
           </p>
         </div>
 
@@ -590,13 +588,12 @@ description: John Tewolde — software engineer and robotics lead programmer bas
           <span class="pub-year">2021 · Princeton, NJ</span>
         </div>
         <h3 class="pub-title">Filtered — Filtering Water Using a Variety of Efficient Filtration Methods</h3>
-        <p class="pub-authors">Author: John Tewolde</p>
-        <p class="pub-venue">11th IEEE Integrated STEM Education Conference (ISEC 2021)</p>
+        <p class="pub-authors">Author: John Tewolde · 11th IEEE Integrated STEM Education Conference (ISEC 2021)</p>
         
         <div class="pub-contribution-box">
           <span class="pub-contrib-label">Key Contribution</span>
           <p class="pub-contrib-text">
-            Experimental analysis of particulate and contaminant reduction across accessible filtration media to develop low-cost water purification protocols for resource-constrained regions.
+            Experimental analysis of contaminant reduction across accessible filtration media for low-cost purification protocols.
           </p>
         </div>
 
@@ -614,13 +611,12 @@ description: John Tewolde — software engineer and robotics lead programmer bas
           <span class="pub-year">2021 · Princeton, NJ</span>
         </div>
         <h3 class="pub-title">Using Technology as a Means for Musical Outreach to Nursing Home Residents</h3>
-        <p class="pub-authors">Author: John Tewolde</p>
-        <p class="pub-venue">11th IEEE Integrated STEM Education Conference (ISEC 2021)</p>
+        <p class="pub-authors">Author: John Tewolde · 11th IEEE Integrated STEM Education Conference (ISEC 2021)</p>
         
         <div class="pub-contribution-box">
           <span class="pub-contrib-label">Key Contribution</span>
           <p class="pub-contrib-text">
-            Explored interactive digital delivery architectures to support cognitive stimulation and social connection for elderly residents in assisted living facilities during physical isolation.
+            Explored digital delivery architectures to support cognitive stimulation for elderly assisted living residents during isolation.
           </p>
         </div>
 
@@ -632,7 +628,7 @@ description: John Tewolde — software engineer and robotics lead programmer bas
       </div>
     </div>
 
-    <div style="margin-top: 2.5rem;">
+    <div style="margin-top: 2rem;">
       <a href="{{ '/about' | relative_url }}#research" class="btn-link">View All Research Details on About Page →</a>
     </div>
   </div>
@@ -647,41 +643,69 @@ description: John Tewolde — software engineer and robotics lead programmer bas
     </div>
 
     <h2 class="section-headline">Areas of Engineering Practice</h2>
-    <p class="section-intro-text" style="margin-bottom: 2.5rem;">
-      Architectural principles and technical specializations across the software and hardware systems I engineer.
+    <p class="section-intro-text" style="margin-bottom: 2rem;">
+      Architectural specializations and core technical competencies.
     </p>
 
-    <div class="domains-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+    <div class="domains-grid">
       <div class="domain-card">
         <div class="domain-index">01 / Full-Stack Platforms</div>
         <h3 class="domain-title">Application Architecture</h3>
         <p class="domain-desc">
-          Building production-grade web systems with Next.js, React, TypeScript, and relational databases. Prioritizing strict PostgreSQL schema design, Row Level Security, and edge routing.
+          Multi-tenant Next.js/Supabase architectures, strict PostgreSQL RLS data isolation, and edge routing.
         </p>
+        <div class="domain-tech-chips">
+          <span class="tech-tag">Next.js</span>
+          <span class="tech-tag">TypeScript</span>
+          <span class="tech-tag">Supabase</span>
+          <span class="tech-tag">PostgreSQL (RLS)</span>
+          <span class="tech-tag">Tailwind</span>
+        </div>
       </div>
 
       <div class="domain-card">
         <div class="domain-index">02 / Autonomous Systems</div>
         <h3 class="domain-title">Robotics &amp; Control Theory</h3>
         <p class="domain-desc">
-          Developing FRC swerve drivetrain kinematics, multi-camera AprilTag pose localization, and command-based autonomous state machines using WPILib, CTRE Phoenix 6, and MapleSim.
+          Swerve kinematics, multi-camera AprilTag pose localization, and 250 Hz rigid-body physics simulations.
         </p>
+        <div class="domain-tech-chips">
+          <span class="tech-tag">WPILib</span>
+          <span class="tech-tag">CTRE Phoenix 6</span>
+          <span class="tech-tag">MapleSim (dyn4j)</span>
+          <span class="tech-tag">PathPlanner</span>
+          <span class="tech-tag">Java 17</span>
+        </div>
       </div>
 
       <div class="domain-card">
         <div class="domain-index">03 / Browser Graphics</div>
         <h3 class="domain-title">3D Graphics &amp; Physics</h3>
         <p class="domain-desc">
-          Creating interactive 3D browser simulations using WebGL, Three.js, and Cannon-es rigid-body physics. Focused on 60 FPS frame pacing, torque vectors, and responsive camera mathematics.
+          Real-time 60 FPS WebGL rendering, Cannon-es vehicle dynamics, and responsive camera mathematics.
         </p>
+        <div class="domain-tech-chips">
+          <span class="tech-tag">Three.js</span>
+          <span class="tech-tag">Cannon-es</span>
+          <span class="tech-tag">WebGL</span>
+          <span class="tech-tag">GLSL</span>
+          <span class="tech-tag">Vite</span>
+        </div>
       </div>
 
       <div class="domain-card">
         <div class="domain-index">04 / Edge Intelligence</div>
         <h3 class="domain-title">On-Device Computer Vision</h3>
         <p class="domain-desc">
-          Implementing privacy-first mobile vision pipelines with Flutter, Dart, Google ML Kit, and Android NDK. Extracting 3D geometric heuristics directly on-device without cloud latency.
+          Privacy-first mobile vision pipelines with rotation-invariant 3D vector geometry and async frame gating.
         </p>
+        <div class="domain-tech-chips">
+          <span class="tech-tag">Flutter</span>
+          <span class="tech-tag">Dart</span>
+          <span class="tech-tag">Google ML Kit</span>
+          <span class="tech-tag">Android NDK</span>
+          <span class="tech-tag">3D Geometry</span>
+        </div>
       </div>
     </div>
   </div>
@@ -694,7 +718,7 @@ description: John Tewolde — software engineer and robotics lead programmer bas
       <div>
         <h2 class="note-headline">Interested in collaborating or discussing an engineering role?</h2>
         <p class="note-text">
-          I'm open to software engineering positions, robotics control consulting, and ambitious software builds.
+          Open to software engineering roles, robotics control projects, and ambitious builds.
         </p>
       </div>
       <div>

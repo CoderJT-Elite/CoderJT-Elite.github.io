@@ -46,15 +46,15 @@ description: "Technical case study of Neon Racer 3D: browser-native 3D racing si
   <div class="exec-grid">
     <div class="exec-col">
       <span class="exec-pill-tag exec-pill-problem">The Problem</span>
-      <p>Interactive 3D web games compiled from heavyweight game engines (Unity/Unreal WASM) impose 50MB–150MB downloads, slow initial startup, and high memory footprints.</p>
+      <p>Interactive 3D web games compiled from heavyweight engines (Unity/Unreal WASM) impose 50–150MB downloads, slow initial startup, and high memory footprints.</p>
     </div>
     <div class="exec-col">
       <span class="exec-pill-tag exec-pill-arch">The Architecture</span>
-      <p>Browser-native Three.js WebGL pipeline combined with a Cannon-es raycast suspension model, AWD power distribution, lateral tire slip curves, and a dual-spring chase camera.</p>
+      <p>Browser-native Three.js WebGL pipeline combined with a Cannon-es raycast suspension model, AWD power distribution, and a dual-spring chase camera.</p>
     </div>
     <div class="exec-col">
       <span class="exec-pill-tag exec-pill-impact">Engineering Impact</span>
-      <p>Consistent 60 FPS across desktop and mobile browsers, sub-3MB bundle payload, and zero runtime garbage collection pauses in hot loops.</p>
+      <p>Stable 60 FPS rendering across desktop and mobile, sub-3MB bundle payload, and zero runtime garbage collection pauses in hot loops.</p>
     </div>
   </div>
 </div>
@@ -92,13 +92,11 @@ description: "Technical case study of Neon Racer 3D: browser-native 3D racing si
 
 ### 1. Raycast Suspension & Multi-Body Vehicle Dynamics
 
-Rather than modeling wheels as independent rigid bodies connected by mechanical hinge joints (which are prone to solver explosions at high velocities), Neon Racer 3D implements a **Raycast Vehicle Model**.
-
-Four vertical rays cast downward from the vehicle chassis coordinate frame to detect road geometry. When a ray intersects the track surface, the suspension spring and damper forces are calculated via Hooke's Law with damping:
+To prevent joint solver instability at high velocities, Neon Racer 3D implements a **Raycast Vehicle Model**. Four vertical rays cast downward from the chassis detect road surfaces and apply Hooke's Law spring and damper forces:
 
 $$F_{\text{suspension}} = k \cdot (L_0 - L) - c \cdot v_{\text{suspension}}$$
 
-<details class="tech-disclosure" open>
+<details class="tech-disclosure">
   <summary>
     <span class="disclosure-title">Raycast Suspension Physics Controller</span>
     <span class="disclosure-badge">JavaScript</span>
@@ -148,9 +146,9 @@ class VehiclePhysicsController {
 
 ### 2. AWD Torque Distribution & Lateral Drift Slip Modeling
 
-To simulate responsive arcade-drifting physics without losing steering authority, engine torque is distributed dynamically across front and rear axles based on instantaneous steering angle and slip ratio:
+To balance responsive arcade drift mechanics with steering stability, motor torque is split 40% front / 60% rear with speed-dependent steering angle attenuation:
 
-<details class="tech-disclosure" open>
+<details class="tech-disclosure">
   <summary>
     <span class="disclosure-title">AWD Power Distribution &amp; Oversteer Controller</span>
     <span class="disclosure-badge">JavaScript</span>
@@ -199,9 +197,7 @@ updateVehicleInputs(inputs, deltaTime) {
 
 ### 3. Dynamic Smooth Chase Camera Mathematics
 
-A fixed rigid camera attached to a drifting vehicle creates high-frequency viewport jitter. 
-
-Neon Racer 3D uses a **dual-spring exponential look-ahead camera controller**. The camera target position lags behind the car orientation while extending a forward vector in the direction of the velocity vector:
+A rigid camera mount induces high-frequency viewport jitter during sharp slides. Neon Racer 3D computes camera position via dual-spring exponential interpolation with velocity look-ahead targeting:
 
 <details class="tech-disclosure">
   <summary>
@@ -242,6 +238,6 @@ updateCamera(camera, chassisMesh, chassisBody, deltaTime) {
 
 ## Performance & Optimization Benchmarks
 
-- **Frame Rate**: Continuous 60.0 FPS across Chromium, WebKit (Safari), and Gecko (Firefox) engines on integrated GPUs.
-- **Bundle Footprint**: Entire client application (Vite build + Three.js + Cannon-es + shaders + audio SFX) compiles to **2.4 MB gzip**.
-- **Memory Stability**: Zero runtime garbage collection pauses by reusing Vector3/Quaternion scratch buffers in hot loops.
+- **Frame Rate**: Continuous 60.0 FPS across Chromium, WebKit, and Gecko engines on integrated GPUs.
+- **Bundle Footprint**: Entire client application (Vite + Three.js + Cannon-es + shaders + SFX) compiles to **2.4 MB gzip**.
+- **Memory Stability**: Zero runtime GC pauses through reusable Vector3/Quaternion scratch buffers in hot loops.

@@ -46,15 +46,15 @@ description: "Technical case study of FIRST Robotics Team 1506 autonomous contro
   <div class="exec-grid">
     <div class="exec-col">
       <span class="exec-pill-tag exec-pill-problem">The Problem</span>
-      <p>Mechanical assembly consumes the majority of competitive build seasons, depriving software teams of physical track time required to tune swerve odometry, auto routines, and dynamic targeting.</p>
+      <p>Mechanical assembly limits physical track testing for high-speed swerve odometry, auto routines, and dynamic targeting.</p>
     </div>
     <div class="exec-col">
       <span class="exec-pill-tag exec-pill-arch">The Architecture</span>
-      <p>MapleSim desktop simulation running dyn4j 2D rigid-body dynamics at 250 Hz (4ms), fusing CTRE Phoenix 6 swerve kinematics with dual Limelight AprilTag vision in an Extended Kalman Filter.</p>
+      <p>MapleSim desktop simulation running dyn4j rigid-body dynamics at 250 Hz (4ms), fusing CTRE swerve odometry with dual Limelight AprilTag vision in an Extended Kalman Filter.</p>
     </div>
     <div class="exec-col">
       <span class="exec-pill-tag exec-pill-impact">Engineering Impact</span>
-      <p>Decoupled software testing from physical robot access, enabling 8 high-scoring autonomous paths and shoot-on-the-move routines to be tuned prior to chassis handoff.</p>
+      <p>Decoupled software validation from chassis hardware, enabling 8 autonomous routines and shoot-on-the-move targeting to be tuned pre-delivery.</p>
     </div>
   </div>
 </div>
@@ -101,11 +101,9 @@ description: "Technical case study of FIRST Robotics Team 1506 autonomous contro
 
 ### 1. MapleSim: 250 Hz (4ms) dyn4j Physics Simulation
 
-Traditional WPILib simulation models motors as isolated first-order differential equations without coupling to real-world friction, robot mass distribution, or chassis momentum.
+MapleSim couples WPILib Java to the **dyn4j** physics engine, creating a simulated 55 kg chassis with 4 independent swerve contact patches to evaluate mass inertia and wheel friction before hardware delivery:
 
-MapleSim bridges WPILib Java to the **dyn4j** physics engine, creating a simulated 55 kg chassis with 4 independent swerve contact patches:
-
-<details class="tech-disclosure" open>
+<details class="tech-disclosure">
   <summary>
     <span class="disclosure-title">MapleSim 250 Hz Swerve Physics Simulation Engine</span>
     <span class="disclosure-badge">Java</span>
@@ -160,17 +158,11 @@ public class MapleSwerveSimulation {
 
 ### 2. Swerve Kinematics & Second-Order Vector Desaturation
 
-Swerve drive systems allow omnidirectional movement by independently steering and driving four corner modules.
+Swerve drive resolves chassis translation $\vec{v} = \begin{bmatrix} v_x \\ v_y \end{bmatrix}$ and rotational rate $\omega$ into individual module vectors $\vec{v}_i = \begin{bmatrix} v_x - \omega y_i \\ v_y + \omega x_i \end{bmatrix}$. 
 
-For chassis translation velocity $\vec{v} = \begin{bmatrix} v_x \\ v_y \end{bmatrix}$ and rotational rate $\omega$, each module $i$ at location $\vec{r}_i = \begin{bmatrix} x_i \\ y_i \end{bmatrix}$ relative to the center of rotation satisfies:
+When high translation and spin saturate motor limits ($v_{\text{max}} = 4.5 \text{ m/s}$), second-order kinematic desaturation scales module magnitudes proportionally while preserving heading geometry:
 
-$$\vec{v}_i = \vec{v} + \vec{\omega} \times \vec{r}_i = \begin{bmatrix} v_x - \omega y_i \\ v_y + \omega x_i \end{bmatrix}$$
-
-When translating while spinning at high angular velocity, individual calculated module speeds can exceed the physical maximum motor capability ($v_{\text{max}} = 4.5 \text{ m/s}$). Simply clamping module velocities distorts the heading angle and causes uncontrollable drift.
-
-We implement **second-order kinematic desaturation**:
-
-<details class="tech-disclosure" open>
+<details class="tech-disclosure">
   <summary>
     <span class="disclosure-title">Second-Order Swerve Kinematic Desaturation</span>
     <span class="disclosure-badge">Java</span>
@@ -204,9 +196,7 @@ public static void desaturateWheelSpeeds(
 
 ### 3. Multi-Sensor Pose Fusion (Limelight MegaTag2 + EKF)
 
-Field localization combines high-frequency wheel odometry with dual optical **Limelight MegaTag2** coprocessors running Perspective-n-Point (PnP) solvers on 36h11 AprilTag fiducial markers.
-
-Vision measurements are fused into `SwerveDrivePoseEstimator` with dynamic covariance matrices scaled by target distance and tag ambiguity:
+Field localization fuses 250 Hz wheel odometry with dual optical **Limelight MegaTag2** coprocessors running Perspective-n-Point (PnP) solvers on AprilTags. Measurement standard deviations scale dynamically based on target distance and geometric ambiguity:
 
 <details class="tech-disclosure">
   <summary>
@@ -225,7 +215,6 @@ public void addVisionMeasurement(LimelightResults visionUpdate) {
     double tagDistance = visionUpdate.getAvgTagDistance();
 
     // Dynamically adjust measurement standard deviations based on optical geometry
-    // Closer targets have high confidence (low std dev), distant targets have higher uncertainty
     double xyStdDev = 0.03 * Math.pow(tagDistance, 1.8);
     double thetaStdDev = 0.05 * Math.pow(tagDistance, 1.5);
 
@@ -243,17 +232,9 @@ public void addVisionMeasurement(LimelightResults visionUpdate) {
 
 ### 4. Shoot-on-the-Move (SOTM) Ballistic Targeting Math
 
-To score game pieces into field targets without coming to a complete stop, the targeting system calculates virtual aim vectors compensating for the robot’s instantaneous linear velocity $\vec{v}_{\text{robot}}$.
+To score without stopping, the ballistic solver offsets static target coordinates $\vec{P}_{\text{target}}$ by the robot's translational momentum $\vec{v}_{\text{robot}} \cdot t_f$, solving for time-of-flight $t_f$ iteratively:
 
-Let $\vec{P}_{\text{target}}$ be the static 3D target coordinates and $\vec{P}_{\text{robot}}$ be the current estimated robot position. The stationary displacement vector is:
-
-$$\vec{D} = \vec{P}_{\text{target}} - \vec{P}_{\text{robot}}$$
-
-Given projectile time-of-flight $t_f$, the robot's translational motion shifts the required launch vector to:
-
-$$\vec{D}_{\text{virtual}} = \vec{D} - \vec{v}_{\text{robot}} \cdot t_f$$
-
-The system solves for $t_f$ iteratively via quadratic regression:
+$$\vec{D}_{\text{virtual}} = (\vec{P}_{\text{target}} - \vec{P}_{\text{robot}}) - \vec{v}_{\text{robot}} \cdot t_f$$
 
 <details class="tech-disclosure">
   <summary>
@@ -296,4 +277,4 @@ public TargetingSolution calculateShootOnTheMove(Pose2d robotPose, ChassisSpeeds
 
 - **250 Hz Loop Determinism**: MapleSim physics loop executes within &lt; 0.8ms compute time per 4ms frame on desktop CPUs.
 - **Odometry Drift Reduction**: Vision fusion with dual Limelights reduced cumulative path drift to &lt; 2.5 cm over 15-second autonomous multi-note scoring paths.
-- **Rapid Prototyping**: Software team developed and validated 8 independent autonomous branching routines before physical robot assembly was completed.
+- **Rapid Prototyping**: Validated 8 independent autonomous branching routines prior to physical robot chassis assembly.

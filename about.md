@@ -54,19 +54,16 @@ description: Background, technical experience, research publications, and engine
           <div class="section-meta-header" style="margin-bottom: 1.5rem;">
             <div class="section-caption">Background &amp; Approach</div>
           </div>
-          <h1 style="font-size: clamp(2.2rem, 4vw, 3rem); margin-bottom: 2rem;">
+          <h1 style="font-size: clamp(2rem, 3.8vw, 2.75rem); margin-bottom: 1.5rem;">
             Software engineering grounded in mathematical rigor, physical modeling, and craft.
           </h1>
 
           <div class="story-prose">
             <p>
-              I am a software engineer, robotics lead programmer, and researcher based in Michigan. My work spans full-stack web platforms, physics-based robot simulations, real-time 3D browser graphics, and on-device computer vision algorithms.
+              Software engineer, robotics lead programmer, and researcher based in Michigan. My work spans full-stack platforms, physics-based robot simulations, real-time 3D browser graphics, and on-device computer vision.
             </p>
             <p>
-              My development philosophy is driven by a focus on how complex systems behave under the hood. I enjoy tackling challenges that require both clean architectural abstractions and direct mathematical execution—whether that means implementing statutory lien deadline algorithms in <a href="{{ '/work/chaseup/' | relative_url }}"><strong>ChaseUp</strong></a>, modeling vehicle wheel slip angles and torque vectors in <a href="{{ '/work/neon-racer-3d/' | relative_url }}"><strong>Neon Racer 3D</strong></a>, proving rotation-invariant 3D vector heuristics for on-device motion coaching in <a href="{{ '/work/form-analyzer/' | relative_url }}"><strong>Form Analyzer</strong></a>, or simulating swerve drive dynamics in <a href="{{ '/work/frc-robot/' | relative_url }}"><strong>FRC 1506</strong></a>.
-            </p>
-            <p>
-              Across every project, my engineering principles center on architectural simplicity, rigorous edge-case testing, hardware-aware optimization, and building systems that remain robust and performant in production.
+              My engineering focus centers on architectural simplicity, hardware-aware optimization, and building robust production systems with mathematical rigor.
             </p>
           </div>
         </div>
@@ -81,10 +78,11 @@ description: Background, technical experience, research publications, and engine
               <div class="timeline-year">2024 – Present</div>
               <div class="timeline-content">
                 <h3>Founder &amp; Lead Engineer — ChaseUp</h3>
-                <p>
-                  Architected and shipped a specialized SaaS platform for commercial and residential trade subcontractors. Engineered automated invoice follow-up sequences, retainage withholding ledgers, and state-by-state statutory mechanics lien calculation engines using Next.js, Supabase, and PostgreSQL with Row Level Security.
-                </p>
-                <div style="margin-top: 0.5rem;">
+                <ul class="case-notes" style="margin: 0.5rem 0 0.75rem;">
+                  <li>Architected multi-tenant SaaS platform on Next.js, Supabase, and PostgreSQL RLS.</li>
+                  <li>Engineered 50-state statutory mechanics lien rules engine and retainage ledgers.</li>
+                </ul>
+                <div>
                   <a href="{{ '/work/chaseup/' | relative_url }}" class="btn-link" style="font-size: 0.85rem;">View ChaseUp Technical Deep Dive →</a>
                 </div>
               </div>
@@ -94,10 +92,12 @@ description: Background, technical experience, research publications, and engine
               <div class="timeline-year">2023 – Present</div>
               <div class="timeline-content">
                 <h3>Lead Programmer &amp; Simulation Architect — FRC Team 1506 (Metal Muscle)</h3>
-                <p>
-                  Lead the programming subteam for FRC Team 1506. Spearheaded MapleSim rigid-body physics simulation (dyn4j engine) stepping simulated swerve physics at 4ms to decouple autonomous software testing from hardware availability. Integrated multi-camera Limelight MegaTag2 AprilTag vision fusion, CTRE Phoenix 6 swerve controls, and quadratic ballistic equations for shoot-on-the-move routines.
-                </p>
-                <div style="margin-top: 0.5rem;">
+                <ul class="case-notes" style="margin: 0.5rem 0 0.75rem;">
+                  <li>Built 250 Hz (4ms) MapleSim dyn4j physics simulation to validate autonomous routines.</li>
+                  <li>Integrated CTRE Phoenix 6 swerve odometry with dual Limelight AprilTag pose fusion.</li>
+                  <li>Developed shoot-on-the-move ballistic targeting math compensating for robot momentum.</li>
+                </ul>
+                <div>
                   <a href="{{ '/work/frc-robot/' | relative_url }}" class="btn-link" style="font-size: 0.85rem;">View FRC 1506 Robot Architecture →</a>
                 </div>
               </div>
@@ -107,10 +107,12 @@ description: Background, technical experience, research publications, and engine
               <div class="timeline-year">2023 – Present</div>
               <div class="timeline-content">
                 <h3>Mobile &amp; ML Developer — Form Analyzer</h3>
-                <p>
-                  Developed an on-device computer vision mobile application using Flutter, Dart, and Google ML Kit for real-time biomechanical analysis. Designed rotation-invariant Vector Triad Dot Product algorithms to calculate joint angles with zero server latency. Published research at the 16th IEEE Integrated STEM Education Conference (ISEC 2026).
-                </p>
-                <div style="margin-top: 0.5rem;">
+                <ul class="case-notes" style="margin: 0.5rem 0 0.75rem;">
+                  <li>Formulated rotation-invariant 3D Vector Triad Dot Product engine for joint angles.</li>
+                  <li>Implemented asynchronous isBusy frame locking maintaining 60 FPS on-device.</li>
+                  <li>Published research paper at IEEE ISEC 2026.</li>
+                </ul>
+                <div>
                   <a href="{{ '/work/form-analyzer/' | relative_url }}" class="btn-link" style="font-size: 0.85rem;">View Form Analyzer Case Study &amp; Math →</a>
                 </div>
               </div>
@@ -120,10 +122,11 @@ description: Background, technical experience, research publications, and engine
               <div class="timeline-year">2025 – Present</div>
               <div class="timeline-content">
                 <h3>Creator &amp; Full-Stack Architect — Water Wrapped</h3>
-                <p>
-                  Built a whitelabel interactive civic tech platform converting dense municipal Consumer Confidence Reports into mobile-first tap-through stories and searchable water quality tables. Deployed on Cloudflare Workers edge network with prerendered SEO routing and local/Supabase data backends.
-                </p>
-                <div style="margin-top: 0.5rem;">
+                <ul class="case-notes" style="margin: 0.5rem 0 0.75rem;">
+                  <li>Deployed whitelabel civic open data platform on Cloudflare Workers edge network.</li>
+                  <li>Built gesture-driven mobile tap-through story engine and EPA MCL validators.</li>
+                </ul>
+                <div>
                   <a href="{{ '/work/water-wrapped/' | relative_url }}" class="btn-link" style="font-size: 0.85rem;">View Water Wrapped Edge Architecture →</a>
                 </div>
               </div>
@@ -133,10 +136,11 @@ description: Background, technical experience, research publications, and engine
               <div class="timeline-year">2024</div>
               <div class="timeline-content">
                 <h3>Graphics &amp; Physics Developer — Neon Racer 3D</h3>
-                <p>
-                  Engineered a standalone 3D browser racing simulation with Three.js and Cannon-es. Built custom rigid-body vehicle dynamics (AWD power distribution, drift mechanics, and suspension dampening) running at a consistent 60 FPS in modern web browsers without external game engines.
-                </p>
-                <div style="margin-top: 0.5rem;">
+                <ul class="case-notes" style="margin: 0.5rem 0 0.75rem;">
+                  <li>Engineered 60 FPS browser racing simulation with Three.js and Cannon-es physics.</li>
+                  <li>Implemented AWD torque distribution, raycast suspension, and dual-spring camera tracking.</li>
+                </ul>
+                <div>
                   <a href="{{ '/work/neon-racer-3d/' | relative_url }}" class="btn-link" style="font-size: 0.85rem;">View Neon Racer 3D Graphics Breakdown →</a>
                 </div>
               </div>
@@ -158,13 +162,12 @@ description: Background, technical experience, research publications, and engine
                 <span class="pub-year">2026 · Princeton, NJ</span>
               </div>
               <h3 class="pub-title">A Machine Learning Approach to Exercise Form Analysis</h3>
-              <p class="pub-authors">Author: John Tewolde</p>
-              <p class="pub-venue">16th IEEE Integrated STEM Education Conference (ISEC 2026)</p>
+              <p class="pub-authors">Author: John Tewolde · 16th IEEE Integrated STEM Education Conference (ISEC 2026)</p>
               
               <div class="pub-contribution-box">
                 <span class="pub-contrib-label">Key Contribution</span>
                 <p class="pub-contrib-text">
-                  Investigated the democratization of biomechanical feedback using edge computing. Formulated a rotation-invariant 3D Vector Triad Dot Product engine and asynchronous <code>isBusy</code> inference gating for zero-server-latency mobile coaching.
+                  Engineered rotation-invariant 3D Vector Triad Dot Product engine and asynchronous inference gating for zero-latency mobile coaching.
                 </p>
               </div>
 
@@ -183,13 +186,12 @@ description: Background, technical experience, research publications, and engine
                 <span class="pub-year">2024 · Princeton, NJ</span>
               </div>
               <h3 class="pub-title">Use of Computer Vision and AI Techniques for Enhancing Performance at FIRST Robotics Competitions</h3>
-              <p class="pub-authors">Co-Author: John Tewolde</p>
-              <p class="pub-venue">14th IEEE Integrated STEM Education Conference (ISEC 2024)</p>
+              <p class="pub-authors">Co-Author: John Tewolde · 14th IEEE Integrated STEM Education Conference (ISEC 2024)</p>
               
               <div class="pub-contribution-box">
                 <span class="pub-contrib-label">Key Contribution</span>
                 <p class="pub-contrib-text">
-                  Evaluated real-time machine learning object detection and AprilTag coordinate localization on high-speed competitive robotics platforms, exploring coprocessor integration, optical latency optimization, and field-relative targeting math.
+                  Evaluated embedded machine learning object detection and AprilTag localization on coprocessors for autonomous field-relative targeting.
                 </p>
               </div>
 
@@ -208,13 +210,12 @@ description: Background, technical experience, research publications, and engine
                 <span class="pub-year">2021 · Princeton, NJ</span>
               </div>
               <h3 class="pub-title">Filtered — Filtering Water Using a Variety of Efficient Filtration Methods</h3>
-              <p class="pub-authors">Author: John Tewolde</p>
-              <p class="pub-venue">11th IEEE Integrated STEM Education Conference (ISEC 2021)</p>
+              <p class="pub-authors">Author: John Tewolde · 11th IEEE Integrated STEM Education Conference (ISEC 2021)</p>
               
               <div class="pub-contribution-box">
                 <span class="pub-contrib-label">Key Contribution</span>
                 <p class="pub-contrib-text">
-                  Experimental study analyzing particulate and contaminant reduction across varied filtration media to evaluate low-cost, accessible water purification protocols for resource-constrained environments.
+                  Experimental analysis of contaminant reduction across accessible filtration media for low-cost purification protocols.
                 </p>
               </div>
 
@@ -232,13 +233,12 @@ description: Background, technical experience, research publications, and engine
                 <span class="pub-year">2021 · Princeton, NJ</span>
               </div>
               <h3 class="pub-title">Using Technology as a Means for Musical Outreach to Nursing Home Residents</h3>
-              <p class="pub-authors">Author: John Tewolde</p>
-              <p class="pub-venue">11th IEEE Integrated STEM Education Conference (ISEC 2021)</p>
+              <p class="pub-authors">Author: John Tewolde · 11th IEEE Integrated STEM Education Conference (ISEC 2021)</p>
               
               <div class="pub-contribution-box">
                 <span class="pub-contrib-label">Key Contribution</span>
                 <p class="pub-contrib-text">
-                  Explored digital delivery architectures and interactive engagement tools to support cognitive stimulation and connection for elderly residents in assisted living facilities during periods of physical isolation.
+                  Explored digital delivery architectures to support cognitive stimulation for elderly assisted living residents during isolation.
                 </p>
               </div>
 

@@ -47,15 +47,15 @@ description: "Technical case study of Form Analyzer: on-device biomechanical pos
   <div class="exec-grid">
     <div class="exec-col">
       <span class="exec-pill-tag exec-pill-problem">The Problem</span>
-      <p>Cloud-based fitness analysis applications suffer from 200–800ms round-trip latency, high server streaming costs, and significant user privacy vulnerabilities when transmitting workout footage.</p>
+      <p>Cloud-based fitness coaching apps suffer from 200–800ms latency, high streaming costs, and user privacy risks from sending video feeds over the network.</p>
     </div>
     <div class="exec-col">
       <span class="exec-pill-tag exec-pill-arch">The Architecture</span>
-      <p>Edge Flutter client integrating Google ML Kit pose landmark detectors, a rotation-invariant 3D Vector Triad Dot Product engine, and an asynchronous <code>isBusy</code> frame lock guard.</p>
+      <p>Edge Flutter client integrating Google ML Kit pose detection, a rotation-invariant 3D Vector Triad Dot Product engine, and asynchronous <code>isBusy</code> frame locking.</p>
     </div>
     <div class="exec-col">
       <span class="exec-pill-tag exec-pill-impact">Engineering Impact</span>
-      <p>Zero cloud latency with local real-time audio coaching, 60 FPS viewport smoothness, and verified rotation invariance across oblique camera angles (IEEE ISEC 2026).</p>
+      <p>Zero server latency, 60 FPS viewport smoothness, and verified rotation invariance across oblique camera angles (IEEE ISEC 2026).</p>
     </div>
   </div>
 </div>
@@ -103,19 +103,11 @@ description: "Technical case study of Form Analyzer: on-device biomechanical pos
 
 ### 1. 3D Vector Triad Dot Product Formulation
 
-Standard 2D angular heuristics in mobile apps compute planar angles via $\arctan2(y_2 - y_1, x_2 - x_1)$. However, if a user stands at an oblique angle to the smartphone camera, 2D projections collapse depth, causing perspective foreshortening errors of up to $35^\circ$.
+Planar 2D angular heuristics ($\arctan2$) collapse depth at oblique camera angles, causing foreshortening errors up to $35^\circ$. Form Analyzer evaluates true interior joint angles via 3D direction vectors $(\vec{u}, \vec{v})$ originating at joint vertex $P_2$:
 
-To achieve true **viewpoint and rotation invariance**, Form Analyzer constructs 3D spatial direction vectors from landmark coordinate triads $(P_1, P_2, P_3)$ where $P_2$ represents the joint vertex (e.g. knee or elbow), $P_1$ is the proximal joint (e.g. hip or shoulder), and $P_3$ is the distal joint (e.g. ankle or wrist).
+$$\vec{u} = P_1 - P_2, \quad \vec{v} = P_3 - P_2 \implies \theta = \arccos\left( \frac{\vec{u} \cdot \vec{v}}{\|\vec{u}\| \|\vec{v}\|} \right)$$
 
-Let $P_i = (x_i, y_i, z_i)$ represent landmark spatial coordinates:
-
-$$\vec{u} = P_1 - P_2 = \begin{bmatrix} x_1 - x_2 \\ y_1 - y_2 \\ z_1 - z_2 \end{bmatrix}, \quad \vec{v} = P_3 - P_2 = \begin{bmatrix} x_3 - x_2 \\ y_3 - y_2 \\ z_3 - z_2 \end{bmatrix}$$
-
-Using the geometric definition of the inner dot product:
-
-$$\vec{u} \cdot \vec{v} = \|\vec{u}\| \|\vec{v}\| \cos\theta \implies \theta = \arccos\left( \frac{u_x v_x + u_y v_y + u_z v_z}{\sqrt{u_x^2 + u_y^2 + u_z^2} \sqrt{v_x^2 + v_y^2 + v_z^2}} \right)$$
-
-<details class="tech-disclosure" open>
+<details class="tech-disclosure">
   <summary>
     <span class="disclosure-title">3D Vector Triad Dot Product Angle Engine</span>
     <span class="disclosure-badge">Dart</span>
@@ -164,11 +156,9 @@ class VectorTriadCalculator {
 
 ### 2. Asynchronous Inference Lock (`isBusy` Guard)
 
-Smartphone camera sensors deliver image streams at 30 to 60 frames per second. However, running neural network pose estimation on mobile CPU/GPU hardware requires 15–35ms per frame. If frames are queued sequentially without backpressure, the application accumulates an unbounded memory buffer, causing memory pressure and severe UI frame dropping.
+Smartphone camera sensors stream at 30–60 FPS while mobile neural net inference requires 15–35ms per frame. An asynchronous `isBusy` gate discards intermediate frames during active inference, preventing memory pressure and preserving 60 FPS viewport smoothness:
 
-We engineered an asynchronous lock pattern (`isBusy` gating) that drops intermediate camera frames while ML inference is executing, keeping the camera preview perfectly smooth at 60 FPS:
-
-<details class="tech-disclosure" open>
+<details class="tech-disclosure">
   <summary>
     <span class="disclosure-title">Asynchronous isBusy Inference Gating Guard</span>
     <span class="disclosure-badge">Dart</span>
@@ -214,7 +204,7 @@ class PoseDetectorService {
 
 ### 3. Biomechanical Finite State Machine (FSM)
 
-Repetition counting and form feedback are orchestrated through a deterministic Finite State Machine with hysteresis bands to avoid jitter at boundary angles:
+Repetition counting and coaching triggers are orchestrated through a deterministic state machine with angular hysteresis bands to prevent jitter:
 
 ```
 [ START / STANDING ]  (Angle >= 160°)
@@ -240,9 +230,9 @@ Repetition counting and form feedback are orchestrated through a deterministic F
 
 ## Scholarly Publication & Citation
 
-This research was accepted and published at the **16th IEEE Integrated STEM Education Conference (ISEC 2026)**.
+This research was published at the **16th IEEE Integrated STEM Education Conference (ISEC 2026)**.
 
-<div style="margin: 2rem 0; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+<div style="margin: 1.5rem 0; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
   <button type="button" class="btn-primary" data-bibtex-id="tewolde2026machine">
     Cite This Research (BibTeX)
   </button>

@@ -46,15 +46,15 @@ description: "Technical case study of ChaseUp: an invoicing and statutory mechan
   <div class="exec-grid">
     <div class="exec-col">
       <span class="exec-pill-tag exec-pill-problem">The Problem</span>
-      <p>Subcontractors regularly forfeit mechanics lien rights on overdue receivables because statutory preliminary notice deadlines and retainage windows vary by state and are missed when tracked manually.</p>
+      <p>Subcontractors regularly forfeit lien rights on overdue receivables because statutory notice deadlines vary across states and are missed during manual tracking.</p>
     </div>
     <div class="exec-col">
       <span class="exec-pill-tag exec-pill-arch">The Architecture</span>
-      <p>Next.js App Router and Supabase platform enforcing multi-tenant isolation at the PostgreSQL kernel layer via Row Level Security (RLS) policies and a deterministic statutory rules calculation engine.</p>
+      <p>Next.js App Router and Supabase platform enforcing multi-tenant isolation at the PostgreSQL kernel via Row Level Security (RLS) and a deterministic rules engine.</p>
     </div>
     <div class="exec-col">
       <span class="exec-pill-tag exec-pill-impact">Engineering Impact</span>
-      <p>Sub-50ms multi-tenant query execution times with zero cross-tenant leakage, automated retainage tracking, and verified state-by-state compliance tracking.</p>
+      <p>Sub-50ms query latency across isolated tenant tables, automated retainage tracking, and zero cross-tenant data leakage.</p>
     </div>
   </div>
 </div>
@@ -94,11 +94,9 @@ description: "Technical case study of ChaseUp: an invoicing and statutory mechan
 
 ### 1. PostgreSQL Row Level Security (RLS) & Multi-Tenant Isolation
 
-Multi-tenant B2B platforms handling sensitive financial ledgers require airtight isolation. Rather than relying solely on application-layer `WHERE organization_id = ?` query filtering (which is vulnerable to developer oversight), ChaseUp enforces data segregation directly at the PostgreSQL kernel layer using **Row Level Security (RLS)**.
+Multi-tenant B2B platforms handling financial ledgers require kernel-level isolation. ChaseUp enforces data segregation directly inside PostgreSQL via Row Level Security (RLS) policies evaluated against verified Supabase JWT claims, backed by composite B-Tree indexes for sub-50ms execution:
 
-Every incoming request carries a verified Supabase JWT containing the user's `auth.uid()`. Database policies evaluate user organization membership dynamically:
-
-<details class="tech-disclosure" open>
+<details class="tech-disclosure">
   <summary>
     <span class="disclosure-title">PostgreSQL Kernel RLS Isolation Policies &amp; Composite Index</span>
     <span class="disclosure-badge">SQL</span>
@@ -136,20 +134,13 @@ ON public.invoices (organization_id, status, due_date DESC);
   </div>
 </details>
 
-To ensure sub-50ms execution times despite recursive subqueries in RLS policies, indexed composite foreign keys and cached session claims are leveraged.
-
 ---
 
 ### 2. State-by-State Statutory Mechanics Lien Rules Engine
 
-Mechanics lien statutes vary drastically by jurisdiction:
-- **California**: Requires a 20-day Preliminary Notice from first furnishing of labor/materials (Civil Code § 8200). Lien claim must be recorded within 90 days of project completion.
-- **Texas**: Monthly fund trapping notice requirements (Chapter 53 Property Code) mandating notice by the 15th day of the 2nd/3rd month following each month of work.
-- **Michigan**: Notice of Furnishing within 20 days of first work (MCL § 570.1109), and Claim of Lien within 90 days of last work (MCL § 570.1111).
+Mechanics lien compliance demands deterministic deadline calculation across varying state codes (e.g., California 20-day preliminary notices vs. Texas monthly fund trapping). The rules engine evaluates milestones relative to project jurisdiction and computes four-tier urgency ratings:
 
-The deadline calculation engine is implemented as a deterministic rules engine with immutable milestone tracking:
-
-<details class="tech-disclosure" open>
+<details class="tech-disclosure">
   <summary>
     <span class="disclosure-title">State-by-State Statutory Rules Engine</span>
     <span class="disclosure-badge">TypeScript</span>
@@ -200,7 +191,6 @@ export function computeStatutoryDeadlines(input: MilestoneInput): StatutoryDeadl
     case 'TX': // Texas Property Code Chapter 53 (15th of the month rule)
       const month = firstFurnishingDate.getMonth();
       const year = firstFurnishingDate.getFullYear();
-      // Second month 15th day notice
       prelimDeadline = new Date(year, month + 2, 15);
       break;
   }
@@ -227,9 +217,7 @@ export function computeStatutoryDeadlines(input: MilestoneInput): StatutoryDeadl
 
 ### 3. Retainage Accounting & Automated Notification Pipelines
 
-Commercial construction contracts frequently withhold **5% to 10% retainage** until final project signoff, often lasting 6 to 18 months past initial invoice clearance. 
-
-ChaseUp separates gross invoice amounts from held retainage ledgers through database triggers:
+Commercial construction contracts routinely withhold 5% to 10% retainage until project completion. Database triggers compute retainage withholding and net payable totals automatically on row write, guaranteeing financial ledger consistency:
 
 <details class="tech-disclosure">
   <summary>
@@ -262,6 +250,6 @@ EXECUTE FUNCTION update_invoice_totals();
 
 ## Architectural Lessons & Verification
 
-- **Deterministic Edge Timezones**: Date calculations for legal statutes compute relative to the project location jurisdiction rather than the client device timezone, preventing off-by-one day calculation errors across UTC boundaries.
-- **Idempotent Webhooks**: All payment processing webhooks and automated reminder triggers use database transaction locks with idempotent event UUID deduplication.
-- **Immutable Audit Trails**: Every statutory state transition (notice generated, notice served, lien recorded) is recorded with immutable cryptographic timestamps in a compliance ledger table.
+- **Deterministic Jurisdiction Clocks**: Milestone dates compute relative to project location to prevent UTC offset day-drift errors.
+- **Idempotent Webhooks**: All payment processing and notification triggers enforce transaction locks with UUID deduplication.
+- **Immutable Audit Trails**: State transitions (notices generated, served, recorded) are logged with cryptographic timestamps.

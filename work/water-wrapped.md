@@ -46,7 +46,7 @@ description: "Technical case study of Water Wrapped: an open data platform trans
   <div class="exec-grid">
     <div class="exec-col">
       <span class="exec-pill-tag exec-pill-problem">The Problem</span>
-      <p>Municipal water Consumer Confidence Reports (CCRs) are distributed as static 20-page PDFs filled with complex laboratory units ($ppb, \mu g/L$), causing over 90% of residents to ignore them.</p>
+      <p>Municipal water Consumer Confidence Reports (CCRs) are distributed as dense 20-page PDFs with confusing units ($ppb, \mu g/L$), causing over 90% of residents to ignore them.</p>
     </div>
     <div class="exec-col">
       <span class="exec-pill-tag exec-pill-arch">The Architecture</span>
@@ -54,7 +54,7 @@ description: "Technical case study of Water Wrapped: an open data platform trans
     </div>
     <div class="exec-col">
       <span class="exec-pill-tag exec-pill-impact">Engineering Impact</span>
-      <p>Sub-45ms TTFB worldwide, dual presentation (tap-through story + accessible sortable chemistry table), and zero-dependency offline local fallback.</p>
+      <p>Sub-45ms TTFB worldwide, dual presentation (tap-through stories + sortable chemistry tables), and zero-dependency offline local fallback.</p>
     </div>
   </div>
 </div>
@@ -97,11 +97,9 @@ description: "Technical case study of Water Wrapped: an open data platform trans
 
 ### 1. Cloudflare Workers Multi-Utility Edge Routing
 
-To allow individual cities and municipal water authorities to deploy white-labeled versions under custom domains or subpaths with zero dedicated server maintenance, Water Wrapped executes routing on the **Cloudflare Workers** edge runtime.
+To enable municipal water authorities to deploy white-labeled portals under custom domains with zero dedicated servers, Water Wrapped handles routing on **Cloudflare Workers**. The Worker resolves tenant configurations from Edge KV and dynamically rewrites HTML metadata for social sharing:
 
-The Worker intercepts incoming requests, resolves utility configuration from Edge KV, and dynamically rewrites HTML metadata for rich social sharing:
-
-<details class="tech-disclosure" open>
+<details class="tech-disclosure">
   <summary>
     <span class="disclosure-title">Cloudflare Workers Edge Dynamic HTML Rewriter</span>
     <span class="disclosure-badge">TypeScript</span>
@@ -155,9 +153,9 @@ export default {
 
 ### 2. Tap-Through Interactive Story Engine Architecture
 
-The mobile presentation layer is structured as a gesture-driven story carousel with time-synchronized progress bars, touch hold-to-pause interactions, and fluid slide transitions:
+The mobile presentation layer is a gesture-driven story carousel with synchronized 20Hz progress bars, tap-to-advance navigation, and hold-to-pause interactions:
 
-<details class="tech-disclosure" open>
+<details class="tech-disclosure">
   <summary>
     <span class="disclosure-title">Tap-Through Story State Machine Controller</span>
     <span class="disclosure-badge">React / TS</span>
@@ -218,9 +216,7 @@ export function useStoryController(slides: StorySlide[], autoAdvanceMs: number =
 
 ### 3. Rigorous Contaminant Schema Validation Pipeline
 
-Water quality datasets feature diverse reporting units ($mg/L, \mu g/L, ppm, ppb, pCi/L, NTU$). 
-
-To prevent misinterpreting safety thresholds, the ingestion pipeline normalizes all numeric values into standardized SI units and computes delta ratios relative to EPA Maximum Contaminant Level Goals (MCLG):
+The ingestion pipeline normalizes diverse laboratory measurement units ($mg/L, \mu g/L, ppm, ppb$) into standardized SI values and computes safety margins against EPA Maximum Contaminant Level Goals:
 
 <details class="tech-disclosure">
   <summary>
@@ -262,6 +258,6 @@ export function evaluateCompliance(contaminant: WaterContaminant): {
 
 ## Architectural Lessons & Verification
 
-- **Zero-Dependency Local Fallback**: When users have unreliable mobile connectivity, the React client automatically uses bundled static JSON fixtures without hanging on network timeouts.
-- **Accessible Data Grid**: While the tap-through story provides high engagement, the full sortable table ensures screen-reader compatibility (WCAG 2.1 AA) and enables researchers to inspect raw numerical lab assays.
-- **Edge Performance**: Deploying to Cloudflare Workers achieved global Time-To-First-Byte (TTFB) latency under **45ms** across North American edge points.
+- **Zero-Dependency Local Fallback**: Client automatically falls back to bundled static JSON fixtures during offline mobile use.
+- **Accessible Data Grid**: Screen-reader compatible (WCAG 2.1 AA) sortable tables enable raw numerical assay verification.
+- **Edge Performance**: Sub-45ms global Time-To-First-Byte (TTFB) across North American edge points via Cloudflare Workers.
