@@ -159,7 +159,7 @@ description: John Tewolde — software engineer based in Michigan. Building full
           <ul class="case-notes">
             <li>Local pose landmark detection utilizing Google ML Kit to deliver instantaneous kinematic feedback with zero network latency.</li>
             <li>Real-time geometric vector math calculating knee angle, hip flexion, and spinal alignment to verify repetition quality.</li>
-            <li>Featured as a Michigan 4-H state competition project in athletic technology.</li>
+            <li>Asynchronous frame gating and confidence thresholding maintaining 30–60 FPS UI performance.</li>
           </ul>
           <div class="case-tech-list">
             <span class="tech-tag">Flutter</span>

@@ -31,8 +31,8 @@ description: Background, experience, and engineering principles of John Tewolde 
               <span class="dossier-val">Full-Stack, WebGL, Computer Vision</span>
             </div>
             <div class="dossier-item">
-              <span class="dossier-key">Athletics</span>
-              <span class="dossier-val">Competitive Soccer</span>
+              <span class="dossier-key">Focus</span>
+              <span class="dossier-val">Web Architecture &amp; 3D Graphics</span>
             </div>
             <div class="dossier-item">
               <span class="dossier-key">Status</span>
@@ -54,7 +54,7 @@ description: Background, experience, and engineering principles of John Tewolde 
             <div class="section-caption">Background &amp; Approach</div>
           </div>
           <h1 style="font-size: clamp(2.2rem, 4vw, 3rem); margin-bottom: 2rem;">
-            Software engineering grounded in craftsmanship, discipline, and execution.
+            Software engineering grounded in craftsmanship, performance, and execution.
           </h1>
 
           <div class="story-prose">
@@ -65,7 +65,7 @@ description: Background, experience, and engineering principles of John Tewolde 
               My path into software development is driven by a deep curiosity for how complex systems behave under the hood. I enjoy tackling problems that require both clean architectural thinking and direct mathematical implementation—whether that means implementing statutory lien deadline algorithms in <strong>ChaseUp</strong>, modeling vehicle wheel slip angles and torque vectors in <strong>Neon Racer 3D</strong>, or calculating real-time joint angles from camera feeds in <strong>Form Analyzer</strong>.
             </p>
             <p>
-              Outside of engineering, I play competitive soccer. The discipline demanded by high-level athletics—spatial anticipation, clear communication under pressure, and relentless daily practice—directly shapes how I write code: keep architectures simple, test edge cases rigorously, and iterate until the solution is fast and reliable.
+              My engineering philosophy centers on architectural simplicity, rigorous edge-case testing, and continuous optimization until systems are fast, reliable, and maintainable.
             </p>
           </div>
         </div>
@@ -100,7 +100,7 @@ description: Background, experience, and engineering principles of John Tewolde 
               <div class="timeline-content">
                 <h3>Mobile &amp; ML Developer — Form Analyzer</h3>
                 <p>
-                  Developed a cross-platform mobile application using Flutter and Google ML Kit for real-time exercise posture and biomechanical analysis. Implemented on-device geometric analysis to verify joint angles with zero server upload latency. Recognized in the Michigan 4-H state competition in athletic technology.
+                  Developed a cross-platform mobile application using Flutter and Google ML Kit for real-time exercise posture and biomechanical analysis. Implemented on-device geometric analysis to verify joint angles with zero server upload latency.
                 </p>
               </div>
             </div>
