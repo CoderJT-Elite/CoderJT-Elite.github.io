@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&amp;display=swap');
+      .bg { fill: #0f1012; }
+      .grid { stroke: #1e2026; stroke-width: 1; }
+      .border-line { stroke: #2a2d36; stroke-width: 2; }
+      .subhead { font-family: 'JetBrains Mono', monospace; font-size: 18px; fill: #e07a38; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; }
+      .heading { font-family: 'Newsreader', Georgia, serif; font-size: 64px; fill: #f4f3ed; font-weight: 600; line-height: 1.1; }
+      .desc { font-family: 'Inter', sans-serif; font-size: 24px; fill: #a3a096; font-weight: 400; line-height: 1.5; }
+      .badge { font-family: 'JetBrains Mono', monospace; font-size: 15px; fill: #f4f3ed; }
+      .badge-bg { fill: #1d1f24; stroke: #313540; stroke-width: 1; rx: 6px; }
+      .brand-dot { fill: #e07a38; }
+      .author { font-family: 'Inter', sans-serif; font-size: 28px; fill: #ffffff; font-weight: 600; }
+      .location { font-family: 'JetBrains Mono', monospace; font-size: 16px; fill: #78756d; }
+    </style>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="1200" height="630" class="bg"/>
+
+  <!-- Background Technical Grid -->
+  <g class="grid">
+    <line x1="80" y1="0" x2="80" y2="630" />
+    <line x1="1120" y1="0" x2="1120" y2="630" />
+    <line x1="0" y1="80" x2="1200" y2="80" />
+    <line x1="0" y1="550" x2="1200" y2="550" />
+  </g>
+
+  <!-- Outer Frame -->
+  <rect x="80" y="80" width="1040" height="470" fill="none" class="border-line" rx="8"/>
+
+  <!-- Pretitle Badge -->
+  <g transform="translate(130, 135)">
+    <circle cx="6" cy="6" r="5" class="brand-dot"/>
+    <text x="22" y="11" class="subhead">Software Engineer &amp; Roboticist · Michigan, USA</text>
+  </g>
+
+  <!-- Main Headline -->
+  <text x="130" y="220" class="heading">
+    <tspan x="130" dy="0">John Tewolde</tspan>
+  </text>
+  <text x="130" y="275" style="font-family: 'Newsreader', Georgia, serif; font-size: 34px; fill: #c5c2ba; font-style: italic;">
+    Engineering Portfolio &amp; Research
+  </text>
+
+  <!-- Description Prose -->
+  <text x="130" y="340" class="desc">
+    <tspan x="130" dy="0">Full-stack web platforms, rigid-body physics simulations,</tspan>
+    <tspan x="130" dy="36">autonomous robotics control theory, and on-device computer vision.</tspan>
+  </text>
+
+  <!-- Tags / Specializations -->
+  <g transform="translate(130, 445)">
+    <!-- Tag 1 -->
+    <rect x="0" y="0" width="125" height="34" class="badge-bg"/>
+    <text x="16" y="22" class="badge">Next.js / TS</text>
+
+    <!-- Tag 2 -->
+    <rect x="140" y="0" width="145" height="34" class="badge-bg"/>
+    <text x="156" y="22" class="badge">WPILib Java</text>
+
+    <!-- Tag 3 -->
+    <rect x="300" y="0" width="165" height="34" class="badge-bg"/>
+    <text x="316" y="22" class="badge">MapleSim dyn4j</text>
+
+    <!-- Tag 4 -->
+    <rect x="480" y="0" width="160" height="34" class="badge-bg"/>
+    <text x="496" y="22" class="badge">Flutter / ML Kit</text>
+
+    <!-- Tag 5 -->
+    <rect x="655" y="0" width="165" height="34" class="badge-bg"/>
+    <text x="671" y="22" class="badge">IEEE ISEC Research</text>
+  </g>
+
+  <!-- URL Footer -->
+  <text x="130" y="525" class="location">coderjt-elite.github.io</text>
+  <text x="1070" y="525" class="location" text-anchor="end">github.com/CoderJT-Elite</text>
+</svg>

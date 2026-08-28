@@ -1,0 +1,105 @@
+---
+layout: default
+---
+
+<article class="case-study-page">
+  <!-- Case Study Header Banner -->
+  <header class="cs-hero-section">
+    <div class="container">
+      <nav class="cs-breadcrumb" aria-label="Breadcrumb">
+        <a href="{{ '/' | relative_url }}">Work</a>
+        <span class="cs-breadcrumb-sep">/</span>
+        <span class="cs-breadcrumb-current">{{ page.title }}</span>
+      </nav>
+
+      <div class="cs-hero-meta">
+        <span class="cs-index-badge">{{ page.project_index | default: "Project" }}</span>
+        <span class="cs-meta-sep">·</span>
+        <span class="cs-category-text">{{ page.category }}</span>
+        <span class="cs-meta-sep">·</span>
+        <span class="cs-timeline-text">{{ page.timeline }}</span>
+      </div>
+
+      <h1 class="cs-hero-title">{{ page.title }}</h1>
+      <p class="cs-hero-subtitle">{{ page.subtitle }}</p>
+
+      <!-- Action & Links Bar -->
+      <div class="cs-action-bar">
+        {% if page.live_url %}
+          <a href="{{ page.live_url }}" target="_blank" rel="noopener noreferrer" class="btn-primary">
+            Visit Live Platform <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+        {% endif %}
+        {% if page.github_url %}
+          <a href="{{ page.github_url }}" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+            View Source on GitHub <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+        {% endif %}
+        {% if page.research_url %}
+          <a href="{{ page.research_url }}" class="btn-secondary">
+            View IEEE Paper Details →
+          </a>
+        {% endif %}
+      </div>
+
+      <!-- Engineering Specifications Grid -->
+      <div class="cs-specs-grid">
+        <div class="cs-spec-box">
+          <div class="cs-spec-label">Role &amp; Responsibilities</div>
+          <div class="cs-spec-value">{{ page.role }}</div>
+        </div>
+        <div class="cs-spec-box">
+          <div class="cs-spec-label">Primary Stack</div>
+          <div class="cs-spec-value">{{ page.tech_stack }}</div>
+        </div>
+        <div class="cs-spec-box">
+          <div class="cs-spec-label">Key Engineering Metric</div>
+          <div class="cs-spec-value">{{ page.key_metric }}</div>
+        </div>
+        <div class="cs-spec-box">
+          <div class="cs-spec-label">Status &amp; Verification</div>
+          <div class="cs-spec-value">{{ page.status_tag | default: "Production / Shipped" }}</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Case Study Body Content -->
+  <div class="cs-body-section">
+    <div class="container cs-layout-container">
+      <!-- Main Deep-Dive Content -->
+      <div class="cs-prose">
+        {{ content }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Next / Prev Case Study Footer Nav -->
+  <footer class="cs-nav-footer">
+    <div class="container">
+      <div class="cs-nav-grid">
+        {% if page.prev_project_url %}
+          <a href="{{ page.prev_project_url | relative_url }}" class="cs-nav-link cs-nav-prev">
+            <span class="cs-nav-dir">← Previous Project</span>
+            <span class="cs-nav-title">{{ page.prev_project_title }}</span>
+          </a>
+        {% else %}
+          <div></div>
+        {% endif %}
+
+        <div class="cs-nav-all">
+          <a href="{{ '/' | relative_url }}" class="btn-link">← Return to All Work</a>
+        </div>
+
+        {% if page.next_project_url %}
+          <a href="{{ page.next_project_url | relative_url }}" class="cs-nav-link cs-nav-next">
+            <span class="cs-nav-dir">Next Project →</span>
+            <span class="cs-nav-title">{{ page.next_project_title }}</span>
+          </a>
+        {% else %}
+          <div></div>
+        {% endif %}
+      </div>
+    </div>
+  </footer>
+</article>

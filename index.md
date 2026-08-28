@@ -23,7 +23,8 @@ description: John Tewolde — software engineer and robotics lead programmer bas
 
     <div class="hero-actions">
       <a href="#selected-work" class="btn-primary">View Selected Work ↓</a>
-      <a href="{{ '/about' | relative_url }}" class="btn-link">Read Background &amp; Approach</a>
+      <a href="#interactive-lab" class="btn-secondary">Explore Interactive Lab ⚡</a>
+      <a href="{{ '/about' | relative_url }}" class="btn-link">Background &amp; Principles</a>
       <a href="{{ '/contact' | relative_url }}" class="btn-link">Get in Touch</a>
     </div>
 
@@ -44,6 +45,98 @@ description: John Tewolde — software engineer and robotics lead programmer bas
   </div>
 </section>
 
+<!-- Interactive Engineering Laboratory / Visualizer -->
+<section class="section section-rule" id="interactive-lab">
+  <div class="container">
+    <div class="section-meta-header">
+      <div class="section-caption">Interactive Engineering Lab</div>
+      <div class="section-num">Kinematics &amp; Geometry</div>
+    </div>
+
+    <h2 class="section-headline">Interactive Kinematics &amp; Vector Mathematics</h2>
+    <p class="section-intro-text" style="margin-bottom: 2rem;">
+      Real-time mathematical visualizers demonstrating swerve drive kinematics vector resolution (FRC 1506) and 3D Vector Triad Dot Product angle computation (Form Analyzer, IEEE ISEC 2026).
+    </p>
+
+    <!-- Lab Widget Container -->
+    <div class="lab-widget">
+      <!-- Mode Tabs -->
+      <div class="lab-tab-bar" role="tablist" aria-label="Visualizer Mode Selection">
+        <button class="lab-tab active" id="tabSwerve" role="tab" aria-selected="true" aria-controls="labWorkspace">
+          <span class="lab-tab-num">01</span> Swerve Drive Kinematics (WPILib)
+        </button>
+        <button class="lab-tab" id="tabTriad" role="tab" aria-selected="false" aria-controls="labWorkspace">
+          <span class="lab-tab-num">02</span> 3D Vector Triad Geometry (IEEE 2026)
+        </button>
+      </div>
+
+      <!-- Main Workspace -->
+      <div class="lab-workspace" id="labWorkspace">
+        <!-- Canvas Stage -->
+        <div class="lab-canvas-container">
+          <canvas id="kinematicsCanvas" width="560" height="380" aria-label="Interactive kinematics vector canvas visualizer"></canvas>
+          <div class="canvas-hint">Drag points / adjust controls to simulate vectors in real time</div>
+        </div>
+
+        <!-- Controls & Telemetry Panel -->
+        <div class="lab-panel">
+          
+          <!-- Swerve Controls Subpanel -->
+          <div id="swerveControlsSection">
+            <div class="panel-section-title">Chassis Velocity Vector Inputs</div>
+
+            <!-- Motion Presets -->
+            <div class="preset-pill-group">
+              <span class="preset-label">Presets:</span>
+              <button class="preset-btn" data-swerve-preset="forward">Forward</button>
+              <button class="preset-btn" data-swerve-preset="strafe">Strafe</button>
+              <button class="preset-btn" data-swerve-preset="rotate">Spin</button>
+              <button class="preset-btn" data-swerve-preset="orbit">Orbit</button>
+              <button class="preset-btn" data-swerve-preset="diagonal">Drift</button>
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-row">
+                <label for="sliderVx" class="slider-label"><span>Translation Vx (Lateral)</span><span class="slider-val-unit">m/s</span></label>
+                <input type="range" id="sliderVx" min="-4.5" max="4.5" step="0.1" value="0">
+              </div>
+
+              <div class="slider-row">
+                <label for="sliderVy" class="slider-label"><span>Translation Vy (Forward)</span><span class="slider-val-unit">m/s</span></label>
+                <input type="range" id="sliderVy" min="-4.5" max="4.5" step="0.1" value="2.5">
+              </div>
+
+              <div class="slider-row">
+                <label for="sliderOmega" class="slider-label"><span>Angular Velocity &omega; (Yaw)</span><span class="slider-val-unit">rad/s</span></label>
+                <input type="range" id="sliderOmega" min="-6.0" max="6.0" step="0.1" value="1.2">
+              </div>
+            </div>
+
+            <!-- Live Swerve Telemetry -->
+            <div class="telemetry-box" id="swerveTelemetry">
+              <!-- Dynamically populated by kinematics-widget.js -->
+            </div>
+          </div>
+
+          <!-- Triad Controls Subpanel -->
+          <div id="triadControlsSection" style="display: none;">
+            <div class="panel-section-title">Joint Vector Triad (Interactive Drag)</div>
+            <p style="font-size: 0.86rem; color: var(--text-secondary); margin-bottom: 1rem;">
+              Click and drag the joint nodes on the canvas to evaluate real-time Law of Cosines dot product calculations and exercise coaching states.
+            </p>
+
+            <!-- Live Triad Telemetry -->
+            <div class="telemetry-box" id="triadTelemetry">
+              <!-- Dynamically populated by kinematics-widget.js -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Selected Work Section -->
 <section class="section section-rule" id="selected-work">
   <div class="container">
@@ -52,15 +145,34 @@ description: John Tewolde — software engineer and robotics lead programmer bas
       <div class="section-num">01 — 05</div>
     </div>
 
-    <h2 class="section-headline">Featured Engineering Work</h2>
-    <p class="section-intro-text" style="margin-bottom: 3.5rem;">
-      A selection of software platforms, robotics control systems, and simulations architected and shipped to production.
-    </p>
+    <div class="work-header-row">
+      <div>
+        <h2 class="section-headline">Featured Engineering Work</h2>
+        <p class="section-intro-text">
+          A selection of software platforms, robotics control systems, and simulations architected and shipped to production.
+        </p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="filter-wrapper">
+        <div class="filter-tablist" id="projectFilters" role="tablist" aria-label="Filter projects by engineering domain">
+          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All (5)</button>
+          <button class="filter-btn" data-filter="web" role="tab" aria-selected="false">Web &amp; Systems</button>
+          <button class="filter-btn" data-filter="robotics" role="tab" aria-selected="false">Robotics &amp; Controls</button>
+          <button class="filter-btn" data-filter="3d" role="tab" aria-selected="false">3D &amp; Physics</button>
+          <button class="filter-btn" data-filter="vision" role="tab" aria-selected="false">Edge Vision</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-status-row">
+      <span class="filter-count-notice" id="filterCountNotice" aria-live="polite">Showing all 5 projects</span>
+    </div>
 
     <div class="project-case-list">
 
       <!-- Project 1: ChaseUp -->
-      <article class="case-study">
+      <article class="case-study" data-category="web">
         <div class="case-media">
           <img src="{{ '/assets/img/chaseup-preview.png' | relative_url }}" alt="ChaseUp application dashboard interface" loading="lazy" width="1280" height="800">
         </div>
@@ -87,10 +199,13 @@ description: John Tewolde — software engineer and robotics lead programmer bas
             <span class="tech-tag">Next.js</span>
             <span class="tech-tag">TypeScript</span>
             <span class="tech-tag">Supabase</span>
-            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">PostgreSQL (RLS)</span>
             <span class="tech-tag">Tailwind CSS</span>
           </div>
           <div class="case-links">
+            <a href="{{ '/work/chaseup/' | relative_url }}" class="btn-primary">
+              Read Deep-Dive Case Study →
+            </a>
             <a href="https://chaseupapp.tech" target="_blank" rel="noopener noreferrer" class="live-link">
               Visit Live Platform ↗
             </a>
@@ -99,7 +214,7 @@ description: John Tewolde — software engineer and robotics lead programmer bas
       </article>
 
       <!-- Project 2: FRC 1506 Autonomous Robot & Simulation Architecture -->
-      <article class="case-study">
+      <article class="case-study" data-category="robotics">
         <div class="case-media" style="padding: 2.5rem 2rem; background: #18181b; color: #f4f3ed; display: flex; flex-direction: column; justify-content: space-between; min-height: 280px;">
           <div>
             <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #a1a1aa; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem;">
@@ -146,6 +261,9 @@ description: John Tewolde — software engineer and robotics lead programmer bas
             <span class="tech-tag">Limelight MegaTag2</span>
           </div>
           <div class="case-links">
+            <a href="{{ '/work/frc-robot/' | relative_url }}" class="btn-primary">
+              Read Deep-Dive Case Study →
+            </a>
             <a href="https://github.com/CoderJT-Elite/2026-Rebuild" target="_blank" rel="noopener noreferrer" class="live-link">
               View Robot Codebase ↗
             </a>
@@ -154,7 +272,7 @@ description: John Tewolde — software engineer and robotics lead programmer bas
       </article>
 
       <!-- Project 3: Form Analyzer -->
-      <article class="case-study">
+      <article class="case-study" data-category="vision">
         <div class="case-media">
           <img src="{{ '/assets/img/form-analyzer-preview.png' | relative_url }}" alt="Form Analyzer biomechanical feedback application interface" loading="lazy" width="1280" height="800">
         </div>
@@ -185,6 +303,9 @@ description: John Tewolde — software engineer and robotics lead programmer bas
             <span class="tech-tag">Android NDK</span>
           </div>
           <div class="case-links">
+            <a href="{{ '/work/form-analyzer/' | relative_url }}" class="btn-primary">
+              Read Deep-Dive Case Study →
+            </a>
             <a href="https://coderjt-elite.github.io/form_analyzer/" target="_blank" rel="noopener noreferrer" class="live-link">
               Project Details &amp; Research ↗
             </a>
@@ -193,7 +314,7 @@ description: John Tewolde — software engineer and robotics lead programmer bas
       </article>
 
       <!-- Project 4: Neon Racer 3D -->
-      <article class="case-study">
+      <article class="case-study" data-category="3d">
         <div class="case-media">
           <img src="{{ '/assets/img/neon-racer-preview.png' | relative_url }}" alt="Neon Racer 3D real-time browser game preview" loading="lazy" width="1280" height="800">
         </div>
@@ -224,6 +345,9 @@ description: John Tewolde — software engineer and robotics lead programmer bas
             <span class="tech-tag">Vite</span>
           </div>
           <div class="case-links">
+            <a href="{{ '/work/neon-racer-3d/' | relative_url }}" class="btn-primary">
+              Read Deep-Dive Case Study →
+            </a>
             <a href="https://neon-racer-3d.vercel.app/" target="_blank" rel="noopener noreferrer" class="live-link">
               Play in Browser ↗
             </a>
@@ -232,7 +356,7 @@ description: John Tewolde — software engineer and robotics lead programmer bas
       </article>
 
       <!-- Project 5: Water Wrapped -->
-      <article class="case-study">
+      <article class="case-study" data-category="web">
         <div class="case-media" style="padding: 2.5rem 2rem; background: #0f172a; color: #f8fafc; display: flex; flex-direction: column; justify-content: space-between; min-height: 280px;">
           <div>
             <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem;">
@@ -278,6 +402,9 @@ description: John Tewolde — software engineer and robotics lead programmer bas
             <span class="tech-tag">Supabase</span>
           </div>
           <div class="case-links">
+            <a href="{{ '/work/water-wrapped/' | relative_url }}" class="btn-primary">
+              Read Deep-Dive Case Study →
+            </a>
             <a href="https://github.com/JoshuaTewolde/WaterWrapped" target="_blank" rel="noopener noreferrer" class="live-link">
               View Repository ↗
             </a>
@@ -290,7 +417,7 @@ description: John Tewolde — software engineer and robotics lead programmer bas
 </section>
 
 <!-- Selected Research & Publications -->
-<section class="section section-rule">
+<section class="section section-rule" id="research">
   <div class="container">
     <div class="section-meta-header">
       <div class="section-caption">Scholarly Research</div>
@@ -303,6 +430,7 @@ description: John Tewolde — software engineer and robotics lead programmer bas
     </p>
 
     <div class="pub-list">
+      <!-- Pub 1: Form Analysis -->
       <div class="pub-card">
         <div class="pub-meta-line">
           <span class="pub-badge">IEEE Publication</span>
@@ -314,8 +442,15 @@ description: John Tewolde — software engineer and robotics lead programmer bas
         <p class="pub-abstract">
           Investigated the democratization of biomechanical feedback through edge-computing. Developed a rotation-invariant 3D Vector Dot Product engine utilizing Google MediaPipe/ML Kit pose landmarks, Android NDK performance gating, and Finite State Machine heuristics to detect exercise phases with real-time corrective voice feedback.
         </p>
+        <div class="pub-actions">
+          <button type="button" class="btn-cite" data-bibtex-id="tewolde2026machine">
+            Cite (BibTeX)
+          </button>
+          <a href="{{ '/work/form-analyzer/' | relative_url }}" class="btn-link">Read Technical Case Study →</a>
+        </div>
       </div>
 
+      <!-- Pub 2: Robotics Vision -->
       <div class="pub-card">
         <div class="pub-meta-line">
           <span class="pub-badge">IEEE Publication</span>
@@ -327,8 +462,15 @@ description: John Tewolde — software engineer and robotics lead programmer bas
         <p class="pub-abstract">
           Analyzed the implementation of real-time machine learning object detection and AprilTag pose estimation pipelines on embedded coprocessors to improve autonomous robot localization and scoring accuracy in high-speed competitive environments.
         </p>
+        <div class="pub-actions">
+          <button type="button" class="btn-cite" data-bibtex-id="tewolde2024computervision">
+            Cite (BibTeX)
+          </button>
+          <a href="{{ '/work/frc-robot/' | relative_url }}" class="btn-link">Read Robot Case Study →</a>
+        </div>
       </div>
 
+      <!-- Pub 3: Water Filtration -->
       <div class="pub-card">
         <div class="pub-meta-line">
           <span class="pub-badge">IEEE Publication</span>
@@ -340,8 +482,14 @@ description: John Tewolde — software engineer and robotics lead programmer bas
         <p class="pub-abstract">
           Experimental study analyzing particulate and contaminant reduction across varied filtration media to evaluate low-cost, accessible water purification protocols for resource-constrained environments.
         </p>
+        <div class="pub-actions">
+          <button type="button" class="btn-cite" data-bibtex-id="tewolde2021filtered">
+            Cite (BibTeX)
+          </button>
+        </div>
       </div>
 
+      <!-- Pub 4: Musical Outreach -->
       <div class="pub-card">
         <div class="pub-meta-line">
           <span class="pub-badge">IEEE Publication</span>
@@ -353,11 +501,16 @@ description: John Tewolde — software engineer and robotics lead programmer bas
         <p class="pub-abstract">
           Explored digital delivery architectures and interactive engagement tools to support cognitive stimulation and connection for elderly residents in assisted living facilities during periods of physical isolation.
         </p>
+        <div class="pub-actions">
+          <button type="button" class="btn-cite" data-bibtex-id="tewolde2021musicaloutreach">
+            Cite (BibTeX)
+          </button>
+        </div>
       </div>
     </div>
 
-    <div style="margin-top: 2rem;">
-      <a href="{{ '/about' | relative_url }}#research" class="btn-link">View All Research on About Page →</a>
+    <div style="margin-top: 2.5rem;">
+      <a href="{{ '/about' | relative_url }}#research" class="btn-link">View All Research Details on About Page →</a>
     </div>
   </div>
 </section>

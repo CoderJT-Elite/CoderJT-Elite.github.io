@@ -1,0 +1,143 @@
+---
+layout: null
+permalink: /feed.xml
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>John Tewolde — Software Engineering &amp; Robotics Research</title>
+  <subtitle>Technical deep-dives, control systems architectures, physics simulations, and published IEEE papers by John Tewolde.</subtitle>
+  <link href="{{ '/feed.xml' | absolute_url }}" rel="self" type="application/atom+xml"/>
+  <link href="{{ '/' | absolute_url }}"/>
+  <updated>{{ site.time | date_to_xmlschema }}</updated>
+  <id>{{ site.url }}/</id>
+  <author>
+    <name>John Tewolde</name>
+    <email>jg.tewolde@gmail.com</email>
+    <uri>{{ site.url }}</uri>
+  </author>
+
+  <!-- Research Paper 1 -->
+  <entry>
+    <title>A Machine Learning Approach to Exercise Form Analysis</title>
+    <link href="{{ '/about' | absolute_url }}#research"/>
+    <id>{{ site.url }}/research/2026-exercise-form-analysis</id>
+    <published>2026-03-01T00:00:00Z</published>
+    <updated>2026-03-01T00:00:00Z</updated>
+    <summary>Published at 16th IEEE Integrated STEM Education Conference (ISEC 2026). Investigates real-time biomechanical analysis using Flutter, Google ML Kit, and 3D Vector Triad Dot Product rotation-invariant geometry on edge devices.</summary>
+    <content type="html">
+      <![CDATA[
+        <p>Published at the 16th IEEE Integrated STEM Education Conference (ISEC 2026).</p>
+        <p>Investigated the democratization of biomechanical feedback through edge-computing. Developed a rotation-invariant 3D Vector Dot Product engine utilizing Google MediaPipe/ML Kit pose landmarks, Android NDK performance gating, and Finite State Machine heuristics to detect exercise phases with real-time corrective voice feedback.</p>
+        <p><strong>Authors:</strong> John Tewolde</p>
+        <p><strong>Conference:</strong> IEEE ISEC 2026, Princeton, NJ</p>
+      ]]>
+    </content>
+  </entry>
+
+  <!-- Case Study: ChaseUp -->
+  <entry>
+    <title>Case Study: ChaseUp — Mechanics Lien Compliance &amp; Receivables SaaS</title>
+    <link href="{{ '/work/chaseup/' | absolute_url }}"/>
+    <id>{{ site.url }}/work/chaseup</id>
+    <published>2025-10-15T00:00:00Z</published>
+    <updated>2025-10-15T00:00:00Z</updated>
+    <summary>Architecture breakdown of ChaseUp: Next.js App Router, Supabase Auth, PostgreSQL Row Level Security (RLS), and state statutory mechanics lien deadline calculations.</summary>
+    <content type="html">
+      <![CDATA[
+        <p>Architecture breakdown of a specialized invoicing and statutory compliance platform engineered for trade subcontractors.</p>
+        <p>Features state-by-state statutory mechanics lien calculation engines, multi-tier notification pipelines, and PostgreSQL Row Level Security policies.</p>
+      ]]>
+    </content>
+  </entry>
+
+  <!-- Case Study: FRC 1506 Robot Architecture -->
+  <entry>
+    <title>Case Study: FRC Team 1506 Robot Control &amp; Physics Simulation Architecture</title>
+    <link href="{{ '/work/frc-robot/' | absolute_url }}"/>
+    <id>{{ site.url }}/work/frc-robot</id>
+    <published>2025-09-01T00:00:00Z</published>
+    <updated>2025-09-01T00:00:00Z</updated>
+    <summary>Physics-based simulation loop stepping at 4ms via MapleSim dyn4j, CTRE Phoenix 6 swerve drive kinematics, and dual Limelight MegaTag2 AprilTag vision fusion.</summary>
+    <content type="html">
+      <![CDATA[
+        <p>Autonomous control systems and desktop physics simulation infrastructure for FIRST Robotics Competition Team 1506 (Metal Muscle).</p>
+        <p>Features MapleSim rigid-body dynamics stepping swerve physics at 4ms, Limelight AprilTag pose estimation fusion with Pigeon 2 IMU, and ballistic shoot-on-the-move targeting.</p>
+      ]]>
+    </content>
+  </entry>
+
+  <!-- Case Study: Form Analyzer -->
+  <entry>
+    <title>Case Study: Form Analyzer — On-Device Biomechanical Vision</title>
+    <link href="{{ '/work/form-analyzer/' | absolute_url }}"/>
+    <id>{{ site.url }}/work/form-analyzer</id>
+    <published>2025-08-01T00:00:00Z</published>
+    <updated>2025-08-01T00:00:00Z</updated>
+    <summary>3D Vector Triad Dot Product formulation, asynchronous frame lock gating, and real-time exercise coaching finite state machines.</summary>
+    <content type="html">
+      <![CDATA[
+        <p>On-device biomechanical coaching application calculating joint angles in real time using 3D Vector Triad Dot Product geometry with zero cloud latency.</p>
+      ]]>
+    </content>
+  </entry>
+
+  <!-- Case Study: Neon Racer 3D -->
+  <entry>
+    <title>Case Study: Neon Racer 3D — WebGL &amp; Rigid-Body Dynamics</title>
+    <link href="{{ '/work/neon-racer-3d/' | absolute_url }}"/>
+    <id>{{ site.url }}/work/neon-racer-3d</id>
+    <published>2025-05-01T00:00:00Z</published>
+    <updated>2025-05-01T00:00:00Z</updated>
+    <summary>Browser-native 3D racing simulation with Cannon-es vehicle dynamics, AWD torque distribution, and 60 FPS Three.js rendering pipeline.</summary>
+    <content type="html">
+      <![CDATA[
+        <p>Real-time 3D racing simulation running natively in the browser without third-party game engines, featuring custom vehicle dynamics and 60 FPS frame pacing.</p>
+      ]]>
+    </content>
+  </entry>
+
+  <!-- Case Study: Water Wrapped -->
+  <entry>
+    <title>Case Study: Water Wrapped — Whitelabel Civic Open Data Platform</title>
+    <link href="{{ '/work/water-wrapped/' | absolute_url }}"/>
+    <id>{{ site.url }}/work/water-wrapped</id>
+    <published>2025-03-01T00:00:00Z</published>
+    <updated>2025-03-01T00:00:00Z</updated>
+    <summary>Cloudflare Workers edge routing, tap-through story architecture, and open drinking water data schema validation.</summary>
+    <content type="html">
+      <![CDATA[
+        <p>Interactive civic tech platform converting municipal Consumer Confidence Reports into mobile-first stories and searchable open data tables.</p>
+      ]]>
+    </content>
+  </entry>
+
+  <!-- Research Paper 2 -->
+  <entry>
+    <title>Use of Computer Vision and AI Techniques for Enhancing Performance at FIRST Robotics Competitions</title>
+    <link href="{{ '/about' | absolute_url }}#research"/>
+    <id>{{ site.url }}/research/2024-robotics-vision</id>
+    <published>2024-03-01T00:00:00Z</published>
+    <updated>2024-03-01T00:00:00Z</updated>
+    <summary>Published at 14th IEEE Integrated STEM Education Conference (ISEC 2024). Evaluated machine learning object detection and AprilTag coordinate localization on high-speed competitive robotics platforms.</summary>
+  </entry>
+
+  <!-- Research Paper 3 -->
+  <entry>
+    <title>Filtered — Filtering Water Using a Variety of Efficient Filtration Methods</title>
+    <link href="{{ '/about' | absolute_url }}#research"/>
+    <id>{{ site.url }}/research/2021-filtered-water</id>
+    <published>2021-03-01T00:00:00Z</published>
+    <updated>2021-03-01T00:00:00Z</updated>
+    <summary>Published at 11th IEEE Integrated STEM Education Conference (ISEC 2021). Experimental study analyzing particulate and contaminant reduction across varied filtration media.</summary>
+  </entry>
+
+  <!-- Research Paper 4 -->
+  <entry>
+    <title>Using Technology as a Means for Musical Outreach to Nursing Home Residents</title>
+    <link href="{{ '/about' | absolute_url }}#research"/>
+    <id>{{ site.url }}/research/2021-musical-outreach</id>
+    <published>2021-03-01T00:00:00Z</published>
+    <updated>2021-03-01T00:00:00Z</updated>
+    <summary>Published at 11th IEEE Integrated STEM Education Conference (ISEC 2021). Explored digital delivery architectures and interactive engagement tools for assisted living residents.</summary>
+  </entry>
+</feed>
