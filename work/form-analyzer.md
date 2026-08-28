@@ -1,7 +1,7 @@
 ---
 layout: case_study
 title: "Form Analyzer — On-Device Biomechanical ML Feedback"
-subtitle: "Rotation-invariant 3D Vector Triad Dot Product geometry, asynchronous inference gating, and real-time posture coaching on edge devices."
+subtitle: "Rotation-invariant 3D Vector Triad Dot Product geometry and asynchronous inference gating on mobile devices."
 permalink: /work/form-analyzer/
 project_index: "Case Study 03"
 category: "Edge Computer Vision & Machine Learning"
@@ -14,7 +14,7 @@ live_url: "https://coderjt-elite.github.io/form_analyzer/"
 github_url: ""
 research_url: "/about#research"
 prev_project_url: "/work/frc-robot/"
-prev_project_title: "FRC 1506 Robot Control & Physics Simulation"
+prev_project_title: "FRC 1506 Robot Architecture"
 next_project_url: "/work/neon-racer-3d/"
 next_project_title: "Neon Racer 3D — Browser WebGL & Dynamics"
 description: "Technical case study of Form Analyzer: on-device biomechanical pose analysis using 3D Vector Triad Dot Product geometry. Published at IEEE ISEC 2026."
@@ -31,120 +31,86 @@ description: "Technical case study of Form Analyzer: on-device biomechanical pos
     <span class="metric-lbl">Cloud Latency</span>
   </div>
   <div class="metric-stat">
-    <span class="metric-val">33 Landmarks</span>
+    <span class="metric-val">33 Nodes</span>
     <span class="metric-lbl">3D Spatial Tracking</span>
   </div>
   <div class="metric-stat">
-    <span class="metric-val">IEEE ISEC 2026</span>
-    <span class="metric-lbl">Peer-Reviewed Paper</span>
+    <span class="metric-val">IEEE 2026</span>
+    <span class="metric-lbl">Published Paper</span>
   </div>
 </div>
 
 ## Executive Overview
 
-<!-- 3-Part Executive Card: Problem → Architecture → Impact -->
 <div class="exec-card-wide">
   <div class="exec-grid">
     <div class="exec-col">
       <span class="exec-pill-tag exec-pill-problem">The Problem</span>
-      <p>Cloud-based fitness coaching apps suffer from 200–800ms latency, high streaming costs, and user privacy risks from sending video feeds over the network.</p>
+      <p>Cloud-based fitness coaching apps suffer from 200–800ms latency, bandwidth costs, and privacy risks from uploading video feeds.</p>
     </div>
     <div class="exec-col">
       <span class="exec-pill-tag exec-pill-arch">The Architecture</span>
-      <p>Edge Flutter client integrating Google ML Kit pose detection, a rotation-invariant 3D Vector Triad Dot Product engine, and asynchronous <code>isBusy</code> frame locking.</p>
+      <p>Edge Flutter client combining Google ML Kit pose detection with rotation-invariant 3D Vector Triad geometry and async frame gating.</p>
     </div>
     <div class="exec-col">
       <span class="exec-pill-tag exec-pill-impact">Engineering Impact</span>
-      <p>Zero server latency, 60 FPS viewport smoothness, and verified rotation invariance across oblique camera angles (IEEE ISEC 2026).</p>
+      <p>Zero cloud latency, 60 FPS viewport smoothness, and verified rotation invariance across oblique camera angles (IEEE ISEC 2026).</p>
     </div>
   </div>
 </div>
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                    FORM ANALYZER ON-DEVICE PIPELINE                         │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-    [ Camera Stream (30–60 FPS RGB YUV420 Image Stream) ]
-                             │
-                             ▼
-    [ Asynchronous Inference Lock (isBusy Guard Gate) ]
-        │                                         │
-        ├─ (If isBusy == true)                    └─ (If isBusy == false)
-        ▼                                         ▼
-   [ Drop Frame / Maintain UI Flow ]       [ Acquire Frame Lock ]
-                                                  │
-                                                  ▼
-                                     [ Google ML Kit Pose Detector ]
-                                     - 33 3D Spatial Landmarks (X, Y, Z, Prob)
-                                     - Coordinate Normalization & Confidence Filter
-                                                  │
-                                                  ▼
-                                     [ 3D Vector Triad Engine ]
-                                     - Extract Proximal, Vertex, Distal Nodes
-                                     - Direction Vectors u = A - B, v = C - B
-                                     - Solve Theta via Law of Cosines Dot Product
-                                                  │
-                                                  ▼
-                                     [ Exercise State Machine (FSM) ]
-                                     - Hysteresis Gating (Start -> Eccentric -> 
-                                       Inflection -> Concentric -> Rep Complete)
-                                     - Depth & Cadence Violation Detection
-                                                  │
-                                                  ▼
-                                     [ Real-Time Audio / UI Feedback ]
-                                     - Low-Latency Android Text-To-Speech
-                                     - 60 FPS Visual Feedback HUD Overlay
+[ Camera YUV420 Stream (60 FPS) ] ──► [ isBusy Inference Guard ]
+                                                 │
+                     ┌───────────────────────────┴───────────────────────────┐
+                     ▼                                                       ▼
+           [ Drop Frame (if Busy) ]                                [ Acquire Frame Lock ]
+                                                                             │
+                                                                             ▼
+                                                                [ Google ML Kit 3D Poses ]
+                                                                             │
+                                                                             ▼
+                                                                [ 3D Vector Triad Engine ]
+                                                                - Direction Vectors u, v
+                                                                - Dot Product Theta Solve
+                                                                             │
+                                                                             ▼
+                                                                [ Biomechanical FSM Cues ]
 ```
 
 ---
 
-## Technical Highlights & Mathematical Formulation
+## Technical Architecture
 
-### 1. 3D Vector Triad Dot Product Formulation
+### 1. 3D Vector Triad Dot Product Geometry
+Evaluates interior joint angles from 3D spatial landmarks $(\vec{u} = P_1 - P_2, \vec{v} = P_3 - P_2)$, eliminating 2D planar foreshortening error:
 
-Planar 2D angular heuristics ($\arctan2$) collapse depth at oblique camera angles, causing foreshortening errors up to $35^\circ$. Form Analyzer evaluates true interior joint angles via 3D direction vectors $(\vec{u}, \vec{v})$ originating at joint vertex $P_2$:
-
-$$\vec{u} = P_1 - P_2, \quad \vec{v} = P_3 - P_2 \implies \theta = \arccos\left( \frac{\vec{u} \cdot \vec{v}}{\|\vec{u}\| \|\vec{v}\|} \right)$$
+$$\theta = \arccos\left( \frac{\vec{u} \cdot \vec{v}}{\|\vec{u}\| \|\vec{v}\|} \right)$$
 
 <details class="tech-disclosure">
   <summary>
-    <span class="disclosure-title">3D Vector Triad Dot Product Angle Engine</span>
+    <span class="disclosure-title">3D Vector Triad Angle Engine</span>
     <span class="disclosure-badge">Dart</span>
   </summary>
   <div class="disclosure-content">
 
 ```dart
 class VectorTriadCalculator {
-  /// Calculates the interior joint angle in degrees from three 3D landmarks
   static double calculateJointAngle({
     required PoseLandmark proximal,
     required PoseLandmark vertex,
     required PoseLandmark distal,
   }) {
-    // 1. Construct relative direction vectors originating from vertex
-    final double ux = proximal.x - vertex.x;
-    final double uy = proximal.y - vertex.y;
-    final double uz = proximal.z - vertex.z;
+    final double ux = proximal.x - vertex.x, uy = proximal.y - vertex.y, uz = proximal.z - vertex.z;
+    final double vx = distal.x - vertex.x, vy = distal.y - vertex.y, vz = distal.z - vertex.z;
 
-    final double vx = distal.x - vertex.x;
-    final double vy = distal.y - vertex.y;
-    final double vz = distal.z - vertex.z;
-
-    // 2. Compute inner dot product
     final double dotProduct = (ux * vx) + (uy * vy) + (uz * vz);
-
-    // 3. Compute vector magnitudes (Euclidean norms)
     final double magU = math.sqrt(ux * ux + uy * uy + uz * uz);
     final double magV = math.sqrt(vx * vx + vy * vy + vz * vz);
 
     if (magU < 0.0001 || magV < 0.0001) return 180.0;
-
-    // 4. Solve for theta with floating point bounds clamping [-1.0, 1.0]
     final double cosTheta = (dotProduct / (magU * magV)).clamp(-1.0, 1.0);
-    final double angleRadians = math.acos(cosTheta);
-
-    return angleRadians * (180.0 / math.pi);
+    return math.acos(cosTheta) * (180.0 / math.pi);
   }
 }
 ```
@@ -154,43 +120,29 @@ class VectorTriadCalculator {
 
 ---
 
-### 2. Asynchronous Inference Lock (`isBusy` Guard)
-
-Smartphone camera sensors stream at 30–60 FPS while mobile neural net inference requires 15–35ms per frame. An asynchronous `isBusy` gate discards intermediate frames during active inference, preventing memory pressure and preserving 60 FPS viewport smoothness:
+### 2. Asynchronous Inference Gating (`isBusy` Guard)
+Prevents backpressure by discarding intermediate camera frames during active neural net evaluation:
 
 <details class="tech-disclosure">
   <summary>
-    <span class="disclosure-title">Asynchronous isBusy Inference Gating Guard</span>
+    <span class="disclosure-title">Asynchronous Frame Locking Service</span>
     <span class="disclosure-badge">Dart</span>
   </summary>
   <div class="disclosure-content">
 
 ```dart
 class PoseDetectorService {
-  final PoseDetector _poseDetector = PoseDetector(
-    options: PoseDetectorOptions(
-      mode: PoseDetectionMode.stream,
-      modelArchitecture: PoseDetectionModel.base,
-    ),
-  );
-
+  final PoseDetector _detector = PoseDetector(options: PoseDetectorOptions(mode: PoseDetectionMode.stream));
   bool _isBusy = false;
 
-  void processCameraImage(CameraImage image, Function(List<Pose>) onPosesDetected) async {
-    // If the ML model is currently evaluating a frame, discard new frame to maintain 60 FPS UI
+  void processCameraImage(CameraImage image, Function(List<Pose>) onPoses) async {
     if (_isBusy) return;
     _isBusy = true;
-
     try {
-      final inputImage = _convertCameraImageToInputImage(image);
-      final List<Pose> poses = await _poseDetector.processImage(inputImage);
-      if (poses.isNotEmpty) {
-        onPosesDetected(poses);
-      }
-    } catch (e) {
-      debugPrint('ML Inference error: $e');
+      final inputImage = _convertCameraImage(image);
+      final poses = await _detector.processImage(inputImage);
+      if (poses.isNotEmpty) onPoses(poses);
     } finally {
-      // Release lock for the next available frame
       _isBusy = false;
     }
   }
@@ -202,39 +154,11 @@ class PoseDetectorService {
 
 ---
 
-### 3. Biomechanical Finite State Machine (FSM)
+## Key Takeaways & Verification
 
-Repetition counting and coaching triggers are orchestrated through a deterministic state machine with angular hysteresis bands to prevent jitter:
+- **Edge Privacy & Latency**: 100% on-device execution delivers instantaneous audio cues with 0 bytes transmitted off-device.
+- **Academic Publication**: Peer-reviewed and published at the 16th IEEE Integrated STEM Education Conference (ISEC 2026).
 
-```
-[ START / STANDING ]  (Angle >= 160°)
-         │
-         │ Descending motion
-         ▼
-  [ ECCENTRIC PHASE ]  (160° > Angle > 95°)
-         │
-         │ Reached proper depth
-         ▼
- [ INFLECTION DEPTH ]  (Angle <= 90°) ────► [ DEPTH ACHIEVED AUDIO CUE ]
-         │
-         │ Ascending motion
-         ▼
- [ CONCENTRIC PHASE ]  (95° < Angle < 160°)
-         │
-         │ Returned to standing
-         ▼
-[ REP COMPLETED ]      (Angle >= 160°) ────► [ INCREMENT REP & LOG CADENCE ]
-```
-
----
-
-## Scholarly Publication & Citation
-
-This research was published at the **16th IEEE Integrated STEM Education Conference (ISEC 2026)**.
-
-<div style="margin: 1.5rem 0; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
-  <button type="button" class="btn-primary" data-bibtex-id="tewolde2026machine">
-    Cite This Research (BibTeX)
-  </button>
-  <a href="{{ '/about' | relative_url }}#research" class="btn-link">View All 4 IEEE Publications →</a>
+<div style="margin-top: 1rem;">
+  <button type="button" class="btn-primary" data-bibtex-id="tewolde2026machine">Cite Paper (BibTeX)</button>
 </div>

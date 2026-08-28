@@ -1572,6 +1572,180 @@ h1, h2, h3, h4, h5, h6 {
   flex-wrap: wrap;
 }
 
+/* ── Minimalist Component Extensions (Linear / Vercel Grade) ── */
+.badge-kpi {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent-rust);
+  background: var(--accent-tint);
+  border: 1px solid var(--accent-border);
+  padding: 0.12rem 0.45rem;
+  border-radius: var(--radius-xs);
+  letter-spacing: -0.01em;
+}
+
+.case-summary-one-line {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin-bottom: 1.15rem;
+}
+
+.case-media-banner-dark {
+  padding: 1.5rem 1.25rem;
+  background: #18181b;
+  color: #f4f3ed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 180px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.case-media-banner-blue {
+  padding: 1.5rem 1.25rem;
+  background: #0f172a;
+  color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 180px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.media-badge-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: #a1a1aa;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.35rem;
+}
+
+.case-media-banner-blue .media-badge-tag {
+  color: #38bdf8;
+}
+
+.media-badge-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: #ffffff;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.media-badge-chips {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+/* Compact Publications List */
+.pub-compact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.pub-compact-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 0.9rem 1.15rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.pub-compact-item:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+.pub-compact-main {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.pub-venue {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent-rust);
+  background: var(--accent-tint);
+  border: 1px solid var(--accent-border);
+  padding: 0.12rem 0.45rem;
+  border-radius: var(--radius-xs);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.pub-compact-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.pub-compact-author {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.pub-compact-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* Matrix Grid for Competencies */
+.matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.matrix-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transition: border-color var(--transition);
+}
+
+.matrix-card:hover {
+  border-color: var(--border-strong);
+}
+
+.matrix-title {
+  font-family: var(--font-sans);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.matrix-sub {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
 /* ── Dedicated Case Study Subpage Layout ─────────────────────── */
 .case-study-page {
   padding-bottom: 4rem;

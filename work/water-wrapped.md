@@ -1,13 +1,13 @@
 ---
 layout: case_study
 title: "Water Wrapped — Whitelabel Civic Open Data Platform"
-subtitle: "Cloudflare Workers edge routing, interactive tap-through story engine, and automated EPA drinking water compliance parsing."
+subtitle: "Cloudflare Workers edge routing, mobile story engine, and EPA drinking water compliance parsing."
 permalink: /work/water-wrapped/
 project_index: "Case Study 05"
 category: "Full-Stack Web & Civic Open Data"
 timeline: "2025 – Present"
 role: "Creator & Full-Stack Architect"
-tech_stack: "React, TypeScript, Vite, Cloudflare Workers, Supabase PostgreSQL, Tailwind CSS"
+tech_stack: "React, TypeScript, Vite, Cloudflare Workers, Supabase, Tailwind"
 key_metric: "Sub-45ms global TTFB via Cloudflare Workers edge network"
 status_tag: "Open Source / Active Platform"
 live_url: ""
@@ -27,120 +27,81 @@ description: "Technical case study of Water Wrapped: an open data platform trans
   </div>
   <div class="metric-stat">
     <span class="metric-val">300+ PoPs</span>
-    <span class="metric-lbl">Edge Network Deployment</span>
+    <span class="metric-lbl">Edge Network</span>
   </div>
   <div class="metric-stat">
     <span class="metric-val">EPA MCL</span>
-    <span class="metric-lbl">Chemistry Schema Gate</span>
+    <span class="metric-lbl">Chemistry Schema</span>
   </div>
   <div class="metric-stat">
     <span class="metric-val">WCAG 2.1 AA</span>
-    <span class="metric-lbl">Accessible Open Data</span>
+    <span class="metric-lbl">Accessible Data</span>
   </div>
 </div>
 
 ## Executive Overview
 
-<!-- 3-Part Executive Card: Problem → Architecture → Impact -->
 <div class="exec-card-wide">
   <div class="exec-grid">
     <div class="exec-col">
       <span class="exec-pill-tag exec-pill-problem">The Problem</span>
-      <p>Municipal water Consumer Confidence Reports (CCRs) are distributed as dense 20-page PDFs with confusing units ($ppb, \mu g/L$), causing over 90% of residents to ignore them.</p>
+      <p>Municipal water Consumer Confidence Reports are dense 20-page PDFs resulting in under 10% resident engagement.</p>
     </div>
     <div class="exec-col">
       <span class="exec-pill-tag exec-pill-arch">The Architecture</span>
-      <p>Whitelabel Cloudflare Workers edge router with Edge KV cache, dynamic OpenGraph HTML rewriter, gesture-driven React story controller, and EPA MCL threshold validators.</p>
+      <p>Whitelabel Cloudflare Workers edge router with Edge KV cache, mobile story engine, and EPA MCL threshold validators.</p>
     </div>
     <div class="exec-col">
       <span class="exec-pill-tag exec-pill-impact">Engineering Impact</span>
-      <p>Sub-45ms TTFB worldwide, dual presentation (tap-through stories + sortable chemistry tables), and zero-dependency offline local fallback.</p>
+      <p>Sub-45ms TTFB globally, dual presentation (tap stories + data tables), and offline local fallback.</p>
     </div>
   </div>
 </div>
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                      WATER WRAPPED SYSTEM TOPOLOGY                          │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-    [ Resident Browser / Mobile Client ]
-                   │
-                   │ HTTPS Request (e.g. detroit.waterwrapped.org / slug)
-                   ▼
-    [ Cloudflare Workers Edge Network (300+ Global PoPs) ]
-        │
-        ├─ 1. Subdomain / Path Tenant Resolution via Edge KV Cache (<5ms)
-        ├─ 2. SSR HTML Meta Tag Injection (Dynamic Social OpenGraph Preview)
-        └─ 3. Static Asset Edge Serving (Prerendered React + Vite Bundle)
-                   │
-                   ▼
-    [ Client Application Layer (React 18 / TypeScript) ]
-        │                                         │
-        ▼                                         ▼
-   [ Interactive Story Engine ]              [ Open Chemistry Grid ]
-   - Gesture-Driven Tap-Through              - Sortable Contaminant Table
-   - Micro-Animations & Progress Bar         - EPA Safe Level Benchmark Delta
-   - EPA Compliance Summary Cards            - Contaminant Source Footnotes
-                   │                                         │
-                   └──────────────────┬──────────────────────┘
-                                      │
-                                      ▼
-             [ Data Normalization & Validation Pipeline ]
-             - Type-Safe Chemistry Schema Validator
-             - Dual-Mode: Bundled Offline Mode / Supabase Postgres
+Client Browser ──► [ Cloudflare Workers Edge (300+ PoPs) ]
+                               │
+               ┌───────────────┴───────────────┐
+               ▼                               ▼
+     [ Edge KV Tenant Config ]       [ Prerendered React App Shell ]
+     - Utility Subdomain Routing     - Tap-Through Story Controller
+     - Dynamic OpenGraph Rewrite     - Sortable Chemistry Grid
+               │                               │
+               └───────────────┬───────────────┘
+                               ▼
+            [ Type-Safe EPA MCL Validator Engine ]
 ```
 
 ---
 
-## Technical Highlights & Key Architecture
+## Technical Architecture
 
 ### 1. Cloudflare Workers Multi-Utility Edge Routing
-
-To enable municipal water authorities to deploy white-labeled portals under custom domains with zero dedicated servers, Water Wrapped handles routing on **Cloudflare Workers**. The Worker resolves tenant configurations from Edge KV and dynamically rewrites HTML metadata for social sharing:
+Resolves tenant configurations from Edge KV and dynamically rewrites HTML metadata for social previews in &lt; 5ms:
 
 <details class="tech-disclosure">
   <summary>
-    <span class="disclosure-title">Cloudflare Workers Edge Dynamic HTML Rewriter</span>
+    <span class="disclosure-title">Edge KV Tenant Router &amp; HTML Rewriter</span>
     <span class="disclosure-badge">TypeScript</span>
   </summary>
   <div class="disclosure-content">
 
 ```typescript
-export interface Env {
-  UTILITY_KV: KVNamespace;
-}
-
 export default {
-  async fetch(request: Request, env: Env): Promise<Response> {
+  async fetch(request: Request, env: { UTILITY_KV: KVNamespace }): Promise<Response> {
     const url = new URL(request.url);
-    const hostname = url.hostname;
-    
-    // Extract utility identifier from subdomain or query path
-    const utilitySlug = url.searchParams.get('utility') || hostname.split('.')[0] || 'default';
+    const slug = url.searchParams.get('utility') || url.hostname.split('.')[0] || 'default';
 
-    // 1. Fetch cached utility configuration from Edge KV (< 5ms)
-    let utilityData = await env.UTILITY_KV.get(utilitySlug, 'json');
-    if (!utilityData) {
-      utilityData = await env.UTILITY_KV.get('default', 'json');
-    }
+    const utility = (await env.UTILITY_KV.get(slug, 'json')) || (await env.UTILITY_KV.get('default', 'json'));
+    const response = await fetch(request);
+    let html = await response.text();
 
-    // 2. Fetch pre-built single-page app HTML shell
-    const appResponse = await fetch(request);
-    let html = await appResponse.text();
-
-    // 3. Dynamic HTML Rewriter injecting custom title and OpenGraph metadata for social sharing
     html = html
-      .replace(/__TITLE__/g, `${utilityData.cityName} Water Quality Wrapped`)
-      .replace(/__DESCRIPTION__/g, `Explore the ${utilityData.year} Consumer Confidence Report for ${utilityData.cityName}. Tested ${utilityData.complianceStatus} across all EPA drinking water standards.`)
-      .replace(/__OG_IMAGE__/g, utilityData.customOgImageUrl);
+      .replace(/__TITLE__/g, `${utility.cityName} Water Quality Wrapped`)
+      .replace(/__DESCRIPTION__/g, `Tested ${utility.complianceStatus} across EPA drinking water standards.`);
 
     return new Response(html, {
-      headers: {
-        'content-type': 'text/html;charset=UTF-8',
-        'cache-control': 'public, max-age=3600, s-maxage=86400',
-        'x-edge-utility': utilitySlug
-      }
+      headers: { 'content-type': 'text/html;charset=UTF-8', 'cache-control': 'public, max-age=3600, s-maxage=86400' }
     });
   }
 };
@@ -151,103 +112,28 @@ export default {
 
 ---
 
-### 2. Tap-Through Interactive Story Engine Architecture
-
-The mobile presentation layer is a gesture-driven story carousel with synchronized 20Hz progress bars, tap-to-advance navigation, and hold-to-pause interactions:
-
-<details class="tech-disclosure">
-  <summary>
-    <span class="disclosure-title">Tap-Through Story State Machine Controller</span>
-    <span class="disclosure-badge">React / TS</span>
-  </summary>
-  <div class="disclosure-content">
-
-```typescript
-export interface StorySlide {
-  id: string;
-  category: 'overview' | 'lead_copper' | 'source_origin' | 'pfas' | 'filtration';
-  headline: string;
-  metricHighlight: string;
-  metricLabel: string;
-  epaComparisonText: string;
-  status: 'compliant' | 'warning' | 'violation';
-}
-
-export function useStoryController(slides: StorySlide[], autoAdvanceMs: number = 6000) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    if (isPaused) return;
-
-    const interval = 50; // Update progress bar at 20Hz
-    const step = (interval / autoAdvanceMs) * 100;
-
-    const timer = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          setCurrentIndex((idx) => (idx < slides.length - 1 ? idx + 1 : idx));
-          return 0;
-        }
-        return prev + step;
-      });
-    }, interval);
-
-    return () => clearInterval(timer);
-  }, [currentIndex, isPaused, autoAdvanceMs, slides.length]);
-
-  return {
-    currentSlide: slides[currentIndex],
-    currentIndex,
-    progress,
-    next: () => { setCurrentIndex((i) => Math.min(slides.length - 1, i + 1)); setProgress(0); },
-    prev: () => { setCurrentIndex((i) => Math.max(0, i - 1)); setProgress(0); },
-    pause: () => setIsPaused(true),
-    resume: () => setIsPaused(false)
-  };
-}
-```
-
-  </div>
-</details>
-
----
-
-### 3. Rigorous Contaminant Schema Validation Pipeline
-
-The ingestion pipeline normalizes diverse laboratory measurement units ($mg/L, \mu g/L, ppm, ppb$) into standardized SI values and computes safety margins against EPA Maximum Contaminant Level Goals:
+### 2. EPA MCL Compliance Schema Validation
+Normalizes diverse lab measurement units ($mg/L, \mu g/L, ppm, ppb$) and computes delta against EPA standards:
 
 <details class="tech-disclosure">
   <summary>
-    <span class="disclosure-title">EPA MCL Compliance Schema Validator</span>
+    <span class="disclosure-title">EPA Contaminant Schema Validator</span>
     <span class="disclosure-badge">TypeScript</span>
   </summary>
   <div class="disclosure-content">
 
 ```typescript
-export interface WaterContaminant {
+export interface Contaminant {
   chemicalName: string;
   detectedLevel: number;
-  unit: 'ppm' | 'ppb' | 'pCi/L' | 'NTU' | 'mg/L';
-  epaMcl: number;      // Maximum Contaminant Level (Enforceable limit)
-  epaMclg: number;     // Maximum Contaminant Level Goal (Health goal)
-  violation: boolean;
-  typicalSource: string;
+  epaMcl: number;
 }
 
-export function evaluateCompliance(contaminant: WaterContaminant): {
-  safetyPercentage: number;
-  statusBadge: 'optimal' | 'acceptable' | 'elevated';
-} {
+export function evaluateCompliance(contaminant: Contaminant) {
   const ratio = contaminant.detectedLevel / (contaminant.epaMcl || 1.0);
   const safetyPercentage = Math.round((1.0 - ratio) * 100);
-
-  let statusBadge: 'optimal' | 'acceptable' | 'elevated' = 'optimal';
-  if (ratio > 0.8) statusBadge = 'elevated';
-  else if (ratio > 0.4) statusBadge = 'acceptable';
-
-  return { safetyPercentage, statusBadge };
+  const status = ratio > 0.8 ? 'elevated' : ratio > 0.4 ? 'acceptable' : 'optimal';
+  return { safetyPercentage, status };
 }
 ```
 
@@ -256,8 +142,7 @@ export function evaluateCompliance(contaminant: WaterContaminant): {
 
 ---
 
-## Architectural Lessons & Verification
+## Key Takeaways & Verification
 
-- **Zero-Dependency Local Fallback**: Client automatically falls back to bundled static JSON fixtures during offline mobile use.
-- **Accessible Data Grid**: Screen-reader compatible (WCAG 2.1 AA) sortable tables enable raw numerical assay verification.
-- **Edge Performance**: Sub-45ms global Time-To-First-Byte (TTFB) across North American edge points via Cloudflare Workers.
+- **Edge Performance**: Sub-45ms global Time-To-First-Byte across 300+ edge locations with zero server maintenance.
+- **Offline Reliability**: Client automatically falls back to bundled static JSON fixtures during offline mobile use.
