@@ -160,9 +160,14 @@ description: Background, technical experience, research publications, and engine
               <h3 class="pub-title">A Machine Learning Approach to Exercise Form Analysis</h3>
               <p class="pub-authors">Author: John Tewolde</p>
               <p class="pub-venue">16th IEEE Integrated STEM Education Conference (ISEC 2026)</p>
-              <p class="pub-abstract">
-                Addresses the democratization of exercise feedback using edge computing. Integrates Flutter with Google MediaPipe/ML Kit pose detection, developing a rotation-invariant 3D Vector Dot Product heuristic engine to solve joint angles via the Law of Cosines alongside an asynchronous frame lock (isBusy guard) for 30–60 FPS mobile performance.
-              </p>
+              
+              <div class="pub-contribution-box">
+                <span class="pub-contrib-label">Key Contribution</span>
+                <p class="pub-contrib-text">
+                  Investigated the democratization of biomechanical feedback using edge computing. Formulated a rotation-invariant 3D Vector Triad Dot Product engine and asynchronous <code>isBusy</code> inference gating for zero-server-latency mobile coaching.
+                </p>
+              </div>
+
               <div class="pub-actions">
                 <button type="button" class="btn-cite" data-bibtex-id="tewolde2026machine">
                   Cite (BibTeX)
@@ -180,9 +185,14 @@ description: Background, technical experience, research publications, and engine
               <h3 class="pub-title">Use of Computer Vision and AI Techniques for Enhancing Performance at FIRST Robotics Competitions</h3>
               <p class="pub-authors">Co-Author: John Tewolde</p>
               <p class="pub-venue">14th IEEE Integrated STEM Education Conference (ISEC 2024)</p>
-              <p class="pub-abstract">
-                Evaluated machine learning object detection and AprilTag coordinate localization on high-speed competitive robotics platforms, exploring coprocessor integration, optical latency optimization, and field-relative targeting math.
-              </p>
+              
+              <div class="pub-contribution-box">
+                <span class="pub-contrib-label">Key Contribution</span>
+                <p class="pub-contrib-text">
+                  Evaluated real-time machine learning object detection and AprilTag coordinate localization on high-speed competitive robotics platforms, exploring coprocessor integration, optical latency optimization, and field-relative targeting math.
+                </p>
+              </div>
+
               <div class="pub-actions">
                 <button type="button" class="btn-cite" data-bibtex-id="tewolde2024computervision">
                   Cite (BibTeX)
@@ -200,9 +210,14 @@ description: Background, technical experience, research publications, and engine
               <h3 class="pub-title">Filtered — Filtering Water Using a Variety of Efficient Filtration Methods</h3>
               <p class="pub-authors">Author: John Tewolde</p>
               <p class="pub-venue">11th IEEE Integrated STEM Education Conference (ISEC 2021)</p>
-              <p class="pub-abstract">
-                Experimental study analyzing particulate and contaminant reduction across varied filtration media to evaluate low-cost, accessible water purification protocols for resource-constrained environments.
-              </p>
+              
+              <div class="pub-contribution-box">
+                <span class="pub-contrib-label">Key Contribution</span>
+                <p class="pub-contrib-text">
+                  Experimental study analyzing particulate and contaminant reduction across varied filtration media to evaluate low-cost, accessible water purification protocols for resource-constrained environments.
+                </p>
+              </div>
+
               <div class="pub-actions">
                 <button type="button" class="btn-cite" data-bibtex-id="tewolde2021filtered">
                   Cite (BibTeX)
@@ -219,9 +234,14 @@ description: Background, technical experience, research publications, and engine
               <h3 class="pub-title">Using Technology as a Means for Musical Outreach to Nursing Home Residents</h3>
               <p class="pub-authors">Author: John Tewolde</p>
               <p class="pub-venue">11th IEEE Integrated STEM Education Conference (ISEC 2021)</p>
-              <p class="pub-abstract">
-                Explored digital delivery architectures and interactive engagement tools to support cognitive stimulation and connection for elderly residents in assisted living facilities during periods of physical isolation.
-              </p>
+              
+              <div class="pub-contribution-box">
+                <span class="pub-contrib-label">Key Contribution</span>
+                <p class="pub-contrib-text">
+                  Explored digital delivery architectures and interactive engagement tools to support cognitive stimulation and connection for elderly residents in assisted living facilities during periods of physical isolation.
+                </p>
+              </div>
+
               <div class="pub-actions">
                 <button type="button" class="btn-cite" data-bibtex-id="tewolde2021musicaloutreach">
                   Cite (BibTeX)

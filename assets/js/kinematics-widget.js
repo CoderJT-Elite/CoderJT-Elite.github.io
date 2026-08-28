@@ -526,6 +526,10 @@
       }
       if (swerveControls) swerveControls.style.display = mode === 'swerve' ? 'block' : 'none';
       if (triadControls) triadControls.style.display = mode === 'triad' ? 'block' : 'none';
+      var swerveExplainer = document.getElementById('labExplainerSwerve');
+      var triadExplainer = document.getElementById('labExplainerTriad');
+      if (swerveExplainer) swerveExplainer.style.display = mode === 'swerve' ? 'flex' : 'none';
+      if (triadExplainer) triadExplainer.style.display = mode === 'triad' ? 'flex' : 'none';
 
       // Auto position triad points cleanly relative to canvas size
       if (mode === 'triad' && canvas) {
@@ -544,6 +548,9 @@
     // Swerve Presets
     document.querySelectorAll('[data-swerve-preset]').forEach(function (btn) {
       btn.addEventListener('click', function () {
+        document.querySelectorAll('[data-swerve-preset]').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+
         var preset = btn.getAttribute('data-swerve-preset');
         if (preset === 'forward') {
           swerveState.vx = 0; swerveState.vy = 3.5; swerveState.omega = 0;
@@ -557,6 +564,38 @@
           swerveState.vx = 2.8; swerveState.vy = 2.8; swerveState.omega = 1.5;
         }
         updateSlidersFromState();
+      });
+    });
+
+    // Triad Presets
+    document.querySelectorAll('[data-triad-preset]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('[data-triad-preset]').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+
+        if (!canvas) return;
+        var rect = canvas.getBoundingClientRect();
+        var w = rect.width;
+        var h = rect.height;
+        var preset = btn.getAttribute('data-triad-preset');
+
+        if (preset === 'standing') {
+          triadState.A = { x: w * 0.5, y: h * 0.15, z: 0, label: 'Hip' };
+          triadState.B = { x: w * 0.5, y: h * 0.52, z: 0, label: 'Knee' };
+          triadState.C = { x: w * 0.5, y: h * 0.88, z: 0, label: 'Ankle' };
+        } else if (preset === 'optimal') {
+          triadState.A = { x: w * 0.25, y: h * 0.45, z: 0, label: 'Hip' };
+          triadState.B = { x: w * 0.52, y: h * 0.45, z: 0, label: 'Knee' };
+          triadState.C = { x: w * 0.52, y: h * 0.85, z: 0, label: 'Ankle' };
+        } else if (preset === 'deep') {
+          triadState.A = { x: w * 0.24, y: h * 0.55, z: 0, label: 'Hip' };
+          triadState.B = { x: w * 0.58, y: h * 0.42, z: 0, label: 'Knee' };
+          triadState.C = { x: w * 0.52, y: h * 0.85, z: 0, label: 'Ankle' };
+        } else if (preset === 'quarter') {
+          triadState.A = { x: w * 0.35, y: h * 0.25, z: 0, label: 'Hip' };
+          triadState.B = { x: w * 0.52, y: h * 0.52, z: 0, label: 'Knee' };
+          triadState.C = { x: w * 0.52, y: h * 0.85, z: 0, label: 'Ankle' };
+        }
       });
     });
 

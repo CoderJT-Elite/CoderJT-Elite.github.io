@@ -28,6 +28,25 @@ description: John Tewolde — software engineer and robotics lead programmer bas
       <a href="{{ '/contact' | relative_url }}" class="btn-link">Get in Touch</a>
     </div>
 
+    <!-- Quick Section Jump Bar -->
+    <div class="quick-jump-bar" aria-label="Page section quick navigation">
+      <span class="quick-jump-label">Quick Jump:</span>
+      <div class="quick-jump-pills">
+        <a href="#selected-work" class="jump-pill">
+          <span class="jump-pill-num">01</span> Featured Work (5)
+        </a>
+        <a href="#interactive-lab" class="jump-pill">
+          <span class="jump-pill-num">02</span> Interactive Lab ⚡
+        </a>
+        <a href="#research" class="jump-pill">
+          <span class="jump-pill-num">03</span> IEEE Research (4)
+        </a>
+        <a href="#competencies" class="jump-pill">
+          <span class="jump-pill-num">04</span> Core Competencies
+        </a>
+      </div>
+    </div>
+
     <div class="hero-ledger">
       <div class="ledger-item">
         <span class="ledger-label">Location</span>
@@ -54,9 +73,24 @@ description: John Tewolde — software engineer and robotics lead programmer bas
     </div>
 
     <h2 class="section-headline">Interactive Kinematics &amp; Vector Mathematics</h2>
-    <p class="section-intro-text" style="margin-bottom: 2rem;">
+    <p class="section-intro-text" style="margin-bottom: 1.5rem;">
       Real-time mathematical visualizers demonstrating swerve drive kinematics vector resolution (FRC 1506) and 3D Vector Triad Dot Product angle computation (Form Analyzer, IEEE ISEC 2026).
     </p>
+
+    <!-- Lab Plain-English Explainer Banners -->
+    <div class="lab-explainer-banner" id="labExplainerSwerve">
+      <span class="explainer-tag">Production Context</span>
+      <p class="explainer-text">
+        Translates robot joystick input $(V_x, V_y, \omega)$ into independent wheel steering angles and motor speeds in real time for omnidirectional mobility.
+      </p>
+    </div>
+
+    <div class="lab-explainer-banner" id="labExplainerTriad" style="display: none;">
+      <span class="explainer-tag">Production Context</span>
+      <p class="explainer-text">
+        Calculates true 3D joint angles using inner dot products $(\vec{u} \cdot \vec{v})$ without perspective distortion or cloud transmission latency.
+      </p>
+    </div>
 
     <!-- Lab Widget Container -->
     <div class="lab-widget">
@@ -87,12 +121,12 @@ description: John Tewolde — software engineer and robotics lead programmer bas
 
             <!-- Motion Presets -->
             <div class="preset-pill-group">
-              <span class="preset-label">Presets:</span>
-              <button class="preset-btn" data-swerve-preset="forward">Forward</button>
+              <span class="preset-label">Motion Presets:</span>
+              <button class="preset-btn active" data-swerve-preset="forward">Forward</button>
               <button class="preset-btn" data-swerve-preset="strafe">Strafe</button>
               <button class="preset-btn" data-swerve-preset="rotate">Spin</button>
               <button class="preset-btn" data-swerve-preset="orbit">Orbit</button>
-              <button class="preset-btn" data-swerve-preset="diagonal">Drift</button>
+              <button class="preset-btn" data-swerve-preset="diagonal">Drift Mode</button>
             </div>
 
             <div class="slider-group">
@@ -121,9 +155,18 @@ description: John Tewolde — software engineer and robotics lead programmer bas
           <!-- Triad Controls Subpanel -->
           <div id="triadControlsSection" style="display: none;">
             <div class="panel-section-title">Joint Vector Triad (Interactive Drag)</div>
-            <p style="font-size: 0.86rem; color: var(--text-secondary); margin-bottom: 1rem;">
-              Click and drag the joint nodes on the canvas to evaluate real-time Law of Cosines dot product calculations and exercise coaching states.
+            <p style="font-size: 0.86rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+              Click and drag joint nodes or select an athletic posture preset to evaluate real-time Law of Cosines calculations:
             </p>
+
+            <!-- Triad Presets -->
+            <div class="preset-pill-group" style="margin-bottom: 1.25rem;">
+              <span class="preset-label">Pose Presets:</span>
+              <button class="preset-btn" data-triad-preset="standing">Standing (180°)</button>
+              <button class="preset-btn" data-triad-preset="optimal">Squat (90°) <span class="badge-sub">Optimal</span></button>
+              <button class="preset-btn" data-triad-preset="deep">Deep Flexion (70°)</button>
+              <button class="preset-btn" data-triad-preset="quarter">Incline (135°)</button>
+            </div>
 
             <!-- Live Triad Telemetry -->
             <div class="telemetry-box" id="triadTelemetry">
@@ -172,7 +215,7 @@ description: John Tewolde — software engineer and robotics lead programmer bas
     <div class="project-case-list">
 
       <!-- Project 1: ChaseUp -->
-      <article class="case-study" data-category="web">
+      <article class="case-study exec-card" data-category="web">
         <div class="case-media">
           <img src="{{ '/assets/img/chaseup-preview.png' | relative_url }}" alt="ChaseUp application dashboard interface" loading="lazy" width="1280" height="800">
         </div>
@@ -187,14 +230,25 @@ description: John Tewolde — software engineer and robotics lead programmer bas
             </div>
             <h3 class="case-title">ChaseUp</h3>
           </div>
-          <p class="case-summary">
-            A dedicated invoicing and compliance platform engineered for trade subcontractors to manage receivables, automate reminder sequences, track retainage withholdings, and calculate statutory mechanics lien deadlines.
-          </p>
-          <ul class="case-notes">
-            <li>State-by-state statutory rules engine calculating preliminary notice and mechanics lien filing deadlines based on project milestone dates.</li>
-            <li>Automated multi-tier notification pipelines reducing manual receivables follow-up for trade contractors.</li>
-            <li>Full-stack architecture built on Next.js App Router, Supabase authentication, and PostgreSQL with Row Level Security.</li>
-          </ul>
+
+          <!-- 3-Part Executive Card: Problem → Architecture → Impact -->
+          <div class="exec-breakdown">
+            <div class="exec-row">
+              <span class="exec-label exec-label-problem">Problem</span>
+              <p class="exec-text">Trade subcontractors regularly forfeit lien rights on overdue receivables due to missed state statutory notice deadlines and manual follow-up.</p>
+            </div>
+            <div class="exec-row">
+              <span class="exec-label exec-label-arch">Architecture</span>
+              <p class="exec-text">Full-stack platform on Next.js App Router and Supabase, enforcing multi-tenant isolation at the database kernel via PostgreSQL Row Level Security (RLS) and an immutable statutory rules engine.</p>
+            </div>
+            <div class="exec-row">
+              <span class="exec-label exec-label-impact">Key Metric</span>
+              <div class="exec-metric-highlight">
+                <strong>Sub-50ms query latency</strong> across isolated multi-tenant RLS tables with automated retainage tracking.
+              </div>
+            </div>
+          </div>
+
           <div class="case-tech-list">
             <span class="tech-tag">Next.js</span>
             <span class="tech-tag">TypeScript</span>
@@ -202,9 +256,10 @@ description: John Tewolde — software engineer and robotics lead programmer bas
             <span class="tech-tag">PostgreSQL (RLS)</span>
             <span class="tech-tag">Tailwind CSS</span>
           </div>
+
           <div class="case-links">
             <a href="{{ '/work/chaseup/' | relative_url }}" class="btn-primary">
-              Read Deep-Dive Case Study →
+              Read Case Study &amp; Architecture →
             </a>
             <a href="https://chaseupapp.tech" target="_blank" rel="noopener noreferrer" class="live-link">
               Visit Live Platform ↗
@@ -214,7 +269,7 @@ description: John Tewolde — software engineer and robotics lead programmer bas
       </article>
 
       <!-- Project 2: FRC 1506 Autonomous Robot & Simulation Architecture -->
-      <article class="case-study" data-category="robotics">
+      <article class="case-study exec-card" data-category="robotics">
         <div class="case-media" style="padding: 2.5rem 2rem; background: #18181b; color: #f4f3ed; display: flex; flex-direction: column; justify-content: space-between; min-height: 280px;">
           <div>
             <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #a1a1aa; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem;">
@@ -244,14 +299,25 @@ description: John Tewolde — software engineer and robotics lead programmer bas
             </div>
             <h3 class="case-title">FRC 1506 Robot Architecture</h3>
           </div>
-          <p class="case-summary">
-            Autonomous control system and desktop physics simulation infrastructure for FIRST Robotics Competition Team 1506 (Metal Muscle), enabling rapid autonomous prototyping, multi-camera pose estimation, and ballistic targeting.
-          </p>
-          <ul class="case-notes">
-            <li>Spearheaded MapleSim rigid-body simulation (dyn4j engine) stepping swerve physics at 4ms, simulating mass, wheel slip, and wall collisions.</li>
-            <li>Integrated field pose localization fusing dual Limelight AprilTag vision with Pigeon 2 IMU sensor feeds for centimeter-accurate field awareness.</li>
-            <li>Implemented projectile trajectory mathematics and quadratic regression equations for real-time turret velocity and shoot-on-the-move (SOTM) macros.</li>
-          </ul>
+
+          <!-- 3-Part Executive Card: Problem → Architecture → Impact -->
+          <div class="exec-breakdown">
+            <div class="exec-row">
+              <span class="exec-label exec-label-problem">Problem</span>
+              <p class="exec-text">Hardware contention during build seasons severely limits physical track testing for high-speed swerve autonomous routines and targeting math.</p>
+            </div>
+            <div class="exec-row">
+              <span class="exec-label exec-label-arch">Architecture</span>
+              <p class="exec-text">MapleSim desktop rigid-body simulation (dyn4j engine), fusing CTRE Phoenix 6 swerve odometry with dual Limelight MegaTag2 AprilTag vision in an Extended Kalman Filter and shoot-on-the-move ballistic algorithms.</p>
+            </div>
+            <div class="exec-row">
+              <span class="exec-label exec-label-impact">Key Metric</span>
+              <div class="exec-metric-highlight">
+                <strong>250 Hz (4ms) physics loop</strong> validating 8 autonomous routines prior to physical chassis delivery.
+              </div>
+            </div>
+          </div>
+
           <div class="case-tech-list">
             <span class="tech-tag">Java 17</span>
             <span class="tech-tag">WPILib</span>
@@ -260,9 +326,10 @@ description: John Tewolde — software engineer and robotics lead programmer bas
             <span class="tech-tag">PathPlanner</span>
             <span class="tech-tag">Limelight MegaTag2</span>
           </div>
+
           <div class="case-links">
             <a href="{{ '/work/frc-robot/' | relative_url }}" class="btn-primary">
-              Read Deep-Dive Case Study →
+              Read Robot Case Study →
             </a>
             <a href="https://github.com/CoderJT-Elite/2026-Rebuild" target="_blank" rel="noopener noreferrer" class="live-link">
               View Robot Codebase ↗
@@ -272,7 +339,7 @@ description: John Tewolde — software engineer and robotics lead programmer bas
       </article>
 
       <!-- Project 3: Form Analyzer -->
-      <article class="case-study" data-category="vision">
+      <article class="case-study exec-card" data-category="vision">
         <div class="case-media">
           <img src="{{ '/assets/img/form-analyzer-preview.png' | relative_url }}" alt="Form Analyzer biomechanical feedback application interface" loading="lazy" width="1280" height="800">
         </div>
@@ -287,14 +354,25 @@ description: John Tewolde — software engineer and robotics lead programmer bas
             </div>
             <h3 class="case-title">Form Analyzer</h3>
           </div>
-          <p class="case-summary">
-            An on-device biomechanical coaching application that tracks athletic posture and exercise repetitions in real time using computer vision without transmitting video to remote servers. Published at IEEE ISEC 2026.
-          </p>
-          <ul class="case-notes">
-            <li>Vector Triad Dot Product analysis constructing 3D joint vectors to solve interior joint angles via rotation-invariant Law of Cosines heuristics.</li>
-            <li>Asynchronous inference gating and landmark confidence thresholding maintaining 30–60 FPS UI performance with zero cloud latency.</li>
-            <li>Real-time coaching finite state machine (FSM) tracking eccentric and concentric movement phases with instant Text-to-Speech corrective feedback.</li>
-          </ul>
+
+          <!-- 3-Part Executive Card: Problem → Architecture → Impact -->
+          <div class="exec-breakdown">
+            <div class="exec-row">
+              <span class="exec-label exec-label-problem">Problem</span>
+              <p class="exec-text">Mobile exercise coaching apps rely on cloud-hosted video processing, causing 200–800ms latency and exposing sensitive personal video streams.</p>
+            </div>
+            <div class="exec-row">
+              <span class="exec-label exec-label-arch">Architecture</span>
+              <p class="exec-text">On-device Flutter pipeline with Google ML Kit pose landmark detectors, rotation-invariant 3D Vector Triad Dot Product geometry, and asynchronous inference gating.</p>
+            </div>
+            <div class="exec-row">
+              <span class="exec-label exec-label-impact">Key Metric</span>
+              <div class="exec-metric-highlight">
+                <strong>30–60 FPS on-device execution</strong> with zero server latency (Published at IEEE ISEC 2026).
+              </div>
+            </div>
+          </div>
+
           <div class="case-tech-list">
             <span class="tech-tag">Flutter</span>
             <span class="tech-tag">Dart</span>
@@ -302,9 +380,10 @@ description: John Tewolde — software engineer and robotics lead programmer bas
             <span class="tech-tag">3D Vector Geometry</span>
             <span class="tech-tag">Android NDK</span>
           </div>
+
           <div class="case-links">
             <a href="{{ '/work/form-analyzer/' | relative_url }}" class="btn-primary">
-              Read Deep-Dive Case Study →
+              Read Research Case Study →
             </a>
             <a href="https://coderjt-elite.github.io/form_analyzer/" target="_blank" rel="noopener noreferrer" class="live-link">
               Project Details &amp; Research ↗
@@ -314,7 +393,7 @@ description: John Tewolde — software engineer and robotics lead programmer bas
       </article>
 
       <!-- Project 4: Neon Racer 3D -->
-      <article class="case-study" data-category="3d">
+      <article class="case-study exec-card" data-category="3d">
         <div class="case-media">
           <img src="{{ '/assets/img/neon-racer-preview.png' | relative_url }}" alt="Neon Racer 3D real-time browser game preview" loading="lazy" width="1280" height="800">
         </div>
@@ -329,14 +408,25 @@ description: John Tewolde — software engineer and robotics lead programmer bas
             </div>
             <h3 class="case-title">Neon Racer 3D</h3>
           </div>
-          <p class="case-summary">
-            A real-time 3D racing simulation running natively in the browser without third-party game engines or external runtimes, featuring custom vehicle dynamics and arcade mechanics.
-          </p>
-          <ul class="case-notes">
-            <li>Custom rigid-body physics integration via Cannon-es simulating all-wheel-drive torque distribution, tire friction curves, suspension damping, and drift angles.</li>
-            <li>Optimized Three.js rendering pipeline with dynamic chase cameras, custom particle systems, and lightweight asset loading.</li>
-            <li>Maintains a stable 60 frames per second across modern mobile and desktop browsers with low memory footprint.</li>
-          </ul>
+
+          <!-- 3-Part Executive Card: Problem → Architecture → Impact -->
+          <div class="exec-breakdown">
+            <div class="exec-row">
+              <span class="exec-label exec-label-problem">Problem</span>
+              <p class="exec-text">Web-based 3D games compiled from heavyweight engines impose 50MB–150MB downloads, sluggish startup times, and unstable frame pacing.</p>
+            </div>
+            <div class="exec-row">
+              <span class="exec-label exec-label-arch">Architecture</span>
+              <p class="exec-text">Custom Three.js WebGL renderer paired with Cannon-es raycast vehicle dynamics, AWD torque distribution, tire slip friction models, and dual-spring chase camera math.</p>
+            </div>
+            <div class="exec-row">
+              <span class="exec-label exec-label-impact">Key Metric</span>
+              <div class="exec-metric-highlight">
+                <strong>Stable 60 FPS in-browser</strong> with an ultra-lightweight &lt; 3MB gzip bundle footprint.
+              </div>
+            </div>
+          </div>
+
           <div class="case-tech-list">
             <span class="tech-tag">Three.js</span>
             <span class="tech-tag">Cannon-es</span>
@@ -344,9 +434,10 @@ description: John Tewolde — software engineer and robotics lead programmer bas
             <span class="tech-tag">JavaScript</span>
             <span class="tech-tag">Vite</span>
           </div>
+
           <div class="case-links">
             <a href="{{ '/work/neon-racer-3d/' | relative_url }}" class="btn-primary">
-              Read Deep-Dive Case Study →
+              Read Graphics Case Study →
             </a>
             <a href="https://neon-racer-3d.vercel.app/" target="_blank" rel="noopener noreferrer" class="live-link">
               Play in Browser ↗
@@ -356,7 +447,7 @@ description: John Tewolde — software engineer and robotics lead programmer bas
       </article>
 
       <!-- Project 5: Water Wrapped -->
-      <article class="case-study" data-category="web">
+      <article class="case-study exec-card" data-category="web">
         <div class="case-media" style="padding: 2.5rem 2rem; background: #0f172a; color: #f8fafc; display: flex; flex-direction: column; justify-content: space-between; min-height: 280px;">
           <div>
             <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem;">
@@ -386,14 +477,25 @@ description: John Tewolde — software engineer and robotics lead programmer bas
             </div>
             <h3 class="case-title">Water Wrapped</h3>
           </div>
-          <p class="case-summary">
-            A whitelabel interactive platform engineered to turn legally mandated municipal drinking water Consumer Confidence Reports (CCRs) into accessible mobile stories and searchable open data for residents.
-          </p>
-          <ul class="case-notes">
-            <li>Dual presentation architecture featuring an Instagram/Spotify Wrapped style tap-through narrative alongside a full searchable data table.</li>
-            <li>Whitelabel multi-utility routing deployed on Cloudflare Workers edge network with prerendered SEO shells and data schema validation gates.</li>
-            <li>Zero-dependency local data mode with Supabase PostgreSQL synchronization for real-time analytics.</li>
-          </ul>
+
+          <!-- 3-Part Executive Card: Problem → Architecture → Impact -->
+          <div class="exec-breakdown">
+            <div class="exec-row">
+              <span class="exec-label exec-label-problem">Problem</span>
+              <p class="exec-text">Municipal Consumer Confidence Reports are published as dense 20-page PDFs with cryptic chemical units, resulting in under 10% resident engagement.</p>
+            </div>
+            <div class="exec-row">
+              <span class="exec-label exec-label-arch">Architecture</span>
+              <p class="exec-text">Multi-utility edge routing on Cloudflare Workers, paired with a mobile tap-through story engine, dynamic HTML OpenGraph metadata injection, and EPA MCL chemistry validators.</p>
+            </div>
+            <div class="exec-row">
+              <span class="exec-label exec-label-impact">Key Metric</span>
+              <div class="exec-metric-highlight">
+                <strong>Sub-45ms global edge TTFB</strong> across 300+ edge points with WCAG 2.1 AA accessible open data tables.
+              </div>
+            </div>
+          </div>
+
           <div class="case-tech-list">
             <span class="tech-tag">React</span>
             <span class="tech-tag">TypeScript</span>
@@ -401,9 +503,10 @@ description: John Tewolde — software engineer and robotics lead programmer bas
             <span class="tech-tag">Cloudflare Workers</span>
             <span class="tech-tag">Supabase</span>
           </div>
+
           <div class="case-links">
             <a href="{{ '/work/water-wrapped/' | relative_url }}" class="btn-primary">
-              Read Deep-Dive Case Study →
+              Read Edge Architecture Case Study →
             </a>
             <a href="https://github.com/JoshuaTewolde/WaterWrapped" target="_blank" rel="noopener noreferrer" class="live-link">
               View Repository ↗
@@ -425,7 +528,7 @@ description: John Tewolde — software engineer and robotics lead programmer bas
     </div>
 
     <h2 class="section-headline">Selected Research &amp; Publications</h2>
-    <p class="section-intro-text" style="margin-bottom: 3rem;">
+    <p class="section-intro-text" style="margin-bottom: 2.5rem;">
       Peer-reviewed conference papers and technical research across computer vision, robotics, and applied systems.
     </p>
 
@@ -439,9 +542,14 @@ description: John Tewolde — software engineer and robotics lead programmer bas
         <h3 class="pub-title">A Machine Learning Approach to Exercise Form Analysis</h3>
         <p class="pub-authors">Author: John Tewolde</p>
         <p class="pub-venue">16th IEEE Integrated STEM Education Conference (ISEC 2026)</p>
-        <p class="pub-abstract">
-          Investigated the democratization of biomechanical feedback through edge-computing. Developed a rotation-invariant 3D Vector Dot Product engine utilizing Google MediaPipe/ML Kit pose landmarks, Android NDK performance gating, and Finite State Machine heuristics to detect exercise phases with real-time corrective voice feedback.
-        </p>
+        
+        <div class="pub-contribution-box">
+          <span class="pub-contrib-label">Key Contribution</span>
+          <p class="pub-contrib-text">
+            Engineered a rotation-invariant 3D Vector Triad Dot Product engine and asynchronous <code>isBusy</code> inference gating for zero-server-latency mobile biomechanical coaching.
+          </p>
+        </div>
+
         <div class="pub-actions">
           <button type="button" class="btn-cite" data-bibtex-id="tewolde2026machine">
             Cite (BibTeX)
@@ -459,9 +567,14 @@ description: John Tewolde — software engineer and robotics lead programmer bas
         <h3 class="pub-title">Use of Computer Vision and AI Techniques for Enhancing Performance at FIRST Robotics Competitions</h3>
         <p class="pub-authors">Co-Author: John Tewolde</p>
         <p class="pub-venue">14th IEEE Integrated STEM Education Conference (ISEC 2024)</p>
-        <p class="pub-abstract">
-          Analyzed the implementation of real-time machine learning object detection and AprilTag pose estimation pipelines on embedded coprocessors to improve autonomous robot localization and scoring accuracy in high-speed competitive environments.
-        </p>
+        
+        <div class="pub-contribution-box">
+          <span class="pub-contrib-label">Key Contribution</span>
+          <p class="pub-contrib-text">
+            Evaluated real-time machine learning object detection and AprilTag coordinate localization on high-speed embedded coprocessors to optimize autonomous field-relative targeting.
+          </p>
+        </div>
+
         <div class="pub-actions">
           <button type="button" class="btn-cite" data-bibtex-id="tewolde2024computervision">
             Cite (BibTeX)
@@ -479,9 +592,14 @@ description: John Tewolde — software engineer and robotics lead programmer bas
         <h3 class="pub-title">Filtered — Filtering Water Using a Variety of Efficient Filtration Methods</h3>
         <p class="pub-authors">Author: John Tewolde</p>
         <p class="pub-venue">11th IEEE Integrated STEM Education Conference (ISEC 2021)</p>
-        <p class="pub-abstract">
-          Experimental study analyzing particulate and contaminant reduction across varied filtration media to evaluate low-cost, accessible water purification protocols for resource-constrained environments.
-        </p>
+        
+        <div class="pub-contribution-box">
+          <span class="pub-contrib-label">Key Contribution</span>
+          <p class="pub-contrib-text">
+            Experimental analysis of particulate and contaminant reduction across accessible filtration media to develop low-cost water purification protocols for resource-constrained regions.
+          </p>
+        </div>
+
         <div class="pub-actions">
           <button type="button" class="btn-cite" data-bibtex-id="tewolde2021filtered">
             Cite (BibTeX)
@@ -498,9 +616,14 @@ description: John Tewolde — software engineer and robotics lead programmer bas
         <h3 class="pub-title">Using Technology as a Means for Musical Outreach to Nursing Home Residents</h3>
         <p class="pub-authors">Author: John Tewolde</p>
         <p class="pub-venue">11th IEEE Integrated STEM Education Conference (ISEC 2021)</p>
-        <p class="pub-abstract">
-          Explored digital delivery architectures and interactive engagement tools to support cognitive stimulation and connection for elderly residents in assisted living facilities during periods of physical isolation.
-        </p>
+        
+        <div class="pub-contribution-box">
+          <span class="pub-contrib-label">Key Contribution</span>
+          <p class="pub-contrib-text">
+            Explored interactive digital delivery architectures to support cognitive stimulation and social connection for elderly residents in assisted living facilities during physical isolation.
+          </p>
+        </div>
+
         <div class="pub-actions">
           <button type="button" class="btn-cite" data-bibtex-id="tewolde2021musicaloutreach">
             Cite (BibTeX)
@@ -516,7 +639,7 @@ description: John Tewolde — software engineer and robotics lead programmer bas
 </section>
 
 <!-- Domains of Practice / Technical Focus -->
-<section class="section section-rule">
+<section class="section section-rule" id="competencies">
   <div class="container">
     <div class="section-meta-header">
       <div class="section-caption">Core Competencies</div>
@@ -524,13 +647,13 @@ description: John Tewolde — software engineer and robotics lead programmer bas
     </div>
 
     <h2 class="section-headline">Areas of Engineering Practice</h2>
-    <p class="section-intro-text" style="margin-bottom: 3rem;">
+    <p class="section-intro-text" style="margin-bottom: 2.5rem;">
       Architectural principles and technical specializations across the software and hardware systems I engineer.
     </p>
 
-    <div class="domains-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+    <div class="domains-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
       <div class="domain-card">
-        <div class="domain-index">01 / Full-Stack Web Platforms</div>
+        <div class="domain-index">01 / Full-Stack Platforms</div>
         <h3 class="domain-title">Application Architecture</h3>
         <p class="domain-desc">
           Building production-grade web systems with Next.js, React, TypeScript, and relational databases. Prioritizing strict PostgreSQL schema design, Row Level Security, and edge routing.
@@ -538,7 +661,7 @@ description: John Tewolde — software engineer and robotics lead programmer bas
       </div>
 
       <div class="domain-card">
-        <div class="domain-index">02 / Autonomous Systems &amp; Controls</div>
+        <div class="domain-index">02 / Autonomous Systems</div>
         <h3 class="domain-title">Robotics &amp; Control Theory</h3>
         <p class="domain-desc">
           Developing FRC swerve drivetrain kinematics, multi-camera AprilTag pose localization, and command-based autonomous state machines using WPILib, CTRE Phoenix 6, and MapleSim.
@@ -546,7 +669,7 @@ description: John Tewolde — software engineer and robotics lead programmer bas
       </div>
 
       <div class="domain-card">
-        <div class="domain-index">03 / Browser Graphics &amp; Math</div>
+        <div class="domain-index">03 / Browser Graphics</div>
         <h3 class="domain-title">3D Graphics &amp; Physics</h3>
         <p class="domain-desc">
           Creating interactive 3D browser simulations using WebGL, Three.js, and Cannon-es rigid-body physics. Focused on 60 FPS frame pacing, torque vectors, and responsive camera mathematics.

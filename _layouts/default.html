@@ -107,6 +107,9 @@
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
+  <!-- Reading Progress Bar -->
+  <div id="readingProgressBar" class="reading-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Reading progress"></div>
+
   <!-- Header -->
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
@@ -118,12 +121,25 @@
 
       <div class="header-controls">
         <nav class="nav-links" id="navMenu" aria-label="Primary navigation">
-          <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' or page.url == '/index.html' or page.url contains '/work/' %}active{% endif %}">Work</a>
-          <a href="{{ '/about' | relative_url }}" class="nav-link {% if page.url contains 'about' %}active{% endif %}">About</a>
-          <a href="{{ '/contact' | relative_url }}" class="nav-link {% if page.url contains 'contact' %}active{% endif %}">Contact</a>
-          <a href="https://github.com/CoderJT-Elite" target="_blank" rel="noopener noreferrer" class="nav-link nav-link-external" aria-label="GitHub Profile">
-            GitHub <span class="arrow" aria-hidden="true">↗</span>
+          <div class="mobile-nav-header">
+            <span class="mobile-nav-title">Navigation</span>
+            <span class="mobile-nav-tag">Engineering Portfolio</span>
+          </div>
+          <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' or page.url == '/index.html' or page.url contains '/work/' %}active{% endif %}">
+            <span class="nav-link-num">01</span> Work
           </a>
+          <a href="{{ '/about' | relative_url }}" class="nav-link {% if page.url contains 'about' %}active{% endif %}">
+            <span class="nav-link-num">02</span> About
+          </a>
+          <a href="{{ '/contact' | relative_url }}" class="nav-link {% if page.url contains 'contact' %}active{% endif %}">
+            <span class="nav-link-num">03</span> Contact
+          </a>
+          <a href="https://github.com/CoderJT-Elite" target="_blank" rel="noopener noreferrer" class="nav-link nav-link-external" aria-label="GitHub Profile">
+            <span class="nav-link-num">04</span> GitHub <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <div class="mobile-nav-footer">
+            <span class="mobile-nav-status">Open to Engineering Roles &amp; Research</span>
+          </div>
         </nav>
 
         <!-- Theme Switcher Button -->

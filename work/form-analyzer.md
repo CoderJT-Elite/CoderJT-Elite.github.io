@@ -20,11 +20,45 @@ next_project_title: "Neon Racer 3D — Browser WebGL & Dynamics"
 description: "Technical case study of Form Analyzer: on-device biomechanical pose analysis using 3D Vector Triad Dot Product geometry. Published at IEEE ISEC 2026."
 ---
 
+<!-- Stat Highlight Metric Ribbon -->
+<div class="cs-metric-ribbon">
+  <div class="metric-stat">
+    <span class="metric-val">30–60 FPS</span>
+    <span class="metric-lbl">On-Device Inference</span>
+  </div>
+  <div class="metric-stat">
+    <span class="metric-val">0 ms</span>
+    <span class="metric-lbl">Cloud Latency</span>
+  </div>
+  <div class="metric-stat">
+    <span class="metric-val">33 Landmarks</span>
+    <span class="metric-lbl">3D Spatial Tracking</span>
+  </div>
+  <div class="metric-stat">
+    <span class="metric-val">IEEE ISEC 2026</span>
+    <span class="metric-lbl">Peer-Reviewed Paper</span>
+  </div>
+</div>
+
 ## Executive Overview
 
-Improper exercise execution during resistance training and rehabilitation causes joint misalignment, chronic tendon stress, and acute injury. While professional biomechanical motion capture labs utilize multi-camera optical markers and force plates, accessible alternatives (such as mobile fitness apps) frequently rely on cloud-hosted video processing. Cloud architectures introduce severe drawbacks: **200–800ms transmission latency**, vulnerability to network disconnects, ongoing server infrastructure costs, and significant **user privacy risks** associated with streaming personal video to third-party servers.
-
-**Form Analyzer** solves this by executing real-time biomechanical analysis entirely on-device. Published at the **16th IEEE Integrated STEM Education Conference (ISEC 2026)**, the platform integrates Flutter and Google ML Kit pose landmark detectors with a rotation-invariant **3D Vector Triad Dot Product** mathematical engine and an asynchronous inference gating pipeline.
+<!-- 3-Part Executive Card: Problem → Architecture → Impact -->
+<div class="exec-card-wide">
+  <div class="exec-grid">
+    <div class="exec-col">
+      <span class="exec-pill-tag exec-pill-problem">The Problem</span>
+      <p>Cloud-based fitness analysis applications suffer from 200–800ms round-trip latency, high server streaming costs, and significant user privacy vulnerabilities when transmitting workout footage.</p>
+    </div>
+    <div class="exec-col">
+      <span class="exec-pill-tag exec-pill-arch">The Architecture</span>
+      <p>Edge Flutter client integrating Google ML Kit pose landmark detectors, a rotation-invariant 3D Vector Triad Dot Product engine, and an asynchronous <code>isBusy</code> frame lock guard.</p>
+    </div>
+    <div class="exec-col">
+      <span class="exec-pill-tag exec-pill-impact">Engineering Impact</span>
+      <p>Zero cloud latency with local real-time audio coaching, 60 FPS viewport smoothness, and verified rotation invariance across oblique camera angles (IEEE ISEC 2026).</p>
+    </div>
+  </div>
+</div>
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -79,9 +113,14 @@ $$\vec{u} = P_1 - P_2 = \begin{bmatrix} x_1 - x_2 \\ y_1 - y_2 \\ z_1 - z_2 \end
 
 Using the geometric definition of the inner dot product:
 
-$$\vec{u} \cdot \vec{v} = \|\vec{u}\| \|\vec{v}\| \cos\theta$$
+$$\vec{u} \cdot \vec{v} = \|\vec{u}\| \|\vec{v}\| \cos\theta \implies \theta = \arccos\left( \frac{u_x v_x + u_y v_y + u_z v_z}{\sqrt{u_x^2 + u_y^2 + u_z^2} \sqrt{v_x^2 + v_y^2 + v_z^2}} \right)$$
 
-$$\theta = \arccos\left( \frac{\vec{u} \cdot \vec{v}}{\|\vec{u}\| \|\vec{v}\|} \right) = \arccos\left( \frac{u_x v_x + u_y v_y + u_z v_z}{\sqrt{u_x^2 + u_y^2 + u_z^2} \sqrt{v_x^2 + v_y^2 + v_z^2}} \right)$$
+<details class="tech-disclosure" open>
+  <summary>
+    <span class="disclosure-title">3D Vector Triad Dot Product Angle Engine</span>
+    <span class="disclosure-badge">Dart</span>
+  </summary>
+  <div class="disclosure-content">
 
 ```dart
 class VectorTriadCalculator {
@@ -118,6 +157,9 @@ class VectorTriadCalculator {
 }
 ```
 
+  </div>
+</details>
+
 ---
 
 ### 2. Asynchronous Inference Lock (`isBusy` Guard)
@@ -125,6 +167,13 @@ class VectorTriadCalculator {
 Smartphone camera sensors deliver image streams at 30 to 60 frames per second. However, running neural network pose estimation on mobile CPU/GPU hardware requires 15–35ms per frame. If frames are queued sequentially without backpressure, the application accumulates an unbounded memory buffer, causing memory pressure and severe UI frame dropping.
 
 We engineered an asynchronous lock pattern (`isBusy` gating) that drops intermediate camera frames while ML inference is executing, keeping the camera preview perfectly smooth at 60 FPS:
+
+<details class="tech-disclosure" open>
+  <summary>
+    <span class="disclosure-title">Asynchronous isBusy Inference Gating Guard</span>
+    <span class="disclosure-badge">Dart</span>
+  </summary>
+  <div class="disclosure-content">
 
 ```dart
 class PoseDetectorService {
@@ -158,6 +207,9 @@ class PoseDetectorService {
 }
 ```
 
+  </div>
+</details>
+
 ---
 
 ### 3. Biomechanical Finite State Machine (FSM)
@@ -190,8 +242,8 @@ Repetition counting and form feedback are orchestrated through a deterministic F
 
 This research was accepted and published at the **16th IEEE Integrated STEM Education Conference (ISEC 2026)**.
 
-<div style="margin: 2rem 0; display: flex; gap: 1rem; align-items: center;">
-  <button class="btn-primary" data-bibtex-id="tewolde2026machine">
+<div style="margin: 2rem 0; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+  <button type="button" class="btn-primary" data-bibtex-id="tewolde2026machine">
     Cite This Research (BibTeX)
   </button>
   <a href="{{ '/about' | relative_url }}#research" class="btn-link">View All 4 IEEE Publications →</a>

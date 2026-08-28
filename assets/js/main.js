@@ -291,14 +291,176 @@
     }
   }
 
-  /* ── 6. Scroll Reveal Micro-Interactions ────────────────────── */
+  /* ── 6. Reading Progress Bar ───────────────────────────────── */
+  function initReadingProgressBar() {
+    var progressBar = document.getElementById('readingProgressBar');
+    if (!progressBar) return;
+
+    function updateProgress() {
+      var scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollTotal <= 0) {
+        progressBar.style.width = '0%';
+        progressBar.setAttribute('aria-valuenow', '0');
+        return;
+      }
+      var scrolled = window.scrollY;
+      var pct = Math.min(100, Math.max(0, (scrolled / scrollTotal) * 100));
+      progressBar.style.width = pct.toFixed(1) + '%';
+      progressBar.setAttribute('aria-valuenow', Math.round(pct).toString());
+    }
+
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress, { passive: true });
+    updateProgress();
+  }
+
+  /* ── 7. Case Study Table of Contents & Scrollspy ────────────── */
+  function initCaseStudyToc() {
+    var prose = document.getElementById('caseStudyProse');
+    var tocNav = document.getElementById('caseStudyToc');
+    var tocSidebar = document.getElementById('csTocSidebar');
+
+    if (!prose || !tocNav) return;
+
+    var headings = prose.querySelectorAll('h2, h3');
+    if (headings.length === 0) {
+      if (tocSidebar) tocSidebar.style.display = 'none';
+      return;
+    }
+
+    var links = [];
+    var slugCounts = {};
+
+    headings.forEach(function (h, idx) {
+      var title = h.textContent.trim();
+      var id = h.id;
+
+      if (!id) {
+        var slug = title.toLowerCase()
+          .replace(/[^\w\s-]/g, '')
+          .replace(/\s+/g, '-');
+        if (slugCounts[slug]) {
+          slugCounts[slug]++;
+          id = slug + '-' + slugCounts[slug];
+        } else {
+          slugCounts[slug] = 1;
+          id = slug;
+        }
+        h.id = id;
+      }
+
+      var a = document.createElement('a');
+      a.href = '#' + id;
+      a.className = 'cs-toc-link' + (h.tagName.toLowerCase() === 'h3' ? ' cs-toc-sub' : '');
+      
+      var textSpan = document.createElement('span');
+      textSpan.textContent = title;
+      a.appendChild(textSpan);
+
+      tocNav.appendChild(a);
+      links.push({ link: a, heading: h });
+
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var targetEl = document.getElementById(id);
+        if (targetEl) {
+          var headerOffset = 80;
+          var elementPosition = targetEl.getBoundingClientRect().top;
+          var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+
+          if (history.pushState) {
+            history.pushState(null, null, '#' + id);
+          }
+        }
+      });
+    });
+
+    // Active Section Scrollspy using IntersectionObserver
+    if ('IntersectionObserver' in window && links.length > 0) {
+      var currentActive = null;
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var id = entry.target.id;
+            links.forEach(function (item) {
+              var isMatch = item.heading.id === id;
+              item.link.classList.toggle('active', isMatch);
+              if (isMatch) currentActive = item.link;
+            });
+          }
+        });
+      }, {
+        rootMargin: '-80px 0px -65% 0px',
+        threshold: 0.1
+      });
+
+      headings.forEach(function (h) {
+        observer.observe(h);
+      });
+    }
+  }
+
+  /* ── 8. Collapsible Details / Disclosures Keyboard Control ───── */
+  function initDisclosures() {
+    var disclosures = document.querySelectorAll('details.tech-disclosure');
+    disclosures.forEach(function (disc) {
+      var summary = disc.querySelector('summary');
+      if (summary) {
+        summary.setAttribute('tabindex', '0');
+        summary.addEventListener('keydown', function (e) {
+          if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            disc.open = !disc.open;
+          }
+        });
+      }
+    });
+  }
+
+  /* ── 9. Homepage Quick Jump Bar Smooth Scrolling ────────────── */
+  function initQuickJumpNavigation() {
+    var jumpLinks = document.querySelectorAll('.jump-pill');
+    if (!jumpLinks.length) return;
+
+    jumpLinks.forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        var href = link.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          var targetId = href.substring(1);
+          var targetEl = document.getElementById(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            var headerOffset = 75;
+            var elementPosition = targetEl.getBoundingClientRect().top;
+            var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+
+            jumpLinks.forEach(function (l) { l.classList.remove('active'); });
+            link.classList.add('active');
+          }
+        }
+      });
+    });
+  }
+
+  /* ── 10. Scroll Reveal Micro-Interactions ────────────────────── */
   function initScrollReveals() {
     // Check if user prefers reduced motion
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return;
     }
 
-    var targets = document.querySelectorAll('.case-study, .pub-card, .domain-card, .timeline-row, .stack-box');
+    var targets = document.querySelectorAll('.case-study, .pub-card, .domain-card, .timeline-row, .stack-box, .exec-card');
     if (!targets.length || !('IntersectionObserver' in window)) return;
 
     var observer = new IntersectionObserver(function (entries) {
@@ -319,19 +481,22 @@
     });
   }
 
-  /* ── 7. Initialize Everything on DOMContentLoaded ───────────── */
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () {
-      initTheme();
-      initProjectFiltering();
-      initBibtexCitations();
-      initScrollReveals();
-    });
-  } else {
+  /* ── 11. Initialize Everything on DOMContentLoaded ──────────── */
+  function initAll() {
     initTheme();
     initProjectFiltering();
     initBibtexCitations();
+    initReadingProgressBar();
+    initCaseStudyToc();
+    initDisclosures();
+    initQuickJumpNavigation();
     initScrollReveals();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+  } else {
+    initAll();
   }
 
 })();

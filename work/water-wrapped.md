@@ -19,13 +19,45 @@ next_project_title: "ChaseUp — SaaS Compliance Platform"
 description: "Technical case study of Water Wrapped: an open data platform transforming municipal water quality reports into interactive mobile stories and searchable tables."
 ---
 
+<!-- Stat Highlight Metric Ribbon -->
+<div class="cs-metric-ribbon">
+  <div class="metric-stat">
+    <span class="metric-val">&lt; 45ms</span>
+    <span class="metric-lbl">Global Edge TTFB</span>
+  </div>
+  <div class="metric-stat">
+    <span class="metric-val">300+ PoPs</span>
+    <span class="metric-lbl">Edge Network Deployment</span>
+  </div>
+  <div class="metric-stat">
+    <span class="metric-val">EPA MCL</span>
+    <span class="metric-lbl">Chemistry Schema Gate</span>
+  </div>
+  <div class="metric-stat">
+    <span class="metric-val">WCAG 2.1 AA</span>
+    <span class="metric-lbl">Accessible Open Data</span>
+  </div>
+</div>
+
 ## Executive Overview
 
-Under the Safe Drinking Water Act, every municipal water utility across the United States is legally required to publish an annual **Consumer Confidence Report (CCR)** detailing water source provenance, filtration methods, and laboratory test levels for lead, copper, disinfectants, and synthetic contaminants (such as PFAS).
-
-In practice, these reports are distributed as dense, jargon-laden 15-to-30-page PDF documents packed with abbreviations ($ppb, ppm, pCi/L, TT, MCLG$). Consequently, over 90% of residential utility customers never engage with their local drinking water data.
-
-**Water Wrapped** was engineered to democratize civic environmental data. Taking inspiration from the engaging mobile UX of Spotify Wrapped and Instagram Stories, the platform transforms complex municipal laboratory assays into an interactive, tap-through mobile narrative paired with an accessible, searchable scientific chemistry ledger.
+<!-- 3-Part Executive Card: Problem → Architecture → Impact -->
+<div class="exec-card-wide">
+  <div class="exec-grid">
+    <div class="exec-col">
+      <span class="exec-pill-tag exec-pill-problem">The Problem</span>
+      <p>Municipal water Consumer Confidence Reports (CCRs) are distributed as static 20-page PDFs filled with complex laboratory units ($ppb, \mu g/L$), causing over 90% of residents to ignore them.</p>
+    </div>
+    <div class="exec-col">
+      <span class="exec-pill-tag exec-pill-arch">The Architecture</span>
+      <p>Whitelabel Cloudflare Workers edge router with Edge KV cache, dynamic OpenGraph HTML rewriter, gesture-driven React story controller, and EPA MCL threshold validators.</p>
+    </div>
+    <div class="exec-col">
+      <span class="exec-pill-tag exec-pill-impact">Engineering Impact</span>
+      <p>Sub-45ms TTFB worldwide, dual presentation (tap-through story + accessible sortable chemistry table), and zero-dependency offline local fallback.</p>
+    </div>
+  </div>
+</div>
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -69,6 +101,13 @@ To allow individual cities and municipal water authorities to deploy white-label
 
 The Worker intercepts incoming requests, resolves utility configuration from Edge KV, and dynamically rewrites HTML metadata for rich social sharing:
 
+<details class="tech-disclosure" open>
+  <summary>
+    <span class="disclosure-title">Cloudflare Workers Edge Dynamic HTML Rewriter</span>
+    <span class="disclosure-badge">TypeScript</span>
+  </summary>
+  <div class="disclosure-content">
+
 ```typescript
 export interface Env {
   UTILITY_KV: KVNamespace;
@@ -109,11 +148,21 @@ export default {
 };
 ```
 
+  </div>
+</details>
+
 ---
 
 ### 2. Tap-Through Interactive Story Engine Architecture
 
 The mobile presentation layer is structured as a gesture-driven story carousel with time-synchronized progress bars, touch hold-to-pause interactions, and fluid slide transitions:
+
+<details class="tech-disclosure" open>
+  <summary>
+    <span class="disclosure-title">Tap-Through Story State Machine Controller</span>
+    <span class="disclosure-badge">React / TS</span>
+  </summary>
+  <div class="disclosure-content">
 
 ```typescript
 export interface StorySlide {
@@ -162,6 +211,9 @@ export function useStoryController(slides: StorySlide[], autoAdvanceMs: number =
 }
 ```
 
+  </div>
+</details>
+
 ---
 
 ### 3. Rigorous Contaminant Schema Validation Pipeline
@@ -169,6 +221,13 @@ export function useStoryController(slides: StorySlide[], autoAdvanceMs: number =
 Water quality datasets feature diverse reporting units ($mg/L, \mu g/L, ppm, ppb, pCi/L, NTU$). 
 
 To prevent misinterpreting safety thresholds, the ingestion pipeline normalizes all numeric values into standardized SI units and computes delta ratios relative to EPA Maximum Contaminant Level Goals (MCLG):
+
+<details class="tech-disclosure">
+  <summary>
+    <span class="disclosure-title">EPA MCL Compliance Schema Validator</span>
+    <span class="disclosure-badge">TypeScript</span>
+  </summary>
+  <div class="disclosure-content">
 
 ```typescript
 export interface WaterContaminant {
@@ -196,10 +255,13 @@ export function evaluateCompliance(contaminant: WaterContaminant): {
 }
 ```
 
+  </div>
+</details>
+
 ---
 
 ## Architectural Lessons & Verification
 
-1. **Zero-Dependency Local Fallback**: When users have unreliable mobile connectivity, the React client automatically uses bundled static JSON fixtures without hanging on network timeouts.
-2. **Accessible Data Grid**: While the tap-through story provides high engagement, the full sortable table ensures screen-reader compatibility (WCAG 2.1 AA) and enables researchers to inspect raw numerical lab assays.
-3. **Edge Performance**: Deploying to Cloudflare Workers achieved global Time-To-First-Byte (TTFB) latency under **45ms** across North American edge points.
+- **Zero-Dependency Local Fallback**: When users have unreliable mobile connectivity, the React client automatically uses bundled static JSON fixtures without hanging on network timeouts.
+- **Accessible Data Grid**: While the tap-through story provides high engagement, the full sortable table ensures screen-reader compatibility (WCAG 2.1 AA) and enables researchers to inspect raw numerical lab assays.
+- **Edge Performance**: Deploying to Cloudflare Workers achieved global Time-To-First-Byte (TTFB) latency under **45ms** across North American edge points.

@@ -64,13 +64,33 @@ layout: default
     </div>
   </header>
 
-  <!-- Case Study Body Content -->
+  <!-- Case Study Body Content with Sticky Sidebar TOC -->
   <div class="cs-body-section">
-    <div class="container cs-layout-container">
+    <div class="container cs-layout-with-toc">
+      
+      <!-- Sticky Table of Contents Sidebar -->
+      <aside class="cs-toc-sidebar" id="csTocSidebar" aria-label="Table of contents">
+        <div class="cs-toc-sticky-box">
+          <div class="cs-toc-header">
+            <span class="cs-toc-icon">§</span>
+            <span>Table of Contents</span>
+          </div>
+          <nav class="cs-toc-nav" id="caseStudyToc" aria-label="Document sections">
+            <!-- Dynamically populated by main.js -->
+          </nav>
+          <div class="cs-toc-footer">
+            <a href="#main-content" class="cs-toc-top-link">
+              <span>↑ Top of Case Study</span>
+            </a>
+          </div>
+        </div>
+      </aside>
+
       <!-- Main Deep-Dive Content -->
-      <div class="cs-prose">
+      <div class="cs-prose" id="caseStudyProse">
         {{ content }}
       </div>
+
     </div>
   </div>
 

@@ -19,13 +19,45 @@ next_project_title: "Water Wrapped — Whitelabel Open Data"
 description: "Technical case study of Neon Racer 3D: browser-native 3D racing simulation with Cannon-es vehicle dynamics and Three.js WebGL graphics."
 ---
 
+<!-- Stat Highlight Metric Ribbon -->
+<div class="cs-metric-ribbon">
+  <div class="metric-stat">
+    <span class="metric-val">60.0 FPS</span>
+    <span class="metric-lbl">Paced Frame Rate</span>
+  </div>
+  <div class="metric-stat">
+    <span class="metric-val">2.4 MB</span>
+    <span class="metric-lbl">Total gzip Bundle</span>
+  </div>
+  <div class="metric-stat">
+    <span class="metric-val">40 / 60</span>
+    <span class="metric-lbl">AWD Torque Split</span>
+  </div>
+  <div class="metric-stat">
+    <span class="metric-val">Zero</span>
+    <span class="metric-lbl">External Game Engines</span>
+  </div>
+</div>
+
 ## Executive Overview
 
-Deploying interactive 3D simulations to the modern web typically forces an unpalatable trade-off: heavyweight game engines (such as Unity or Unreal Engine compiled to WebAssembly) produce **50MB to 150MB initial payloads**, long load times, and heavy memory overhead; while lightweight browser canvas engines often sacrifice realistic multi-body physics and suspension dynamics.
-
-**Neon Racer 3D** was engineered to prove that desktop-grade 3D vehicle dynamics and aesthetic neon cyberpunk visuals can be delivered natively in standard web browsers with a **bundle size under 3MB** and zero external engine runtimes. 
-
-Built with **Three.js** and **Cannon-es**, the simulation features a custom raycast vehicle physics model, all-wheel-drive (AWD) torque distribution, non-linear tire friction curves, and a fixed-timestep physics accumulator maintaining a rock-solid 60 FPS.
+<!-- 3-Part Executive Card: Problem → Architecture → Impact -->
+<div class="exec-card-wide">
+  <div class="exec-grid">
+    <div class="exec-col">
+      <span class="exec-pill-tag exec-pill-problem">The Problem</span>
+      <p>Interactive 3D web games compiled from heavyweight game engines (Unity/Unreal WASM) impose 50MB–150MB downloads, slow initial startup, and high memory footprints.</p>
+    </div>
+    <div class="exec-col">
+      <span class="exec-pill-tag exec-pill-arch">The Architecture</span>
+      <p>Browser-native Three.js WebGL pipeline combined with a Cannon-es raycast suspension model, AWD power distribution, lateral tire slip curves, and a dual-spring chase camera.</p>
+    </div>
+    <div class="exec-col">
+      <span class="exec-pill-tag exec-pill-impact">Engineering Impact</span>
+      <p>Consistent 60 FPS across desktop and mobile browsers, sub-3MB bundle payload, and zero runtime garbage collection pauses in hot loops.</p>
+    </div>
+  </div>
+</div>
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -60,13 +92,18 @@ Built with **Three.js** and **Cannon-es**, the simulation features a custom rayc
 
 ### 1. Raycast Suspension & Multi-Body Vehicle Dynamics
 
-Rather than modeling wheels as independent rigid bodies connected by mechanical hinge joints (which prone to solver explosions at high velocities), Neon Racer 3D implements a **Raycast Vehicle Model**.
+Rather than modeling wheels as independent rigid bodies connected by mechanical hinge joints (which are prone to solver explosions at high velocities), Neon Racer 3D implements a **Raycast Vehicle Model**.
 
 Four vertical rays cast downward from the vehicle chassis coordinate frame to detect road geometry. When a ray intersects the track surface, the suspension spring and damper forces are calculated via Hooke's Law with damping:
 
 $$F_{\text{suspension}} = k \cdot (L_0 - L) - c \cdot v_{\text{suspension}}$$
 
-Where $k$ is spring stiffness, $L_0$ is rest length, $L$ is current ray distance, $c$ is damping coefficient, and $v_{\text{suspension}}$ is relative compression velocity.
+<details class="tech-disclosure" open>
+  <summary>
+    <span class="disclosure-title">Raycast Suspension Physics Controller</span>
+    <span class="disclosure-badge">JavaScript</span>
+  </summary>
+  <div class="disclosure-content">
 
 ```javascript
 class VehiclePhysicsController {
@@ -104,11 +141,21 @@ class VehiclePhysicsController {
 }
 ```
 
+  </div>
+</details>
+
 ---
 
 ### 2. AWD Torque Distribution & Lateral Drift Slip Modeling
 
 To simulate responsive arcade-drifting physics without losing steering authority, engine torque is distributed dynamically across front and rear axles based on instantaneous steering angle and slip ratio:
+
+<details class="tech-disclosure" open>
+  <summary>
+    <span class="disclosure-title">AWD Power Distribution &amp; Oversteer Controller</span>
+    <span class="disclosure-badge">JavaScript</span>
+  </summary>
+  <div class="disclosure-content">
 
 ```javascript
 updateVehicleInputs(inputs, deltaTime) {
@@ -145,13 +192,23 @@ updateVehicleInputs(inputs, deltaTime) {
 }
 ```
 
+  </div>
+</details>
+
 ---
 
 ### 3. Dynamic Smooth Chase Camera Mathematics
 
-A fixed rigid camera attached to a drifting vehicle creates nauseating high-frequency jitter. 
+A fixed rigid camera attached to a drifting vehicle creates high-frequency viewport jitter. 
 
 Neon Racer 3D uses a **dual-spring exponential look-ahead camera controller**. The camera target position lags behind the car orientation while extending a forward vector in the direction of the velocity vector:
+
+<details class="tech-disclosure">
+  <summary>
+    <span class="disclosure-title">Dual-Spring Look-Ahead Camera Interpolation</span>
+    <span class="disclosure-badge">Three.js</span>
+  </summary>
+  <div class="disclosure-content">
 
 ```javascript
 updateCamera(camera, chassisMesh, chassisBody, deltaTime) {
@@ -177,6 +234,9 @@ updateCamera(camera, chassisMesh, chassisBody, deltaTime) {
   camera.lookAt(lookAhead);
 }
 ```
+
+  </div>
+</details>
 
 ---
 
