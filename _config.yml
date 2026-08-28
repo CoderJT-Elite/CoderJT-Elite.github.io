@@ -1,3 +1,8 @@
-title: CoderJT | Web Developer
-description: Building modern, beautiful, and functional web experiences
-theme: jekyll-theme-cayman
+title: John Tewolde | Software Engineer & Creative Developer
+description: Personal portfolio of John Tewolde — building full-stack applications, real-time 3D web experiences, and on-device ML tools.
+url: "https://coderjt-elite.github.io"
+baseurl: ""
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap

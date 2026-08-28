@@ -1,148 +1,246 @@
 ---
 layout: default
 title: Home
-description: John Tewolde — creative developer engineering immersive websites, physics-based 3D games, and AI-powered apps.
+description: John Tewolde — software engineer and creative builder developing full-stack SaaS platforms, real-time 3D web engines, and on-device ML applications.
 ---
 
-<section class="section hero">
+<!-- Hero Section -->
+<section class="section section-hero">
   <div class="container">
-    <div class="reveal-fast">
-      <span class="hero-eyebrow">Available for new projects</span>
-    </div>
-    <h1 class="hero-title reveal">
-      Building the<br>
-      <span class="gradient-text">next web.</span>
-    </h1>
-    <p class="hero-desc reveal" style="transition-delay: 0.1s">
-      I'm John Tewolde — a creative developer who ships immersive websites, physics-based 3D games, and intelligent AI-powered applications.
-    </p>
-    <div class="hero-actions reveal" style="transition-delay: 0.2s">
-      <a href="/contact" class="btn btn-primary magnetic-btn">Start a Project</a>
-      <a href="/about"   class="btn btn-ghost  magnetic-btn">About Me →</a>
-    </div>
+    <div class="reveal">
+      <div class="badge-eyebrow">
+        <span class="status-dot"></span>
+        <span>Available for engineering roles & select projects</span>
+      </div>
+      <h1 class="hero-title">
+        Software engineer <br class="hero-br">
+        <span class="hero-title-subtle">& creative developer.</span>
+      </h1>
+      <p class="hero-description">
+        I'm John Tewolde — an engineer based in Michigan. I design and build production-grade web applications, real-time 3D physics engines, and intelligent on-device computer vision tools.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View Featured Projects ↓</a>
+        <a href="{{ '/about' | relative_url }}" class="btn btn-secondary">About Me</a>
+        <a href="{{ '/contact' | relative_url }}" class="btn btn-secondary">Get in Touch</a>
+      </div>
 
-    <div class="stats-strip reveal" style="transition-delay: 0.3s">
-      <div class="stat-item">
-        <div class="stat-num">3<span>+</span></div>
-        <div class="stat-label">Live Projects</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">2<span>+</span></div>
-        <div class="stat-label">Years Building</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">∞</div>
-        <div class="stat-label">Iterations Shipped</div>
+      <div class="quick-facts">
+        <div class="fact-item">
+          <span class="fact-value">3</span>
+          <span class="fact-label">Shipped Applications</span>
+        </div>
+        <div class="fact-item">
+          <span class="fact-value">Full-Stack + 3D</span>
+          <span class="fact-label">Primary Technical Focus</span>
+        </div>
+        <div class="fact-item">
+          <span class="fact-value">Michigan, USA</span>
+          <span class="fact-label">Location & Base</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section">
+<!-- Featured Projects Section -->
+<section class="section section-divider" id="projects">
   <div class="container">
     <div class="section-header reveal">
-      <div>
-        <span class="section-label">// selected works</span>
-        <h2 class="section-title">Projects</h2>
-      </div>
-      <a href="https://github.com/CoderJT-Elite" target="_blank" rel="noopener" class="btn btn-ghost" style="font-size: 0.9rem; padding: 0.6rem 1.5rem">View GitHub ↗</a>
+      <span class="section-tag">Selected Work</span>
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-subtitle">
+        Real software shipped to production — from vertical SaaS to browser physics engines and on-device pose estimation.
+      </p>
     </div>
 
-    <div class="grid-3">
+    <div class="projects-stack">
 
-      <a href="https://chaseupapp.tech" target="_blank" rel="noopener noreferrer" class="project-card tilt-card reveal glass-panel">
-        <div class="card-inner">
-          <div class="card-banner card-banner-chaseup"></div>
-          <div class="card-body">
-            <h3 class="card-title">ChaseUp</h3>
-            <p class="card-desc">SaaS platform automating payment tracking, retainage management, and mechanics lien preparation for construction subcontractors.</p>
-            <div class="card-footer">
-              <div class="card-tags">
-                <span class="tag">Next.js</span>
-                <span class="tag">Supabase</span>
-                <span class="tag">SaaS</span>
-              </div>
-              <span class="card-link">Visit ↗</span>
+      <!-- Project 1: ChaseUp -->
+      <article class="project-card reveal">
+        <div class="project-media">
+          <img src="{{ '/assets/img/chaseup-preview.png' | relative_url }}" alt="ChaseUp SaaS application dashboard interface" loading="lazy" width="1280" height="800">
+        </div>
+        <div class="project-details">
+          <div>
+            <div class="project-header-top">
+              <span class="project-badge">SaaS Platform</span>
+              <span class="project-year">2024 – Present</span>
+            </div>
+            <h3 class="project-title">ChaseUp</h3>
+            <p class="project-summary">
+              A specialized SaaS workflow tool built for trade subcontractors to manage invoice reminders, track retainage withholdings, and automate statutory mechanics lien deadline calculations.
+            </p>
+            <ul class="project-highlights">
+              <li>Automated payment reminder schedules that cut manual receivables follow-up.</li>
+              <li>State-by-state statutory mechanics lien and notice calculation engine.</li>
+              <li>Full-stack architecture built with Next.js App Router, Supabase, and PostgreSQL.</li>
+            </ul>
+          </div>
+          <div>
+            <div class="project-tags">
+              <span class="tech-tag">Next.js</span>
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">Supabase</span>
+              <span class="tech-tag">PostgreSQL</span>
+              <span class="tech-tag">Tailwind CSS</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://chaseupapp.tech" target="_blank" rel="noopener noreferrer" class="project-link">
+                Visit chaseupapp.tech ↗
+              </a>
             </div>
           </div>
         </div>
-      </a>
+      </article>
 
-      <a href="https://neon-racer-3d.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-card tilt-card reveal glass-panel" style="transition-delay: 0.1s">
-        <div class="card-inner">
-          <div class="card-banner card-banner-neon"></div>
-          <div class="card-body">
-            <h3 class="card-title">Neon Racer 3D</h3>
-            <p class="card-desc">Browser-native 3D racing game built from scratch — custom physics engine, dynamic camera system, and full synthwave neon aesthetic.</p>
-            <div class="card-footer">
-              <div class="card-tags">
-                <span class="tag">Three.js</span>
-                <span class="tag">Cannon-es</span>
-                <span class="tag">WebGL</span>
-              </div>
-              <span class="card-link">Play ↗</span>
+      <!-- Project 2: Neon Racer 3D -->
+      <article class="project-card reveal">
+        <div class="project-media">
+          <img src="{{ '/assets/img/neon-racer-preview.png' | relative_url }}" alt="Neon Racer 3D browser racing game start screen" loading="lazy" width="1280" height="800">
+        </div>
+        <div class="project-details">
+          <div>
+            <div class="project-header-top">
+              <span class="project-badge">Browser 3D Game</span>
+              <span class="project-year">2024</span>
+            </div>
+            <h3 class="project-title">Neon Racer 3D</h3>
+            <p class="project-summary">
+              A real-time 3D racing simulation running natively in the browser without third-party game engines or plugins, featuring custom vehicle dynamics and arcade mechanics.
+            </p>
+            <ul class="project-highlights">
+              <li>Integrated rigid-body physics with Cannon-es for suspension, tire grip, and drift calculations.</li>
+              <li>Custom Three.js rendering pipeline with post-processing glow, dynamic chase cameras, and particle trails.</li>
+              <li>Smooth 60 FPS performance maintained across mobile and desktop browsers.</li>
+            </ul>
+          </div>
+          <div>
+            <div class="project-tags">
+              <span class="tech-tag">Three.js</span>
+              <span class="tech-tag">Cannon-es</span>
+              <span class="tech-tag">WebGL</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">Vite</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://neon-racer-3d.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-link">
+                Play Live at neon-racer-3d.vercel.app ↗
+              </a>
             </div>
           </div>
         </div>
-      </a>
+      </article>
 
-      <a href="https://jt-website.me/form_analyzer/" target="_blank" rel="noopener noreferrer" class="project-card tilt-card reveal glass-panel" style="transition-delay: 0.2s">
-        <div class="card-inner">
-          <div class="card-banner card-banner-form"></div>
-          <div class="card-body">
-            <h3 class="card-title">Form Analyzer</h3>
-            <p class="card-desc">Mobile app using ML Kit and vector math to analyze athletic movement in real-time — giving coaches and athletes biomechanical feedback.</p>
-            <div class="card-footer">
-              <div class="card-tags">
-                <span class="tag">Flutter</span>
-                <span class="tag">ML Kit</span>
-                <span class="tag">AI</span>
-              </div>
-              <span class="card-link">View ↗</span>
+      <!-- Project 3: Form Analyzer -->
+      <article class="project-card reveal">
+        <div class="project-media">
+          <img src="{{ '/assets/img/form-analyzer-preview.png' | relative_url }}" alt="Form Analyzer biomechanical movement feedback application" loading="lazy" width="1280" height="800">
+        </div>
+        <div class="project-details">
+          <div>
+            <div class="project-header-top">
+              <span class="project-badge">Mobile & Vision AI</span>
+              <span class="project-year">2023 – Present</span>
+            </div>
+            <h3 class="project-title">Form Analyzer</h3>
+            <p class="project-summary">
+              An on-device biomechanical coaching application that tracks athletic posture and exercise repetitions in real time using computer vision.
+            </p>
+            <ul class="project-highlights">
+              <li>Performs on-device pose estimation via Google ML Kit with zero video upload or cloud latency.</li>
+              <li>Computes joint angle trigonometry in real time to assess squat depth, spine posture, and symmetry.</li>
+              <li>Engineered as a Michigan 4-H state competition project in athletic technology.</li>
+            </ul>
+          </div>
+          <div>
+            <div class="project-tags">
+              <span class="tech-tag">Flutter</span>
+              <span class="tech-tag">Dart</span>
+              <span class="tech-tag">Google ML Kit</span>
+              <span class="tech-tag">Computer Vision</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://coderjt-elite.github.io/form_analyzer/" target="_blank" rel="noopener noreferrer" class="project-link">
+                View Project Showcase ↗
+              </a>
             </div>
           </div>
         </div>
-      </a>
+      </article>
 
     </div>
   </div>
 </section>
 
-<section class="section" style="padding-top: 0">
+<!-- Core Focus / Capabilities Section -->
+<section class="section section-divider">
   <div class="container">
     <div class="section-header reveal">
-      <div>
-        <span class="section-label">// what I do</span>
-        <h2 class="section-title">Expertise</h2>
-      </div>
+      <span class="section-tag">Capabilities</span>
+      <h2 class="section-title">Core Engineering Focus</h2>
+      <p class="section-subtitle">
+        Bridging high-performance application engineering with interactive 3D craft and applied machine learning.
+      </p>
     </div>
-    <div class="grid-3">
-      <div class="feature-card glass-panel tilt-card reveal">
-        <div class="feature-icon">✦</div>
-        <h3 class="feature-title">Design Engineering</h3>
-        <p class="feature-text">Bridging stunning visual craft with robust architecture. I build interfaces that are not just beautiful — they're fast, accessible, and alive.</p>
+
+    <div class="pillars-grid reveal">
+      <div class="pillar-card">
+        <div class="pillar-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+        </div>
+        <h3 class="pillar-title">Full-Stack Web Engineering</h3>
+        <p class="pillar-desc">
+          Building resilient web applications using Next.js, React, TypeScript, and relational databases. Strong emphasis on clear schema design, auth security, and fast initial page loads.
+        </p>
       </div>
-      <div class="feature-card glass-panel tilt-card reveal" style="transition-delay: 0.1s">
-        <div class="feature-icon">⚡</div>
-        <h3 class="feature-title">Performant Web Apps</h3>
-        <p class="feature-text">React, Next.js, and vanilla JS applications that load instantly, scale cleanly, and run on the edge — optimized from the first commit.</p>
+
+      <div class="pillar-card">
+        <div class="pillar-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+        </div>
+        <h3 class="pillar-title">3D Graphics & Physics</h3>
+        <p class="pillar-desc">
+          Creating hardware-accelerated 3D browser experiences using WebGL, Three.js, and physics engines like Cannon-es. Focused on smooth frame pacing, responsive camera math, and lightweight asset bundles.
+        </p>
       </div>
-      <div class="feature-card glass-panel tilt-card reveal" style="transition-delay: 0.2s">
-        <div class="feature-icon">◎</div>
-        <h3 class="feature-title">Applied AI & Physics</h3>
-        <p class="feature-text">Integrating computer vision, ML models, and rigid-body physics simulations to craft experiences that feel genuinely next-generation.</p>
+
+      <div class="pillar-card">
+        <div class="pillar-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+        </div>
+        <h3 class="pillar-title">On-Device ML & Mobile</h3>
+        <p class="pillar-desc">
+          Implementing privacy-preserving edge ML pipelines using Flutter and Google ML Kit. Extracting real-time kinematic data from camera feeds without streaming raw video to external servers.
+        </p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section" style="padding-top: 0">
+<!-- Call to Action Banner -->
+<section class="section section-divider">
   <div class="container">
-    <div class="cta-band-wrap reveal">
-      <div class="cta-band">
-        <h2 class="cta-title">Let's build something<br><span class="gradient-text">remarkable.</span></h2>
-        <p class="cta-desc">I'm actively seeking ambitious projects, freelance contracts, and full-time roles. Whether it's a startup idea or an enterprise overhaul — let's talk.</p>
-        <a href="/contact" class="btn btn-primary magnetic-btn">Get In Touch →</a>
+    <div class="cta-box reveal">
+      <h2 class="cta-title">Looking for an engineer who builds end-to-end?</h2>
+      <p class="cta-text">
+        I'm actively seeking full-time software engineering roles, contract opportunities, and ambitious technical collaborations.
+      </p>
+      <div class="cta-actions">
+        <a href="{{ '/contact' | relative_url }}" class="btn btn-primary">Start a Conversation →</a>
+        <a href="https://github.com/CoderJT-Elite" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Explore GitHub</a>
       </div>
     </div>
   </div>
