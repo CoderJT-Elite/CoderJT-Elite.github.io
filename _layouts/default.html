@@ -7,50 +7,45 @@
   <meta name="description" content="{{ page.description | default: site.description }}">
   
   <!-- Open Graph -->
-  <meta property="og:site_name" content="John Tewolde Portfolio">
+  <meta property="og:site_name" content="John Tewolde">
   <meta property="og:title" content="{% if page.title == "Home" %}{{ site.title }}{% else %}{{ page.title }} — John Tewolde{% endif %}">
   <meta property="og:description" content="{{ page.description | default: site.description }}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ page.url | absolute_url }}">
-  <meta name="theme-color" content="#0b0d13">
+  <meta name="theme-color" content="#fbfbfa">
 
-  <!-- Google Fonts -->
+  <!-- Typography: Newsreader (Editorial Serif) + Inter (Clean Sans) + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- Header / Navigation -->
+  <!-- Header -->
   <header class="site-header" id="siteHeader">
-    <div class="nav-container">
-      <a href="{{ '/' | relative_url }}" class="brand-logo" aria-label="John Tewolde Home">
+    <div class="header-inner">
+      <a href="{{ '/' | relative_url }}" class="brand-link" aria-label="John Tewolde Home">
         <span class="brand-name">John Tewolde</span>
-        <span class="brand-badge">Dev</span>
+        <span class="brand-sep">/</span>
+        <span class="brand-sub">Engineer &amp; Builder</span>
       </a>
 
-      <nav class="nav-menu" id="navMenu" aria-label="Primary navigation">
-        <a href="{{ '/' | relative_url }}" class="nav-item {% if page.url == '/' or page.url == '/index.html' %}active{% endif %}">Work</a>
-        <a href="{{ '/about' | relative_url }}" class="nav-item {% if page.url contains 'about' %}active{% endif %}">About</a>
-        <a href="{{ '/contact' | relative_url }}" class="nav-item {% if page.url contains 'contact' %}active{% endif %}">Contact</a>
+      <nav class="nav-links" id="navMenu" aria-label="Primary navigation">
+        <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' or page.url == '/index.html' %}active{% endif %}">Work</a>
+        <a href="{{ '/about' | relative_url }}" class="nav-link {% if page.url contains 'about' %}active{% endif %}">About</a>
+        <a href="{{ '/contact' | relative_url }}" class="nav-link {% if page.url contains 'contact' %}active{% endif %}">Contact</a>
+        <a href="https://github.com/CoderJT-Elite" target="_blank" rel="noopener noreferrer" class="nav-link nav-link-external" aria-label="GitHub Profile">
+          GitHub <span class="arrow" aria-hidden="true">↗</span>
+        </a>
       </nav>
 
-      <div class="nav-actions">
-        <a href="https://github.com/CoderJT-Elite" target="_blank" rel="noopener noreferrer" class="nav-icon-link" aria-label="GitHub Profile">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-          </svg>
-        </a>
-        <a href="{{ '/contact' | relative_url }}" class="btn-nav">Get in Touch</a>
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </button>
-      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
 
@@ -61,67 +56,61 @@
 
   <!-- Footer -->
   <footer class="site-footer">
-    <div class="footer-container">
-      <div class="footer-grid">
-        <div class="footer-about">
-          <a href="{{ '/' | relative_url }}" class="footer-brand">
-            <span class="brand-name">John Tewolde</span>
-          </a>
-          <p class="footer-bio">
-            Software engineer building full-stack web applications, real-time 3D physics simulations, and on-device ML tools. Based in Michigan.
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand-block">
+          <div class="footer-title">John Tewolde</div>
+          <p class="footer-text">
+            Software engineer based in Michigan. Building full-stack systems, 3D graphics simulations, and on-device computer vision tools.
           </p>
-          <div class="footer-status">
-            <span class="status-indicator"></span>
-            <span>Available for engineering roles & select projects</span>
+        </div>
+
+        <div class="footer-columns">
+          <div class="footer-col">
+            <div class="footer-heading">Navigation</div>
+            <ul class="footer-links">
+              <li><a href="{{ '/' | relative_url }}">Work</a></li>
+              <li><a href="{{ '/about' | relative_url }}">About</a></li>
+              <li><a href="{{ '/contact' | relative_url }}">Contact</a></li>
+            </ul>
           </div>
-        </div>
 
-        <div class="footer-nav-col">
-          <h3 class="footer-heading">Navigation</h3>
-          <ul class="footer-list">
-            <li><a href="{{ '/' | relative_url }}">Work</a></li>
-            <li><a href="{{ '/about' | relative_url }}">About</a></li>
-            <li><a href="{{ '/contact' | relative_url }}">Contact</a></li>
-          </ul>
-        </div>
+          <div class="footer-col">
+            <div class="footer-heading">Projects</div>
+            <ul class="footer-links">
+              <li><a href="https://chaseupapp.tech" target="_blank" rel="noopener noreferrer">ChaseUp ↗</a></li>
+              <li><a href="https://neon-racer-3d.vercel.app/" target="_blank" rel="noopener noreferrer">Neon Racer 3D ↗</a></li>
+              <li><a href="https://coderjt-elite.github.io/form_analyzer/" target="_blank" rel="noopener noreferrer">Form Analyzer ↗</a></li>
+            </ul>
+          </div>
 
-        <div class="footer-nav-col">
-          <h3 class="footer-heading">Projects</h3>
-          <ul class="footer-list">
-            <li><a href="https://chaseupapp.tech" target="_blank" rel="noopener noreferrer">ChaseUp ↗</a></li>
-            <li><a href="https://neon-racer-3d.vercel.app/" target="_blank" rel="noopener noreferrer">Neon Racer 3D ↗</a></li>
-            <li><a href="https://coderjt-elite.github.io/form_analyzer/" target="_blank" rel="noopener noreferrer">Form Analyzer ↗</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-nav-col">
-          <h3 class="footer-heading">Connect</h3>
-          <ul class="footer-list">
-            <li><a href="https://github.com/CoderJT-Elite" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
-            <li><a href="{{ '/contact' | relative_url }}">Contact Form</a></li>
-          </ul>
+          <div class="footer-col">
+            <div class="footer-heading">Network</div>
+            <ul class="footer-links">
+              <li><a href="https://github.com/CoderJT-Elite" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
+              <li><a href="{{ '/contact' | relative_url }}">Get in Touch</a></li>
+            </ul>
+          </div>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 John Tewolde. Built clean with Jekyll.</p>
-        <p class="footer-meta">Michigan, USA</p>
+        <p class="footer-meta">&copy; {{ 'now' | date: "%Y" }} John Tewolde. Built with Jekyll.</p>
+        <p class="footer-location">Michigan, United States</p>
       </div>
     </div>
   </footer>
 
-  <!-- Script: Lightweight, accessible UI interactions -->
+  <!-- Script: Lightweight Navigation -->
   <script>
     (function () {
-      // Header scroll state
       var header = document.getElementById('siteHeader');
       if (header) {
         window.addEventListener('scroll', function () {
-          header.classList.toggle('scrolled', window.scrollY > 20);
+          header.classList.toggle('is-scrolled', window.scrollY > 20);
         }, { passive: true });
       }
 
-      // Mobile Menu Toggle
       var toggle = document.getElementById('navToggle');
       var menu = document.getElementById('navMenu');
       if (toggle && menu) {
@@ -132,7 +121,6 @@
           menu.classList.toggle('open', !expanded);
         });
 
-        // Close on escape key
         document.addEventListener('keydown', function (e) {
           if (e.key === 'Escape' && menu.classList.contains('open')) {
             toggle.setAttribute('aria-expanded', 'false');
@@ -141,39 +129,12 @@
           }
         });
 
-        // Close when clicking a nav link
         menu.querySelectorAll('a').forEach(function (link) {
           link.addEventListener('click', function () {
             toggle.setAttribute('aria-expanded', 'false');
             toggle.classList.remove('open');
             menu.classList.remove('open');
           });
-        });
-      }
-
-      // Unobtrusive scroll-in reveal
-      var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var revealElements = document.querySelectorAll('.reveal');
-      
-      if (prefersReducedMotion || !('IntersectionObserver' in window)) {
-        revealElements.forEach(function (el) {
-          el.classList.add('visible');
-        });
-      } else {
-        var observer = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, {
-          threshold: 0.1,
-          rootMargin: '0px 0px -40px 0px'
-        });
-
-        revealElements.forEach(function (el) {
-          observer.observe(el);
         });
       }
     })();
