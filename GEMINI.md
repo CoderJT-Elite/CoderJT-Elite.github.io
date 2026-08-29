@@ -4,9 +4,9 @@
 1. **Engineering Focus**: The portfolio must remain strictly focused on professional software engineering, robotics control systems/simulations, and published academic research.
 2. **Approved Projects**:
    - **ChaseUp** (chaseupapp.tech) — Full-stack SaaS, Next.js, Supabase, PostgreSQL RLS, mechanics lien rules engine.
-   - **FRC Team 1506 Robot Architecture** (github.com/CoderJT-Elite/2026-Rebuild) — WPILib Java, MapleSim dyn4j physics simulation, Limelight MegaTag2 vision fusion, swerve odometry.
+   - **FRC Team 1506 Robot Architecture** (github.com/FRCTeam1506/2026-Rebuild) — WPILib Java, MapleSim dyn4j physics simulation, Limelight MegaTag2 vision fusion, swerve odometry.
    - **Form Analyzer** (coderjt-elite.github.io/form_analyzer) — Flutter, Google ML Kit, 3D Vector Triad Dot Product geometry (IEEE ISEC 2026).
-   - **Neon Racer 3D** (`neon-racer-3d.vercel.app`) — Three.js, Cannon-es, WebGL, 60 FPS vehicle dynamics.
+   - **Neon Racer 3D** (neon-racer-3d.vercel.app) — Three.js, Cannon-es, WebGL, 60 FPS vehicle dynamics.
    - **Water Wrapped** (github.com/JoshuaTewolde/WaterWrapped) — React, Cloudflare Workers, civic open data reporting.
 3. **Approved Research**:
    - IEEE ISEC 2026: *A Machine Learning Approach to Exercise Form Analysis*
@@ -17,9 +17,8 @@
    - Direct Email: jg.tewolde@gmail.com
    - GitHub: github.com/CoderJT-Elite
    - Formspree contact form
-5. **Strict Exclusions (Never Include)**:
-   - **NO** GPA, grades, or test scores.
-   - **NO** school names or graduation years.
-   - **NO** sports, athletics (soccer), or music (cello, orchestra).
-   - **NO** competition awards or contest placements.
+5. **Scope Constraint**:
+   - **Do not add new projects, sections, or pages beyond what's explicitly requested without checking first.**
+6. **Strict Exclusions (Never Include)**:
+   - **NO** GPA, grades, or standardized test scores.
    - **NO** headshots or personal photo assets (sidebar remains typographical only).

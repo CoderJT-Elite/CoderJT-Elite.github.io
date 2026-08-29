@@ -11,7 +11,7 @@ tech_stack: "Java 17, WPILib, CTRE Phoenix 6, MapleSim (dyn4j), Limelight MegaTa
 key_metric: "250 Hz (4ms) physics loop decoupling software validation from robot hardware"
 status_tag: "Competition Proven"
 live_url: ""
-github_url: "https://github.com/CoderJT-Elite/2026-Rebuild"
+github_url: "https://github.com/FRCTeam1506/2026-Rebuild"
 prev_project_url: "/work/chaseup/"
 prev_project_title: "ChaseUp — SaaS Compliance Platform"
 next_project_url: "/work/form-analyzer/"

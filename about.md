@@ -43,16 +43,19 @@ description: Background, experience, research publications, and technical stack 
       <!-- Right Column: Content -->
       <div class="about-story">
 
-        <!-- Executive Summary (2 sentences max) -->
+        <!-- Executive Summary -->
         <div>
           <div class="section-meta-header" style="margin-bottom: 1rem;">
-            <div class="section-caption">Executive Summary</div>
+            <div class="section-caption">Background &amp; Focus</div>
           </div>
           <h1 style="font-size: clamp(1.8rem, 3.2vw, 2.4rem); margin-bottom: 1rem;">
             Engineering grounded in mathematical rigor, physical modeling, and craft.
           </h1>
-          <p class="story-prose" style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6;">
-            Software engineer and robotics lead programmer building full-stack platforms, physics-based simulations, and on-device computer vision. Focused on architectural simplicity, deterministic performance, and hardware-aware optimization.
+          <p class="story-prose" style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">
+            I'm a software engineer and robotics programmer based in Michigan building full-stack platforms, physics-based simulations, and on-device computer vision. My focus centers on architectural simplicity, deterministic performance, and hardware-aware optimization.
+          </p>
+          <p class="story-prose" style="font-size: 1.02rem; color: var(--text-secondary); line-height: 1.6;">
+            Outside of software development, I play competitive soccer and cello. The spatial awareness, split-second tactical decisions, and disciplined daily training required on the pitch carry directly into how I approach control theory, kinematics, and robust systems architecture.
           </p>
         </div>
 

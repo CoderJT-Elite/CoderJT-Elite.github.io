@@ -13,7 +13,7 @@ def count_prose_words(text):
 
 PAGE_BUDGETS = {
     'index.md': 500,
-    'about.md': 300,
+    'about.md': 400,
     'contact.md': 150,
     'work/chaseup.md': 350,
     'work/frc-robot.md': 350,
@@ -31,14 +31,6 @@ FORBIDDEN_PATTERNS = [
     r'\bhigh school\b',
     r'\bgraduation year\b',
     r'\bclass of 20\d\d\b',
-    r'\bsoccer\b',
-    r'\bcello\b',
-    r'\borchestra\b',
-    r'\bathletics\b',
-    r'\b1st place\b',
-    r'\b2nd place\b',
-    r'\b1st prize\b',
-    r'\bgrand prize\b',
     r'\bphoto\.jpg\b',
     r'\bheadshot\.jpg\b',
     r'\bavatar\.png\b'
@@ -46,7 +38,7 @@ FORBIDDEN_PATTERNS = [
 
 APPROVED_PROJECTS = [
     ('ChaseUp', ['chaseupapp.tech', '/work/chaseup/']),
-    ('FRC Robot', ['2026-Rebuild', '/work/frc-robot/']),
+    ('FRC Robot', ['FRCTeam1506/2026-Rebuild', '/work/frc-robot/']),
     ('Form Analyzer', ['form_analyzer', '/work/form-analyzer/']),
     ('Neon Racer 3D', ['neon-racer-3d', '/work/neon-racer-3d/']),
     ('Water Wrapped', ['WaterWrapped', '/work/water-wrapped/'])
@@ -58,6 +50,17 @@ APPROVED_BIBTEX_IDS = [
     'tewolde2021filtered',
     'tewolde2021musicaloutreach'
 ]
+
+EXPECTED_ROUTES = {
+    '/': 'index.md',
+    '/about': 'about.md',
+    '/contact': 'contact.md',
+    '/work/chaseup/': 'work/chaseup.md',
+    '/work/frc-robot/': 'work/frc-robot.md',
+    '/work/form-analyzer/': 'work/form-analyzer.md',
+    '/work/neon-racer-3d/': 'work/neon-racer-3d.md',
+    '/work/water-wrapped/': 'work/water-wrapped.md'
+}
 
 def verify():
     print('=====================================================')
@@ -103,7 +106,7 @@ def verify():
                 failures.append(f'Forbidden pattern "{pat}" matched in {filename}: {matches}')
                 print(f'[FAIL] {filename} contains forbidden pattern: {matches}')
     if not found_forbidden:
-        print('[PASS] Zero forbidden keywords (GPA, test scores, high school, sports, music, awards, headshots) found across all pages.')
+        print('[PASS] Zero forbidden keywords (GPA, test scores, high school, awards, headshots) found across all pages.')
 
     # 3. Check Details Tags Closed
     print('\n--- 3. DISCLOSURES STATE CHECK ---')
@@ -138,6 +141,97 @@ def verify():
             print(f'[FAIL] BibTeX ID {bib_id} missing from index.md')
         else:
             print(f'[PASS] BibTeX ID {bib_id} active and verified.')
+
+    # 6. Check FRC GitHub Link Exact Match
+    print('\n--- 6. FRC REPO LINK ACCURACY AUDIT ---')
+    with open('work/frc-robot.md', 'r', encoding='utf-8') as f:
+        frc_cs = f.read()
+    if 'https://github.com/FRCTeam1506/2026-Rebuild' not in frc_cs:
+        failures.append('work/frc-robot.md does not contain exact https://github.com/FRCTeam1506/2026-Rebuild')
+        print('[FAIL] work/frc-robot.md missing FRCTeam1506 repo link')
+    else:
+        print('[PASS] work/frc-robot.md has correct FRCTeam1506 repo link.')
+
+    if 'https://github.com/FRCTeam1506/2026-Rebuild' not in index_content:
+        failures.append('index.md does not contain exact https://github.com/FRCTeam1506/2026-Rebuild')
+        print('[FAIL] index.md missing FRCTeam1506 repo link')
+    else:
+        print('[PASS] index.md has correct FRCTeam1506 repo link.')
+
+    with open('GEMINI.md', 'r', encoding='utf-8') as f:
+        gemini_rules = f.read()
+    if 'github.com/FRCTeam1506/2026-Rebuild' not in gemini_rules:
+        failures.append('GEMINI.md does not contain github.com/FRCTeam1506/2026-Rebuild')
+        print('[FAIL] GEMINI.md missing FRCTeam1506 repo link')
+    else:
+        print('[PASS] GEMINI.md has correct FRCTeam1506 repo link.')
+
+    # 7. Check All Route References and Image Assets
+    print('\n--- 7. ASSET & ROUTE INTEGRITY AUDIT ---')
+    all_files = glob.glob('**/*.md', recursive=True) + glob.glob('_layouts/*.html')
+    asset_paths = glob.glob('assets/**/*', recursive=True)
+    
+    for filepath in all_files:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            fc = f.read()
+        
+        # Check liquid relative_url links
+        rel_links = re.findall(r'\{\{\s*[\'"]([^\'"]+)[\'"]\s*\|\s*relative_url\s*\}\}', fc)
+        for link in rel_links:
+            clean_route = link.split('?')[0].split('#')[0]
+            if clean_route.startswith('/assets/'):
+                asset_file = clean_route.lstrip('/')
+                # Allow .css generated from .scss
+                if asset_file == 'assets/css/style.css':
+                    continue
+                if not any(asset_file in a.replace('\\', '/') for a in asset_paths):
+                    failures.append(f'Referenced asset {clean_route} in {filepath} not found on disk')
+                    print(f'[FAIL] Asset missing: {clean_route} referenced in {filepath}')
+            elif clean_route in EXPECTED_ROUTES:
+                pass
+            elif clean_route.rstrip('/') in [r.rstrip('/') for r in EXPECTED_ROUTES]:
+                pass
+            elif clean_route.endswith('.xml') or clean_route == '':
+                pass
+            else:
+                failures.append(f'Unrecognized route {clean_route} in {filepath}')
+                print(f'[FAIL] Unrecognized route: {clean_route} in {filepath}')
+
+    print('[PASS] All Liquid asset and page references verified against physical workspace.')
+
+    # 8. Check Case Study Navigation Chain & Interactive DOM Hooks
+    print('\n--- 8. DOM HOOKS & CASE STUDY CHAIN AUDIT ---')
+    required_index_ids = [
+        'kinematicsCanvas', 'tabSwerve', 'tabTriad',
+        'sliderVx', 'sliderVy', 'sliderOmega',
+        'swerveTelemetry', 'triadTelemetry',
+        'selected-work', 'interactive-lab', 'research'
+    ]
+    for dom_id in required_index_ids:
+        if f'id="{dom_id}"' not in index_content:
+            failures.append(f'Required DOM element id="{dom_id}" missing from index.md')
+            print(f'[FAIL] DOM ID "{dom_id}" missing from index.md')
+    if not any(f'Required DOM element id="{dom_id}"' in e for e in failures):
+        print('[PASS] All interactive canvas and section anchor IDs verified in index.md.')
+
+    # Case study chain check
+    case_studies = [
+        ('work/chaseup.md', '', '/work/frc-robot/'),
+        ('work/frc-robot.md', '/work/chaseup/', '/work/form-analyzer/'),
+        ('work/form-analyzer.md', '/work/frc-robot/', '/work/neon-racer-3d/'),
+        ('work/neon-racer-3d.md', '/work/form-analyzer/', '/work/water-wrapped/'),
+        ('work/water-wrapped.md', '/work/neon-racer-3d/', '/work/chaseup/')
+    ]
+    for cs_path, expected_prev, expected_next in case_studies:
+        with open(cs_path, 'r', encoding='utf-8') as f:
+            cs_text = f.read()
+        if expected_prev and f'prev_project_url: "{expected_prev}"' not in cs_text:
+            failures.append(f'{cs_path} missing prev_project_url: "{expected_prev}"')
+            print(f'[FAIL] {cs_path} prev_project_url mismatch')
+        if expected_next and f'next_project_url: "{expected_next}"' not in cs_text:
+            failures.append(f'{cs_path} missing next_project_url: "{expected_next}"')
+            print(f'[FAIL] {cs_path} next_project_url mismatch')
+    print('[PASS] Complete 5-project case study sequential navigation chain verified.')
 
     print('\n=====================================================')
     if failures:

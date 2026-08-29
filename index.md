@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Home
-description: John Tewolde — software engineer and robotics programmer based in Michigan. Full-stack platforms, physics simulations, and on-device computer vision.
+description: John Tewolde — software engineer and robotics programmer based in Michigan. Full-stack platforms, physics simulations, and autonomous control systems.
 ---
 
 <!-- Hero Section -->
@@ -18,7 +18,7 @@ description: John Tewolde — software engineer and robotics programmer based in
     </h1>
 
     <p class="hero-lead">
-      Architecting full-stack web applications, 250 Hz rigid-body simulations, and zero-latency on-device vision pipelines with mathematical rigor.
+      I'm John Tewolde — an engineer based in Michigan. I design and build production-grade web applications, real-time physics simulations, and autonomous robotics control systems.
     </p>
 
     <div class="hero-actions">
@@ -45,12 +45,212 @@ description: John Tewolde — software engineer and robotics programmer based in
   </div>
 </section>
 
+<!-- Selected Work Section -->
+<section class="section section-rule" id="selected-work">
+  <div class="container">
+    <div class="section-meta-header">
+      <div class="section-caption">Selected Projects</div>
+      <div class="section-num">01 — 03</div>
+    </div>
+
+    <div class="work-header-row" style="margin-bottom: 2.5rem;">
+      <div>
+        <h2 class="section-headline">Featured Engineering Work</h2>
+        <p class="section-intro-text">
+          Curated production applications, robotics control systems, and browser physics simulations.
+        </p>
+      </div>
+    </div>
+
+    <!-- Curated Headline Projects (3 Flagship Cards) -->
+    <div class="project-case-list">
+
+      <!-- Project 1: ChaseUp -->
+      <article class="case-study exec-card">
+        <div class="case-media">
+          <img src="{{ '/assets/img/chaseup-preview.png' | relative_url }}" alt="ChaseUp application dashboard interface" loading="lazy" width="1280" height="800">
+        </div>
+        <div class="case-content">
+          <div class="case-header">
+            <div class="case-meta-line">
+              <span class="case-index">01</span>
+              <span>/</span>
+              <span>SaaS Platform</span>
+              <span>·</span>
+              <span class="badge-kpi">&lt; 50ms Latency</span>
+            </div>
+            <h3 class="case-title">ChaseUp</h3>
+          </div>
+          <p class="case-summary-one-line">
+            Full-stack mechanics lien compliance and receivables engine built with Next.js App Router, Supabase, and PostgreSQL Row Level Security.
+          </p>
+          <div class="case-tech-list">
+            <span class="tech-tag">Next.js</span>
+            <span class="tech-tag">TypeScript</span>
+            <span class="tech-tag">Supabase</span>
+            <span class="tech-tag">PostgreSQL (RLS)</span>
+            <span class="tech-tag">Tailwind</span>
+          </div>
+          <div class="case-links">
+            <a href="{{ '/work/chaseup/' | relative_url }}" class="btn-primary">Case Study →</a>
+            <a href="https://chaseupapp.tech" target="_blank" rel="noopener noreferrer" class="live-link">Live App ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 2: FRC 1506 Robot Architecture -->
+      <article class="case-study exec-card">
+        <div class="case-media case-media-banner-dark">
+          <div class="media-badge-tag">FRC Team 1506 · Robotics</div>
+          <div class="media-badge-title">Physics Sim &amp; Swerve Odometry</div>
+          <div class="media-badge-chips">
+            <span class="tech-tag">MapleSim (dyn4j)</span>
+            <span class="tech-tag">WPILib Java</span>
+          </div>
+        </div>
+        <div class="case-content">
+          <div class="case-header">
+            <div class="case-meta-line">
+              <span class="case-index">02</span>
+              <span>/</span>
+              <span>Robotics &amp; Simulation</span>
+              <span>·</span>
+              <span class="badge-kpi">250 Hz Physics Loop</span>
+            </div>
+            <h3 class="case-title">FRC 1506 Robot Architecture</h3>
+          </div>
+          <p class="case-summary-one-line">
+            WPILib Java autonomous control architecture with 4ms desktop rigid-body physics simulation, swerve odometry, and AprilTag vision fusion.
+          </p>
+          <div class="case-tech-list">
+            <span class="tech-tag">Java 17</span>
+            <span class="tech-tag">WPILib</span>
+            <span class="tech-tag">CTRE Phoenix 6</span>
+            <span class="tech-tag">MapleSim</span>
+            <span class="tech-tag">PathPlanner</span>
+          </div>
+          <div class="case-links">
+            <a href="{{ '/work/frc-robot/' | relative_url }}" class="btn-primary">Case Study →</a>
+            <a href="https://github.com/FRCTeam1506/2026-Rebuild" target="_blank" rel="noopener noreferrer" class="live-link">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 3: Neon Racer 3D -->
+      <article class="case-study exec-card">
+        <div class="case-media">
+          <img src="{{ '/assets/img/neon-racer-preview.png' | relative_url }}" alt="Neon Racer 3D game preview" loading="lazy" width="1280" height="800">
+        </div>
+        <div class="case-content">
+          <div class="case-header">
+            <div class="case-meta-line">
+              <span class="case-index">03</span>
+              <span>/</span>
+              <span>3D Graphics &amp; Physics</span>
+              <span>·</span>
+              <span class="badge-kpi">60 FPS / &lt; 3MB Bundle</span>
+            </div>
+            <h3 class="case-title">Neon Racer 3D</h3>
+          </div>
+          <p class="case-summary-one-line">
+            Browser-native 3D racing simulation engineered with Three.js, Cannon-es raycast vehicle dynamics, AWD torque distribution, and WebGL.
+          </p>
+          <div class="case-tech-list">
+            <span class="tech-tag">Three.js</span>
+            <span class="tech-tag">Cannon-es</span>
+            <span class="tech-tag">WebGL</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Vite</span>
+          </div>
+          <div class="case-links">
+            <a href="{{ '/work/neon-racer-3d/' | relative_url }}" class="btn-primary">Case Study →</a>
+            <a href="https://neon-racer-3d.vercel.app/" target="_blank" rel="noopener noreferrer" class="live-link">Play Demo ↗</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Additional Projects Compact Section -->
+    <div class="project-secondary-section">
+      <div class="project-secondary-header">
+        <h3 class="project-secondary-title">Additional Engineering Projects</h3>
+        <span class="project-secondary-caption">Edge ML &amp; Civic Tech</span>
+      </div>
+
+      <div class="project-secondary-grid">
+
+        <!-- Form Analyzer -->
+        <div class="project-secondary-card">
+          <div class="sec-card-top">
+            <div class="sec-card-meta">
+              <span>Mobile &amp; Edge Vision</span>
+              <span class="badge-kpi">IEEE ISEC 2026</span>
+            </div>
+            <h4 class="sec-card-title">Form Analyzer</h4>
+            <p class="sec-card-desc">
+              On-device Flutter posture coach using Google ML Kit and 3D Vector Triad Dot Product geometry for real-time biomechanical feedback.
+            </p>
+          </div>
+          <div class="sec-card-bottom">
+            <div class="case-tech-list" style="margin-bottom: 0;">
+              <span class="tech-tag">Flutter</span>
+              <span class="tech-tag">Dart</span>
+              <span class="tech-tag">Google ML Kit</span>
+              <span class="tech-tag">3D Geometry</span>
+            </div>
+            <div class="sec-card-links">
+              <a href="{{ '/work/form-analyzer/' | relative_url }}" class="btn-primary" style="font-size: 0.8rem; padding: 0.45rem 0.9rem;">Case Study →</a>
+              <a href="https://coderjt-elite.github.io/form_analyzer/" target="_blank" rel="noopener noreferrer" class="live-link">Project Site ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Water Wrapped -->
+        <div class="project-secondary-card">
+          <div class="sec-card-top">
+            <div class="sec-card-meta">
+              <span>Full-Stack &amp; Edge</span>
+              <span class="badge-kpi">&lt; 45ms Edge TTFB</span>
+            </div>
+            <h4 class="sec-card-title">Water Wrapped</h4>
+            <p class="sec-card-desc">
+              Civic open data platform on Cloudflare Workers edge network converting municipal drinking water quality reports into interactive mobile stories.
+            </p>
+          </div>
+          <div class="sec-card-bottom">
+            <div class="case-tech-list" style="margin-bottom: 0;">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">Cloudflare Workers</span>
+              <span class="tech-tag">Supabase</span>
+            </div>
+            <div class="sec-card-links">
+              <a href="{{ '/work/water-wrapped/' | relative_url }}" class="btn-primary" style="font-size: 0.8rem; padding: 0.45rem 0.9rem;">Case Study →</a>
+              <a href="https://github.com/JoshuaTewolde/WaterWrapped" target="_blank" rel="noopener noreferrer" class="live-link">GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- Interactive Engineering Laboratory -->
 <section class="section section-rule" id="interactive-lab">
   <div class="container">
     <div class="section-meta-header">
       <div class="section-caption">Interactive Lab</div>
       <div class="section-num">Kinematics &amp; Geometry</div>
+    </div>
+
+    <div style="margin-bottom: 1.75rem;">
+      <h2 class="section-headline">Interactive Kinematics &amp; Vector Sandbox</h2>
+      <p class="section-intro-text">
+        Live in-browser physics and kinematics workbench demonstrating the mathematical formulations behind my robotics control systems and edge computer vision research.
+      </p>
     </div>
 
     <div class="lab-explainer-banner" id="labExplainerSwerve" style="display: none;"></div>
@@ -121,213 +321,6 @@ description: John Tewolde — software engineer and robotics programmer based in
   </div>
 </section>
 
-<!-- Selected Work Section -->
-<section class="section section-rule" id="selected-work">
-  <div class="container">
-    <div class="section-meta-header">
-      <div class="section-caption">Selected Projects</div>
-      <div class="section-num">01 — 05</div>
-    </div>
-
-    <div class="work-header-row">
-      <div>
-        <h2 class="section-headline">Featured Engineering Work</h2>
-      </div>
-
-      <div class="filter-wrapper">
-        <div class="filter-tablist" id="projectFilters" role="tablist" aria-label="Filter projects">
-          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All (5)</button>
-          <button class="filter-btn" data-filter="web" role="tab" aria-selected="false">Web &amp; Systems</button>
-          <button class="filter-btn" data-filter="robotics" role="tab" aria-selected="false">Robotics &amp; Controls</button>
-          <button class="filter-btn" data-filter="3d" role="tab" aria-selected="false">3D &amp; Physics</button>
-          <button class="filter-btn" data-filter="vision" role="tab" aria-selected="false">Edge Vision</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="filter-status-row">
-      <span class="filter-count-notice" id="filterCountNotice" aria-live="polite">Showing all 5 projects</span>
-    </div>
-
-    <div class="project-case-list">
-
-      <!-- Project 1: ChaseUp -->
-      <article class="case-study exec-card" data-category="web">
-        <div class="case-media">
-          <img src="{{ '/assets/img/chaseup-preview.png' | relative_url }}" alt="ChaseUp application dashboard interface" loading="lazy" width="1280" height="800">
-        </div>
-        <div class="case-content">
-          <div class="case-header">
-            <div class="case-meta-line">
-              <span class="case-index">01</span>
-              <span>/</span>
-              <span>SaaS Platform</span>
-              <span>·</span>
-              <span class="badge-kpi">&lt; 50ms Latency</span>
-            </div>
-            <h3 class="case-title">ChaseUp</h3>
-          </div>
-          <p class="case-summary-one-line">
-            Full-stack mechanics lien compliance and receivables engine built with Next.js App Router, Supabase, and PostgreSQL Row Level Security.
-          </p>
-          <div class="case-tech-list">
-            <span class="tech-tag">Next.js</span>
-            <span class="tech-tag">TypeScript</span>
-            <span class="tech-tag">Supabase</span>
-            <span class="tech-tag">PostgreSQL (RLS)</span>
-            <span class="tech-tag">Tailwind</span>
-          </div>
-          <div class="case-links">
-            <a href="{{ '/work/chaseup/' | relative_url }}" class="btn-primary">Case Study →</a>
-            <a href="https://chaseupapp.tech" target="_blank" rel="noopener noreferrer" class="live-link">Live App ↗</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Project 2: FRC 1506 Robot Architecture -->
-      <article class="case-study exec-card" data-category="robotics">
-        <div class="case-media case-media-banner-dark">
-          <div class="media-badge-tag">FRC Team 1506 · Robotics</div>
-          <div class="media-badge-title">Physics Sim &amp; Swerve Odometry</div>
-          <div class="media-badge-chips">
-            <span class="tech-tag">MapleSim (dyn4j)</span>
-            <span class="tech-tag">WPILib Java</span>
-          </div>
-        </div>
-        <div class="case-content">
-          <div class="case-header">
-            <div class="case-meta-line">
-              <span class="case-index">02</span>
-              <span>/</span>
-              <span>Robotics &amp; Simulation</span>
-              <span>·</span>
-              <span class="badge-kpi">250 Hz Physics Loop</span>
-            </div>
-            <h3 class="case-title">FRC 1506 Robot Architecture</h3>
-          </div>
-          <p class="case-summary-one-line">
-            WPILib Java autonomous control architecture with 4ms desktop rigid-body physics simulation, swerve odometry, and AprilTag vision fusion.
-          </p>
-          <div class="case-tech-list">
-            <span class="tech-tag">Java 17</span>
-            <span class="tech-tag">WPILib</span>
-            <span class="tech-tag">CTRE Phoenix 6</span>
-            <span class="tech-tag">MapleSim</span>
-            <span class="tech-tag">PathPlanner</span>
-          </div>
-          <div class="case-links">
-            <a href="{{ '/work/frc-robot/' | relative_url }}" class="btn-primary">Case Study →</a>
-            <a href="https://github.com/CoderJT-Elite/2026-Rebuild" target="_blank" rel="noopener noreferrer" class="live-link">GitHub ↗</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Project 3: Form Analyzer -->
-      <article class="case-study exec-card" data-category="vision">
-        <div class="case-media">
-          <img src="{{ '/assets/img/form-analyzer-preview.png' | relative_url }}" alt="Form Analyzer biomechanical feedback interface" loading="lazy" width="1280" height="800">
-        </div>
-        <div class="case-content">
-          <div class="case-header">
-            <div class="case-meta-line">
-              <span class="case-index">03</span>
-              <span>/</span>
-              <span>Mobile &amp; Edge Vision</span>
-              <span>·</span>
-              <span class="badge-kpi">60 FPS On-Device</span>
-            </div>
-            <h3 class="case-title">Form Analyzer</h3>
-          </div>
-          <p class="case-summary-one-line">
-            On-device Flutter biomechanical posture analyzer using Google ML Kit and rotation-invariant 3D Vector Triad Dot Product geometry (IEEE ISEC 2026).
-          </p>
-          <div class="case-tech-list">
-            <span class="tech-tag">Flutter</span>
-            <span class="tech-tag">Dart</span>
-            <span class="tech-tag">Google ML Kit</span>
-            <span class="tech-tag">3D Geometry</span>
-          </div>
-          <div class="case-links">
-            <a href="{{ '/work/form-analyzer/' | relative_url }}" class="btn-primary">Case Study →</a>
-            <a href="https://coderjt-elite.github.io/form_analyzer/" target="_blank" rel="noopener noreferrer" class="live-link">Project Site ↗</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Project 4: Neon Racer 3D -->
-      <article class="case-study exec-card" data-category="3d">
-        <div class="case-media">
-          <img src="{{ '/assets/img/neon-racer-preview.png' | relative_url }}" alt="Neon Racer 3D game preview" loading="lazy" width="1280" height="800">
-        </div>
-        <div class="case-content">
-          <div class="case-header">
-            <div class="case-meta-line">
-              <span class="case-index">04</span>
-              <span>/</span>
-              <span>3D Graphics &amp; Physics</span>
-              <span>·</span>
-              <span class="badge-kpi">60 FPS / &lt; 3MB Bundle</span>
-            </div>
-            <h3 class="case-title">Neon Racer 3D</h3>
-          </div>
-          <p class="case-summary-one-line">
-            Browser-native 3D racing simulation engineered with Three.js, Cannon-es raycast vehicle dynamics, AWD torque distribution, and WebGL.
-          </p>
-          <div class="case-tech-list">
-            <span class="tech-tag">Three.js</span>
-            <span class="tech-tag">Cannon-es</span>
-            <span class="tech-tag">WebGL</span>
-            <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">Vite</span>
-          </div>
-          <div class="case-links">
-            <a href="{{ '/work/neon-racer-3d/' | relative_url }}" class="btn-primary">Case Study →</a>
-            <a href="https://neon-racer-3d.vercel.app/" target="_blank" rel="noopener noreferrer" class="live-link">Play Demo ↗</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Project 5: Water Wrapped -->
-      <article class="case-study exec-card" data-category="web">
-        <div class="case-media case-media-banner-blue">
-          <div class="media-badge-tag">Civic Tech · Open Data</div>
-          <div class="media-badge-title">Interactive CCR Water Reports</div>
-          <div class="media-badge-chips">
-            <span class="tech-tag">React + Vite</span>
-            <span class="tech-tag">Cloudflare Workers</span>
-          </div>
-        </div>
-        <div class="case-content">
-          <div class="case-header">
-            <div class="case-meta-line">
-              <span class="case-index">05</span>
-              <span>/</span>
-              <span>Edge Web &amp; Open Data</span>
-              <span>·</span>
-              <span class="badge-kpi">&lt; 45ms Edge TTFB</span>
-            </div>
-            <h3 class="case-title">Water Wrapped</h3>
-          </div>
-          <p class="case-summary-one-line">
-            Civic open data platform converting municipal drinking water quality reports into interactive mobile stories and accessible chemistry grids.
-          </p>
-          <div class="case-tech-list">
-            <span class="tech-tag">React</span>
-            <span class="tech-tag">TypeScript</span>
-            <span class="tech-tag">Cloudflare Workers</span>
-            <span class="tech-tag">Supabase</span>
-          </div>
-          <div class="case-links">
-            <a href="{{ '/work/water-wrapped/' | relative_url }}" class="btn-primary">Case Study →</a>
-            <a href="https://github.com/JoshuaTewolde/WaterWrapped" target="_blank" rel="noopener noreferrer" class="live-link">GitHub ↗</a>
-          </div>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
 <!-- Selected Research -->
 <section class="section section-rule" id="research">
   <div class="container">
@@ -336,7 +329,12 @@ description: John Tewolde — software engineer and robotics programmer based in
       <div class="section-num">IEEE Publications</div>
     </div>
 
-    <h2 class="section-headline">Peer-Reviewed Publications</h2>
+    <div style="margin-bottom: 1.75rem;">
+      <h2 class="section-headline">Peer-Reviewed Publications</h2>
+      <p class="section-intro-text">
+        Published research in computer vision pose analysis, robotics sensor fusion, and applied systems.
+      </p>
+    </div>
 
     <div class="pub-compact-list">
       <div class="pub-compact-item">
@@ -388,38 +386,6 @@ description: John Tewolde — software engineer and robotics programmer based in
   </div>
 </section>
 
-<!-- Core Competencies Matrix -->
-<section class="section section-rule" id="competencies">
-  <div class="container">
-    <div class="section-meta-header">
-      <div class="section-caption">Core Competencies</div>
-      <div class="section-num">Technical Matrix</div>
-    </div>
-
-    <div class="matrix-grid">
-      <div class="matrix-card">
-        <h3 class="matrix-title">Full-Stack &amp; Cloud</h3>
-        <p class="matrix-sub">Next.js, TypeScript, Supabase, PostgreSQL RLS, Cloudflare Workers, Tailwind</p>
-      </div>
-
-      <div class="matrix-card">
-        <h3 class="matrix-title">Robotics &amp; Controls</h3>
-        <p class="matrix-sub">WPILib, Java 17, CTRE Phoenix 6, MapleSim dyn4j, Limelight MegaTag2, PathPlanner</p>
-      </div>
-
-      <div class="matrix-card">
-        <h3 class="matrix-title">3D Graphics &amp; Physics</h3>
-        <p class="matrix-sub">Three.js, Cannon-es, WebGL, GLSL Shaders, Rigid-Body Vehicle Dynamics, Vite</p>
-      </div>
-
-      <div class="matrix-card">
-        <h3 class="matrix-title">Edge Vision &amp; ML</h3>
-        <p class="matrix-sub">Flutter, Dart, Google ML Kit, 3D Vector Geometry, Android NDK, On-Device Inference</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- Contact Note Banner -->
 <section class="section section-rule">
   <div class="container">
@@ -434,3 +400,4 @@ description: John Tewolde — software engineer and robotics programmer based in
     </div>
   </div>
 </section>
+
