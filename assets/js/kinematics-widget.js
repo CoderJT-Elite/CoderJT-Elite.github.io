@@ -11,6 +11,7 @@
   var canvas, ctx;
   var currentMode = 'swerve'; // 'swerve' | 'triad'
   var animFrameId = null;
+  var renderQueued = false;
 
   // Swerve State
   var swerveState = {
@@ -56,6 +57,7 @@
     canvas.width = rect.width * dpr;
     canvas.height = rect.height * dpr;
     ctx.scale(dpr, dpr);
+    requestRender();
   }
 
   /* ── 1. Swerve Drive Calculations & Rendering ────────────────── */
@@ -494,6 +496,7 @@
 
   /* ── 3. Animation & Rendering Loop ───────────────────────────── */
   function render() {
+    renderQueued = false;
     if (!canvas || !ctx) return;
     var rect = canvas.getBoundingClientRect();
     var width = rect.width;
@@ -504,7 +507,13 @@
     } else {
       drawTriadSimulation(width, height);
     }
+  }
 
+  // The scene only changes on input, resize, theme change, or font load, so draw once per change
+  // instead of every frame (an idle page then does no canvas work at all).
+  function requestRender() {
+    if (renderQueued || !canvas || !ctx) return;
+    renderQueued = true;
     animFrameId = requestAnimationFrame(render);
   }
 
@@ -540,6 +549,7 @@
         triadState.B = { x: w * 0.48, y: h * 0.65, z: 0, label: 'Knee' };
         triadState.C = { x: w * 0.72, y: h * 0.35, z: 0, label: 'Ankle' };
       }
+      requestRender();
     }
 
     if (swerveTab) swerveTab.addEventListener('click', function () { setMode('swerve'); });
@@ -564,6 +574,7 @@
           swerveState.vx = 2.8; swerveState.vy = 2.8; swerveState.omega = 1.5;
         }
         updateSlidersFromState();
+        requestRender();
       });
     });
 
@@ -596,6 +607,7 @@
           triadState.B = { x: w * 0.52, y: h * 0.52, z: 0, label: 'Knee' };
           triadState.C = { x: w * 0.52, y: h * 0.85, z: 0, label: 'Ankle' };
         }
+        requestRender();
       });
     });
 
@@ -610,9 +622,9 @@
       if (sliderOmega) sliderOmega.value = swerveState.omega;
     }
 
-    if (sliderVx) sliderVx.addEventListener('input', function (e) { swerveState.vx = parseFloat(e.target.value); });
-    if (sliderVy) sliderVy.addEventListener('input', function (e) { swerveState.vy = parseFloat(e.target.value); });
-    if (sliderOmega) sliderOmega.addEventListener('input', function (e) { swerveState.omega = parseFloat(e.target.value); });
+    if (sliderVx) sliderVx.addEventListener('input', function (e) { swerveState.vx = parseFloat(e.target.value); requestRender(); });
+    if (sliderVy) sliderVy.addEventListener('input', function (e) { swerveState.vy = parseFloat(e.target.value); requestRender(); });
+    if (sliderOmega) sliderOmega.addEventListener('input', function (e) { swerveState.omega = parseFloat(e.target.value); requestRender(); });
 
     // Triad Interactive Dragging
     function getCanvasCoords(e) {
@@ -633,6 +645,7 @@
         var pt = points[i];
         if (Math.hypot(pos.x - pt.x, pos.y - pt.y) <= triadState.dragRadius) {
           triadState.activePoint = pt;
+          requestRender();
           if (e.cancelable) e.preventDefault();
           break;
         }
@@ -646,11 +659,13 @@
       // Clamp within canvas boundaries
       triadState.activePoint.x = Math.max(15, Math.min(rect.width - 15, pos.x));
       triadState.activePoint.y = Math.max(15, Math.min(rect.height - 15, pos.y));
+      requestRender();
       if (e.cancelable) e.preventDefault();
     }
 
     function handlePointerUp() {
       triadState.activePoint = null;
+      requestRender();
     }
 
     if (canvas) {
@@ -664,6 +679,12 @@
     }
 
     window.addEventListener('resize', resizeCanvas);
+
+    // Redraw when the theme flips (main.js sets data-theme) and once web fonts are ready
+    if (window.MutationObserver) {
+      new MutationObserver(requestRender).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    }
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(requestRender);
   }
 
   /* ── 5. Lifecycle Initialization ─────────────────────────────── */
@@ -673,7 +694,7 @@
     ctx = canvas.getContext('2d');
     resizeCanvas();
     initEvents();
-    render();
+    requestRender();
   }
 
   if (document.readyState === 'loading') {
