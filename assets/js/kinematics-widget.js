@@ -44,7 +44,7 @@
       accent: isDark ? '#e07a38' : '#b45309',
       accentCyan: isDark ? '#38bdf8' : '#0284c7',
       textPrimary: isDark ? '#f4f3ed' : '#141413',
-      textMuted: isDark ? '#8c8980' : '#7d7a72',
+      textMuted: isDark ? '#9a978e' : '#6b685f',
       vectorLine: isDark ? '#fbbf24' : '#d97706'
     };
   }

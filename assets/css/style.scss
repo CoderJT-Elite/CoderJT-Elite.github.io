@@ -26,8 +26,8 @@
   /* Typography Colors */
   --text-primary:        #141413;
   --text-secondary:      #4d4b45;
-  --text-muted:          #7d7a72;
-  --text-dim:            #9e9b92;
+  --text-muted:          #6b685f;
+  --text-dim:            #706d64;
 
   /* Accents (Subtle & Natural) */
   --accent-rust:         #b45309;
@@ -70,8 +70,8 @@
 
   --text-primary:        #f4f3ed;
   --text-secondary:      #c5c2ba;
-  --text-muted:          #8c8980;
-  --text-dim:            #66645e;
+  --text-muted:          #9a978e;
+  --text-dim:            #928f86;
 
   --accent-rust:         #e07a38;
   --accent-dark:         #f4f3ed;
@@ -82,6 +82,20 @@
   --shadow-sm:           0 1px 3px rgba(0, 0, 0, 0.3);
   --shadow-md:           0 4px 16px rgba(0, 0, 0, 0.45);
   --shadow-lg:           0 12px 36px rgba(0, 0, 0, 0.6);
+}
+
+/* ── Reduced Motion ──────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ── Base & Reset ────────────────────────────────────────────── */
@@ -102,7 +116,7 @@ body {
   background-color: var(--bg-canvas);
   color: var(--text-secondary);
   line-height: 1.68;
-  font-size: 16px;
+  font-size: 1rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
@@ -154,6 +168,9 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--text-primary);
   color: var(--bg-canvas);
   padding: 0.5rem 1rem;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
   font-size: 0.875rem;
   font-weight: 500;
   border-radius: var(--radius-xs);
@@ -225,6 +242,8 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: baseline;
   gap: 0.5rem;
+  min-height: 44px;
+  padding-block: 0.55rem;
   font-family: var(--font-sans);
   color: var(--text-primary);
 }
@@ -264,6 +283,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 450;
   color: var(--text-muted);
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
   padding: 0.2rem 0;
 }
 
@@ -279,7 +303,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-link.active::after {
   content: '';
   position: absolute;
-  bottom: -2px;
+  bottom: 0.55rem;
   left: 0;
   right: 0;
   height: 1.5px;
@@ -289,7 +313,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-link-num {
   display: none;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--accent-rust);
   margin-right: 0.4rem;
 }
@@ -311,7 +335,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .mobile-nav-tag {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   text-transform: uppercase;
 }
@@ -349,8 +373,8 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 44px;
+  height: 44px;
   background: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-xs);
@@ -375,12 +399,12 @@ h1, h2, h3, h4, h5, h6 {
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  width: 34px;
-  height: 34px;
+  width: 44px;
+  height: 44px;
   background: transparent;
   border: 1px solid var(--border);
   border-radius: var(--radius-xs);
-  padding: 6px;
+  padding: 14px 10px;
   cursor: pointer;
 }
 
@@ -494,7 +518,7 @@ h1, h2, h3, h4, h5, h6 {
 .jump-pill-num {
   color: var(--accent-rust);
   font-weight: 600;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
 }
 
 .jump-pill:hover,
@@ -516,6 +540,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.88rem;
   font-weight: 500;
   padding: 0.65rem 1.25rem;
+  min-height: 44px;
   border-radius: var(--radius-xs);
   border: 1px solid var(--text-primary);
   cursor: pointer;
@@ -536,6 +561,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.88rem;
   font-weight: 500;
   padding: 0.65rem 1.25rem;
+  min-height: 44px;
   border-radius: var(--radius-xs);
   border: 1px solid var(--border-strong);
   cursor: pointer;
@@ -552,16 +578,20 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
+  min-height: 44px;
+  min-width: 44px;
   font-size: 0.88rem;
   font-weight: 500;
   color: var(--text-primary);
-  border-bottom: 1px solid var(--border-strong);
-  padding-bottom: 1px;
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
 }
 
 .btn-link:hover {
   color: var(--accent-rust);
-  border-bottom-color: var(--accent-rust);
+  text-decoration-color: var(--accent-rust);
 }
 
 .btn-cite {
@@ -569,11 +599,12 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   gap: 0.3rem;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border);
   color: var(--text-primary);
-  padding: 0.25rem 0.6rem;
+  padding: 0.25rem 0.75rem;
+  min-height: 44px;
   border-radius: var(--radius-xs);
   cursor: pointer;
   transition: all var(--transition);
@@ -601,7 +632,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .ledger-label {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-muted);
@@ -666,7 +697,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .explainer-tag {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -686,7 +717,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .badge-sub {
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   padding: 0.1rem 0.35rem;
   background: rgba(180, 83, 9, 0.15);
   color: var(--accent-rust);
@@ -745,7 +776,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .lab-tab-num {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--text-dim);
 }
 
@@ -779,7 +810,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .canvas-hint {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   text-align: center;
   margin-top: 0.5rem;
@@ -813,18 +844,19 @@ h1, h2, h3, h4, h5, h6 {
 
 .preset-label {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   margin-right: 0.2rem;
 }
 
 .preset-btn {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border);
   color: var(--text-primary);
-  padding: 0.2rem 0.5rem;
+  padding: 0.2rem 0.55rem;
+  min-height: 44px;
   border-radius: var(--radius-xs);
   cursor: pointer;
   transition: all var(--transition);
@@ -852,7 +884,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   justify-content: space-between;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--text-secondary);
 }
 
@@ -862,6 +894,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .slider-row input[type="range"] {
   width: 100%;
+  height: 44px;
   accent-color: var(--accent-rust);
   cursor: pointer;
 }
@@ -884,7 +917,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .telemetry-table th {
   color: var(--text-muted);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding-bottom: 0.4rem;
@@ -917,7 +950,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .formula-badge {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-muted);
@@ -925,7 +958,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .fsm-status {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 600;
   padding: 0.15rem 0.45rem;
   border-radius: var(--radius-xs);
@@ -1004,7 +1037,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .filter-count-notice {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -1110,7 +1143,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .exec-label {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -1123,7 +1156,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .exec-label-problem {
   background: rgba(220, 38, 38, 0.12);
-  color: #dc2626;
+  color: #b91c1c;
   border: 1px solid rgba(220, 38, 38, 0.25);
 }
 
@@ -1135,7 +1168,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .exec-label-arch {
   background: rgba(2, 132, 199, 0.12);
-  color: #0284c7;
+  color: #0369a1;
   border: 1px solid rgba(2, 132, 199, 0.25);
 }
 
@@ -1208,7 +1241,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .tech-tag {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 500;
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-strong);
@@ -1231,15 +1264,18 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
+  min-height: 44px;
   font-size: 0.88rem;
   font-weight: 500;
   color: var(--text-primary);
-  border-bottom: 1px solid var(--border-strong);
-  padding-bottom: 1px;
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
 }
 
 .live-link:hover {
-  border-bottom-color: var(--accent-rust);
+  text-decoration-color: var(--accent-rust);
   color: var(--accent-rust);
 }
 
@@ -1305,7 +1341,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: space-between;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
 }
 
@@ -1357,7 +1393,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .domain-index {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   margin-bottom: 0.75rem;
 }
@@ -1454,7 +1490,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .dossier-key {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -1592,7 +1628,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .pub-badge {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   background: var(--accent-tint);
   border: 1px solid var(--accent-border);
   color: var(--accent-rust);
@@ -1646,7 +1682,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .pub-contrib-label {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--accent-rust);
@@ -1675,7 +1711,7 @@ h1, h2, h3, h4, h5, h6 {
 /* ── Minimalist Component Extensions (Linear / Vercel Grade) ── */
 .badge-kpi {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--accent-rust);
   background: var(--accent-tint);
@@ -1718,7 +1754,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .media-badge-tag {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: #a1a1aa;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -1779,7 +1815,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .pub-venue {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--accent-rust);
   background: var(--accent-tint);
@@ -1867,6 +1903,13 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1.25rem;
 }
 
+.cs-breadcrumb a {
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
 .cs-breadcrumb a:hover {
   color: var(--text-primary);
 }
@@ -1933,7 +1976,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .cs-spec-label {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text-muted);
@@ -2012,7 +2055,7 @@ h1, h2, h3, h4, h5, h6 {
 .exec-pill-tag {
   align-self: flex-start;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -2022,7 +2065,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .exec-pill-problem {
   background: rgba(220, 38, 38, 0.12);
-  color: #dc2626;
+  color: #b91c1c;
   border: 1px solid rgba(220, 38, 38, 0.25);
 }
 
@@ -2034,7 +2077,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .exec-pill-arch {
   background: rgba(2, 132, 199, 0.12);
-  color: #0284c7;
+  color: #0369a1;
   border: 1px solid rgba(2, 132, 199, 0.25);
 }
 
@@ -2116,7 +2159,7 @@ details.tech-disclosure[open] .disclosure-title::before {
 
 .disclosure-badge {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   padding: 0.15rem 0.5rem;
   background: var(--bg-subtle);
   border: 1px solid var(--border);
@@ -2189,6 +2232,9 @@ details.tech-disclosure[open] .disclosure-title::before {
 .cs-toc-link {
   font-size: 0.84rem;
   color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  min-height: 44px;
   padding: 0.35rem 0.5rem;
   border-radius: var(--radius-xs);
   line-height: 1.4;
@@ -2221,6 +2267,9 @@ details.tech-disclosure[open] .disclosure-title::before {
 }
 
 .cs-toc-top-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--text-muted);
@@ -2312,7 +2361,9 @@ details.tech-disclosure[open] .disclosure-title::before {
 .cs-nav-link {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 0.25rem;
+  min-height: 44px;
 }
 
 .cs-nav-next {
@@ -2322,7 +2373,7 @@ details.tech-disclosure[open] .disclosure-title::before {
 
 .cs-nav-dir {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   text-transform: uppercase;
 }
@@ -2384,7 +2435,7 @@ details.tech-disclosure[open] .disclosure-title::before {
 
 .bibtex-modal-badge {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--accent-rust);
@@ -2526,6 +2577,7 @@ details.tech-disclosure[open] .disclosure-title::before {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
+  min-height: 44px;
 }
 
 .channel-link:hover {
@@ -2628,7 +2680,7 @@ details.tech-disclosure[open] .disclosure-title::before {
 
 .footer-heading {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-muted);
@@ -2639,10 +2691,14 @@ details.tech-disclosure[open] .disclosure-title::before {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0;
 }
 
 .footer-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  min-width: 44px;
   font-size: 0.88rem;
   color: var(--text-secondary);
 }
